@@ -1,10 +1,12 @@
 import User from "../model/Users.js";
+import bcryptjs from "bcryptjs";
+
 
 const postSingup = async (req, res) => {
-    const { fullname, email, password } = req.body;
-    const user = new User({ fullname, email, password });
+
 
     try {
+        const { fullname, email, password } = req.body;
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             res.json({
@@ -13,14 +15,16 @@ const postSingup = async (req, res) => {
                 error: "Email already in use"
             })
         }
-        else {
-            const saveduser = await user.save()
-            res.json({
-                success: true,
-                message: "Signup Done Successfully",
-                data: saveduser
-            })
-        }
+
+        const hashpassword = await bcryptjs.hash(password, 10);
+        const user = new User({ fullname, email, password: hashpassword });
+        const saveduser = await user.save()
+        res.json({
+            success: true,
+            message: "Signup Done Successfully",
+            data: saveduser
+        })
+
 
     }
     catch (e) {
@@ -42,13 +46,22 @@ const postlogin = async (req, res) => {
             password: password
         })
 
+        const isMatch = await bcryptjs.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ success: false, message: "Incorrect password" });
+        }
+
         if (user) {
+
             res.json({
                 success: true,
                 message: "Login Successfully",
                 data: user,
 
             })
+        }
+        else {
+            return res.status(400).json({ success: false, message: "User not found" });
         }
 
     } catch (e) {

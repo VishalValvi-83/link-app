@@ -3,20 +3,31 @@ import User from "../model/Users.js";
 const postSingup = async (req, res) => {
     const { fullname, email, password } = req.body;
     const user = new User({ fullname, email, password });
+
     try {
-        const saveduser = await user.save()
-        res.json({
-            success: true,
-            message: "Signup Done Successfully",
-            data: saveduser
-        })
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            res.json({
+                success: false,
+                message: "User already exists",
+                error: "Email already in use"
+            })
+        }
+        else {
+            const saveduser = await user.save()
+            res.json({
+                success: true,
+                message: "Signup Done Successfully",
+                data: saveduser
+            })
+        }
 
     }
     catch (e) {
         console.error(e)
         res.json({
             success: false,
-            message: "failed  to signup",
+            message: e.message,
             data: null
         })
     }
@@ -31,14 +42,14 @@ const postlogin = async (req, res) => {
             password: password
         })
 
-       if(user){
-        res.json({
-            success: true,
-            message: "Login Successfully",
-            data: user,
+        if (user) {
+            res.json({
+                success: true,
+                message: "Login Successfully",
+                data: user,
 
-        })
-       }
+            })
+        }
 
     } catch (e) {
         console.error(e)

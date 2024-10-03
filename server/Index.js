@@ -18,7 +18,7 @@ const connection = async () => {
   try {
     const conn = await mongoose.connect(process.env.DB_URL)
     console.log("Connected to MongoDB".bgGreen)
-    
+
   } catch (error) {
     console.log(`${error}`.bgRed)
   }
@@ -29,7 +29,17 @@ connection();
 
 //health
 app.get("/health", (req, res) => res.send("Hello, server is Healthy"))
-app.get("/", (req, res) => res.send())
+app.get("/", (req, res) => {
+  res.send(`<body style='background-color:black; text-align:center;'>
+            <p style="margin:0 auto; margin-top: 150px; width: 400px; border-radius:50%; color: black; font-size: 30px; background-color: #85FFBD;
+background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+">
+                <span style='font-size:60px;'>HELLO!</span> <br/>
+                <span style='font-size:30px;'><sup>From</sup> </span>
+                <span style='font-size:50px;'>Server</span>
+            </p>
+        </body>`)
+})
 
 //links
 app.post('/add-link', postLink)

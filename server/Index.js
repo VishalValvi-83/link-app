@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import { getlinks, getSlugRedic, postLink } from './controllers/Link.js'
 import { postlogin, postSingup } from './controllers/user.js'
+import colors from 'colors'
 dotenv.config()
 
 const app = express()
@@ -15,11 +16,11 @@ const PORT = process.env.PORT || 3000
 // db connection
 const connection = async () => {
   try {
-    const conn = await mongoose.connect(process.env.BACKEND_URL)
-    console.log("Connected to MongoDB")
-
+    const conn = await mongoose.connect(process.env.DB_URL)
+    console.log("Connected to MongoDB".bgGreen)
+    
   } catch (error) {
-    console.log(error)
+    console.log(`${error}`.bgRed)
   }
 }
 connection();
@@ -28,7 +29,7 @@ connection();
 
 //health
 app.get("/health", (req, res) => res.send("Hello, server is Healthy"))
-app.get("/", (req, res) => res.send("Hello, server is running...  Have a good day"))
+app.get("/", (req, res) => res.send())
 
 //links
 app.post('/add-link', postLink)

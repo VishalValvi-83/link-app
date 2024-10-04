@@ -7,7 +7,7 @@ const Home = () => {
     <>
     <Navbar/>
       <section className="bg-gray-900 text-white">
-        <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+        <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-3/6 lg:items-center">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="bg-gradient-to-r animate__animated animate__fadeInDown from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
               One Short Link,
@@ -27,12 +27,12 @@ const Home = () => {
                 Get Started
               </a>
 
-              <a
+              <Link
                 className="block w-full animate__animated animate__fadeInRight rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-                href="#"
+                to="/service"
               >
                 Learn More
-              </a>
+              </Link>
             </div>
           </div>
         </div>

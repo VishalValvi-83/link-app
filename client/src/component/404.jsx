@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import ErrorImage from './../assets/error404.svg'
 
 const Error = () => {
     return (
@@ -8,7 +9,7 @@ const Error = () => {
         {/* dark:bg-gray-900 dark:text-blue-400 dark:text-white */}
             <section class="bg-white ">
                 <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
-                    <div class="wf-ull lg:w-1/2">
+                    <div class="w-full mx-auto lg:w-1/2">
                         <p class="text-sm font-medium text-blue-500 ">
                             404 error
                         </p>
@@ -49,7 +50,7 @@ const Error = () => {
                     <div class="relative w-full mt-12 lg:w-1/2 lg:mt-0">
                         <img
                             class="w-full max-w-lg lg:mx-auto"
-                            src="/images/components/illustration.svg"
+                            src={ErrorImage}
                             alt=""
                         />
                     </div>

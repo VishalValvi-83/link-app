@@ -5,6 +5,7 @@ import './index.css'
 import React from "react";
 import Signin from "./view/Login/login";
 import Signup from "./view/signup/signup";
+import Error from "./component/404";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <h1>404 ERROR</h1>
+    element: <Error/>
   }
 ]);
 

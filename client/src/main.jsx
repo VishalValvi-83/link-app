@@ -6,6 +6,8 @@ import React from "react";
 import Signin from "./view/Login/login";
 import Signup from "./view/signup/signup";
 import Error from "./component/404";
+import Createlink from "./component/createlink";
+import { Toaster } from 'react-hot-toast'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
     element: <Signup />
   },
   {
+    path: "/create-link",
+    element: <Createlink />
+  },
+  {
     path: "*",
     element: <Error/>
   }
@@ -30,5 +36,6 @@ const router = createBrowserRouter([
 root.render(
   <>
     <RouterProvider router={router} />
+    <Toaster/>
   </>
 );

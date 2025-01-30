@@ -8,12 +8,17 @@ import Signup from "./view/signup/signup";
 import Error from "./component/404";
 import Createlink from "./component/createlink";
 import { Toaster } from 'react-hot-toast'
+import Service from "./view/Service_page/service";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />
+  },
+  {
+    path: "/service",
+    element: <Service />
   },
   {
     path: "/user-login",
@@ -29,13 +34,13 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <Error/>
+    element: <Error />
   }
 ]);
 
 root.render(
   <>
     <RouterProvider router={router} />
-    <Toaster/>
+    <Toaster />
   </>
 );

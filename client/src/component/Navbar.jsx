@@ -1,8 +1,35 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Icon from './../assets/favicon.png'
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const firebaseConfig = {
+    apiKey: import.meta.env.VITE_APIKEY,
+    authDomain: import.meta.env.VITE_AUTHDOMAIN,
+    databaseURL: import.meta.env.VITE_DBURL,
+    projectId: import.meta.env.VITE_PROJECTID,
+    storageBucket: "learning-project-717da.appspot.com",
+    messagingSenderId: import.meta.env.VITE_MSGID,
+    appId: import.meta.env.VITE_APPID,
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        navigate('/user-login');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <nav className={`bg-white fixed w-full z-20 top-0 start-0 ${window.scrollY > 0 ? 'border-b border-gray-200' : ''} dark:bg-gray-900`}>
@@ -21,7 +48,7 @@ const Navbar = () => {
             {/* Dropdown menu */}
             <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
               <div className="px-4 py-3">
-                <span className="block text-sm text-gray-900 dark:text-white">ABC XYZ</span>
+                <span id='userInfo' className="block text-sm text-gray-900 dark:text-white">ABC XYZ</span>
                 <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@xyz.com</span>
               </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
@@ -29,10 +56,11 @@ const Navbar = () => {
                   <Link to="/dashboard" className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
                 </li>
                 <li>
-                  <button className="block mx-auto px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-600 rounded border border-blue-600 dark:text-gray-200 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-auto">Sign out</button>
+                  <button className="block mx-auto px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-600 rounded border border-blue-600 dark:text-gray-200 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-auto" id='signOut' onClick={handleSignOut}>Sign out</button>
                 </li>
               </ul>
             </div>
+            <button type='button' className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" id='loginButton' ></button>
             <button data-collapse-toggle="navbar-user" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
               <span className="sr-only">Open main menu</span>
               <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">

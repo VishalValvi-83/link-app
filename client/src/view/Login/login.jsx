@@ -1,31 +1,115 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useHistory } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
 export default function Signin() {
-  return (
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const firebaseConfig = {
+    apiKey: import.meta.env.VITE_APIKEY,
+    authDomain: import.meta.env.VITE_AUTHDOMAIN,
+    databaseURL: import.meta.env.VITE_DBURL,
+    projectId: import.meta.env.VITE_PROJECTID,
+    storageBucket: "learning-project-717da.appspot.com",
+    messagingSenderId: import.meta.env.VITE_MSGID,
+    appId: import.meta.env.VITE_APPID,
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+  // auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+  useEffect(() => {
+    setPersistence(auth, browserLocalPersistence)
+      .then(() => {
+        console.log("Persistence set to LOCAL");
+      })
+      .catch((error) => {
+        console.error("Error setting persistence:", error);
+      });
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+    });
+
+    // Cleanup on unmount
+    return () => unsubscribe();
+  }, [auth]);
+
+  // onAuthStateChanged(auth, (user) => {
+  //   if (user) {
+  //     document.getElementById('userInfo').innerText = `Hello, ${user.displayName}`;
+  //     document.getElementById('googleSignIn').style.display = 'none';
+  //     document.getElementById('signOut').style.display = 'block';
+
+  //     // Prevent redirection & update URL without reloading
+  //     window.history.pushState({}, '', '/');
+  //   } else {
+  //     document.getElementById('userInfo').innerText = '';
+  //     document.getElementById('googleSignIn').style.display = 'block';
+  //     document.getElementById('signOut').style.display = 'none';
+
+  //     // Redirect to login page if user is not signed in
+  //     window.history.pushState({}, '', '/login');
+  //   }
+  // });
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      alert(`Hello ${user.displayName}`)
+      window.location.pathname = '/';
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  if (loading) {
+    return <div className=" h-screen flex justify-center items-center" >
+      <div role="status">
+    <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+    </svg>
+    <span className="sr-only">Loading...</span>
+</div>
+</div>;
+  }
+
+  return ( 
     <>
-      <section class="bg-white">
-        <div class="grid grid-cols-1 lg:grid-cols-2">
-          <div class="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-gray-50 sm:px-6 lg:px-8">
-            <div class="absolute inset-0">
+      <section className="bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <div className="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-gray-50 sm:px-6 lg:px-8">
+            <div className="absolute inset-0">
               <img
-                class="object-cover object-top w-full h-full"
+                className="object-cover object-top w-full h-full"
                 src="https://cdn.rareblocks.xyz/collection/celebration/images/signin/4/girl-thinking.jpg"
                 alt=""
               />
             </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
 
-            <div class="relative">
-              <div class="w-full max-w-xl xl:w-full xl:mx-auto xl:pr-24 xl:max-w-xl">
-                <h3 class="text-4xl font-bold text-white">
-                  “Join a growing community <br class="hidden xl:block" />
-                   & simplify your links!”
+            <div className="relative">
+              <div className="w-full max-w-xl xl:w-full xl:mx-auto xl:pr-24 xl:max-w-xl">
+                <h3 className="text-4xl font-bold text-white">
+                  “Join a growing community <br className="hidden xl:block" />&
+                  simplify your links!”
                 </h3>
-                <ul class="grid grid-cols-1 mt-10 sm:grid-cols-2 gap-x-8 gap-y-4">
-                  <li class="flex items-center space-x-3">
-                    <div class="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
+                <ul className="grid grid-cols-1 mt-10 sm:grid-cols-2 gap-x-8 gap-y-4">
+                  <li className="flex items-center space-x-3">
+                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
                       <svg
-                        class="w-3.5 h-3.5 text-white"
+                        className="w-3.5 h-3.5 text-white"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -37,15 +121,15 @@ export default function Signin() {
                         ></path>
                       </svg>
                     </div>
-                    <span class="text-lg font-medium text-white">
+                    <span className="text-lg font-medium text-white">
                       {" "}
                       Easy to Use{" "}
                     </span>
                   </li>
-                  <li class="flex items-center space-x-3">
-                    <div class="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
+                  <li className="flex items-center space-x-3">
+                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
                       <svg
-                        class="w-3.5 h-3.5 text-white"
+                        className="w-3.5 h-3.5 text-white"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -57,15 +141,15 @@ export default function Signin() {
                         ></path>
                       </svg>
                     </div>
-                    <span class="text-lg font-medium text-white">
+                    <span className="text-lg font-medium text-white">
                       {" "}
                       Unlimited Exports{" "}
                     </span>
                   </li>
-                  <li class="flex items-center space-x-3">
-                    <div class="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
+                  <li className="flex items-center space-x-3">
+                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
                       <svg
-                        class="w-3.5 h-3.5 text-white"
+                        className="w-3.5 h-3.5 text-white"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -77,15 +161,15 @@ export default function Signin() {
                         ></path>
                       </svg>
                     </div>
-                    <span class="text-lg font-medium text-white">
+                    <span className="text-lg font-medium text-white">
                       {" "}
                       Analytics Tracking{" "}
                     </span>
                   </li>
-                  <li class="flex items-center space-x-3">
-                    <div class="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
+                  <li className="flex items-center space-x-3">
+                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full">
                       <svg
-                        class="w-3.5 h-3.5 text-white"
+                        className="w-3.5 h-3.5 text-white"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -97,7 +181,7 @@ export default function Signin() {
                         ></path>
                       </svg>
                     </div>
-                    <span class="text-lg font-medium text-white">
+                    <span className="text-lg font-medium text-white">
                       {" "}
                       Custom Links{" "}
                     </span>
@@ -107,33 +191,33 @@ export default function Signin() {
             </div>
           </div>
 
-          <div class="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
-            <div class="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
-              <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl">
+          <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
+            <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
+              <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
                 Sign in to Celebration
               </h2>
-              <p class="mt-2 text-base text-gray-600">
+              <p className="mt-2 text-base text-gray-600">
                 Don’t have an account?{" "}
                 <Link
                   to="/user-signup"
                   title=""
-                  class="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
+                  className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
                 >
                   Create a free account
                 </Link>
               </p>
 
-              <form action="#" method="POST" class="mt-8">
-                <div class="space-y-5">
+              <form action="#" method="POST" className="mt-8">
+                <div className="space-y-5">
                   <div>
-                    <label for="" class="text-base font-medium text-gray-900">
+                    <label for="" className="text-base font-medium text-gray-900">
                       {" "}
                       Email address{" "}
                     </label>
-                    <div class="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
-                          class="w-5 h-5"
+                          className="w-5 h-5"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -153,14 +237,14 @@ export default function Signin() {
                         name=""
                         id=""
                         placeholder="Enter email to get started"
-                        class="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
+                        className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <div class="flex items-center justify-between">
-                      <label for="" class="text-base font-medium text-gray-900">
+                    <div className="flex items-center justify-between">
+                      <label for="" className="text-base font-medium text-gray-900">
                         {" "}
                         Password{" "}
                       </label>
@@ -168,16 +252,16 @@ export default function Signin() {
                       <a
                         href="#"
                         title=""
-                        class="text-sm font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
+                        className="text-sm font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
                       >
                         {" "}
                         Forgot password?{" "}
                       </a>
                     </div>
-                    <div class="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
-                          class="w-5 h-5"
+                          className="w-5 h-5"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -197,7 +281,7 @@ export default function Signin() {
                         name=""
                         id=""
                         placeholder="Enter your password"
-                        class="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
+                        className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
                     </div>
                   </div>
@@ -205,7 +289,7 @@ export default function Signin() {
                   <div>
                     <button
                       type="submit"
-                      class="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80"
+                      className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80"
                     >
                       Log in
                     </button>
@@ -213,14 +297,16 @@ export default function Signin() {
                 </div>
               </form>
 
-              <div class="mt-3 space-y-3">
+              <div className="mt-3 space-y-3">
                 <button
+                  id="googleSignIn"
+                  onClick={handleGoogleLogin}
                   type="button"
-                  class="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
+                  className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
                 >
-                  <div class="absolute inset-y-0 left-0 p-4">
+                  <div className="absolute inset-y-0 left-0 p-4">
                     <svg
-                      class="w-6 h-6 text-rose-500"
+                      className="w-6 h-6 text-rose-500"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
@@ -231,13 +317,13 @@ export default function Signin() {
                   Sign in with Google
                 </button>
 
-                <button
+                {/* <button
                   type="button"
-                  class="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
+                  className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
                 >
-                  <div class="absolute inset-y-0 left-0 p-4">
+                  <div className="absolute inset-y-0 left-0 p-4">
                     <svg
-                      class="w-6 h-6 text-[#2563EB]"
+                      className="w-6 h-6 text-[#2563EB]"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
@@ -246,7 +332,7 @@ export default function Signin() {
                     </svg>
                   </div>
                   Sign in with Facebook
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

@@ -112,7 +112,7 @@ const Createlink = () => {
                         </div>
 
                     </div>
-                    <a href='#createlink' className="flex w-32 text-center mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-3 focus:outline-none hover:bg-indigo-600 rounded text-lg">Lets Make</a>
+                    <a href='#createlink' className="flex w-32 justify-center mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 text-center px-3 focus:outline-none hover:bg-indigo-600 rounded text-lg">Lets Make</a>
                 </div>
             </section>
             <section id='createlink' className='relative wave-container mt-7 w-full py-12'>
@@ -141,7 +141,7 @@ const Createlink = () => {
                     </div>
                 </div>
             </section>
-            <section className="text-gray-600 body-font">
+            {/* <section className="text-gray-600 body-font">
                 <div className="container px-5 my-5 mx-auto">
                     <div className="text-center mb-10">
                         <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-purple-500 mb-4">FEATURES</h1>
@@ -205,9 +205,9 @@ const Createlink = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="flex mx-auto mt-16 text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">Button</button>
+                    <button className="flex mx-auto mt-16 text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">Try Now</button>
                 </div>
-            </section>
+            </section> */}
         </>
     )
 }

@@ -15,7 +15,7 @@ const Createlink = () => {
             const parsedUrl = new URL(url);
             return parsedUrl.protocol === 'https:';
         } catch (error) {
-            return false; 
+            return false;
         }
     };
     const getData = async (e) => {
@@ -120,21 +120,21 @@ const Createlink = () => {
                     <div className="p-6 rounded shadow-md">
                         <div>
                             <div className="mb-4">
-                                <label className="block text-sm font-medium text-white">Title</label>
+                                <label className="block pb-2 font-medium text-white">Title</label>
                                 <input value={linkData.title} onChange={(e) => { setLinkData({ ...linkData, title: e.target.value }) }} type="text" placeholder="Title for short Link" className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200" required />
                             </div>
 
                             <div className="mb-4">
-                                <label className="block text-sm  font-medium text-white">Slug</label>
-                                <input value={linkData.slug} onChange={(e) => { setLinkData({ ...linkData, slug: e.target.value }) }} type="text" placeholder="e.g.,my_short_link" className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200" required />
+                                <label className="block pb-2 font-medium text-white">Slug</label>
+                                <input value={linkData.slug} onChange={(e) => { setLinkData({ ...linkData, slug: e.target.value }) }} type="text" placeholder="e.g., my_short_link or myapplink" className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200" required />
                             </div>
 
                             <div className="flex items-center mb-4">
                                 <p className="py-2.5 px-3 text-gray-500 bg-white  border border-r-0 rtl:rounded-r-lg rtl:rounded-l-none rtl:border-l-0 rtl:border-r rounded-l-lg">https://</p>
-                                <input value={linkData.target} onChange={(e) => { setLinkData({ ...linkData, target: e.target.value }) }} type="text" placeholder="Enter Long URL" className="block w-full rounded-l-none rtl:rounded-l-lg rtl:rounded-r-none  rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 " required />
+                                <input value={linkData.target} onChange={(e) => { setLinkData({ ...linkData, target: e.target.value }) }} type="text" placeholder="Paste your long URL" className="block w-full rounded-l-none rtl:rounded-l-lg rtl:rounded-r-none  rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 " required />
                             </div>
 
-                            <button onClick={getData} type="submit" className="px-4 py-2 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-300">
+                            <button onClick={getData} type="submit" className="px-4 py-2 font-bold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-300">
                                 Submit
                             </button>
                         </div>

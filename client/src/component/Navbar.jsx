@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Icon from './../assets/favicon.png'
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -6,6 +6,7 @@ import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/fire
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
   const firebaseConfig = {
     apiKey: import.meta.env.VITE_APIKEY,
     authDomain: import.meta.env.VITE_AUTHDOMAIN,
@@ -28,15 +29,21 @@ const Navbar = () => {
       .catch((error) => {
         console.error(error);
       });
+
   };
 
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]'));
+    setUser(storedUser);
+  }, []);
+console.log(user)
   return (
     <>
       <nav className={`bg-white fixed w-full z-20 top-0 start-0 ${window.scrollY > 0 ? 'border-b border-gray-200' : ''} dark:bg-gray-900`}>
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src={Icon} className="h-8" alt="Flowbite Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">LinkZip</span>
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ZipLink</span>
           </Link>
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
@@ -48,8 +55,8 @@ const Navbar = () => {
             {/* Dropdown menu */}
             <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
               <div className="px-4 py-3">
-                <span id='userInfo' className="block text-sm text-gray-900 dark:text-white">ABC XYZ</span>
-                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@xyz.com</span>
+                <span id='userInfo' className="block text-sm text-gray-900 dark:text-white">{user ? user.displayName : 'Guest'}</span>
+                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{user ? user.displayName : 'Guest'}</span>
               </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
                 <li>

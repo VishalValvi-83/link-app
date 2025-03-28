@@ -24,7 +24,9 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
-        navigate('/user-login');
+        localStorage.removeItem('firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]'); // Clear user data
+        navigate('/user-login'); 
+        window.location.reload(); // Reload the page to reflect the sign-out
       })
       .catch((error) => {
         console.error(error);
@@ -33,10 +35,14 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]'));
-    setUser(storedUser);
+    // const storedUser = localStorage.getItem('firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]');
+    const storedUser = localStorage.getItem('User');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
   }, []);
-console.log(user)
+  
+  console.log(user);
   return (
     <>
       <nav className={`bg-white fixed w-full z-20 top-0 start-0 ${window.scrollY > 0 ? 'border-b border-gray-200' : ''} dark:bg-gray-900`}>
@@ -55,8 +61,8 @@ console.log(user)
             {/* Dropdown menu */}
             <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
               <div className="px-4 py-3">
-                <span id='userInfo' className="block text-sm text-gray-900 dark:text-white">{user ? user.displayName : 'Guest'}</span>
-                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{user ? user.displayName : 'Guest'}</span>
+                <span id='userInfo' className="block text-sm text-gray-900 dark:text-white"> {user ? user.displayName || "User" : "Guest"}</span>
+                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400"> {user ? user.email || "No Email" : "Guest"}</span>
               </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
                 <li>

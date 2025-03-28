@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useHistory } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
@@ -10,6 +10,7 @@ import {
   browserLocalPersistence,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import Navbar from "./../../component/Navbar";
+
 export default function Signin() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -28,7 +29,7 @@ export default function Signin() {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
-  // auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
   useEffect(() => {
     setPersistence(auth, browserLocalPersistence)
       .then(() => {
@@ -39,7 +40,11 @@ export default function Signin() {
       });
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-     localStorage.setItem("User", user)
+      if (user) {
+        localStorage.setItem("User", JSON.stringify(user)); // Fix: Stringify the user object
+      } else {
+        localStorage.removeItem("User");
+      }
       setUser(user);
       setLoading(false);
     });
@@ -48,39 +53,23 @@ export default function Signin() {
     return () => unsubscribe();
   }, [auth]);
 
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     document.getElementById('userInfo').innerText = `Hello, ${user.displayName}`;
-  //     document.getElementById('googleSignIn').style.display = 'none';
-  //     document.getElementById('signOut').style.display = 'block';
-
-  //     // Prevent redirection & update URL without reloading
-  //     window.history.pushState({}, '', '/');
-  //   } else {
-  //     document.getElementById('userInfo').innerText = '';
-  //     document.getElementById('googleSignIn').style.display = 'block';
-  //     document.getElementById('signOut').style.display = 'none';
-
-  //     // Redirect to login page if user is not signed in
-  //     window.history.pushState({}, '', '/login');
-  //   }
-  // });
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, provider);
-      alert(`Hello ${user.displayName}`);
+      alert(`Hello ${user?.displayName || "User"}`);
       window.location.pathname = "/";
     } catch (error) {
       console.error(error);
     }
   };
+
   if (loading) {
     return (
-      <div className=" h-screen flex justify-center items-center">
+      <div className="h-screen flex justify-center items-center">
         <div role="status">
           <svg
             aria-hidden="true"
-            class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600"
+            className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -99,10 +88,16 @@ export default function Signin() {
       </div>
     );
   }
-  const storedUser   = JSON.parse(localStorage.getItem('firebase:authUser:  AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]'));
-  
+
+  const storedUser = JSON.parse(
+    localStorage.getItem(
+      "firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]"
+    )
+  );
+
   console.log(storedUser);
-  console.log(user.displayName)
+  console.log(user?.displayName);
+
   return (
     <>
       <Navbar user={user} />

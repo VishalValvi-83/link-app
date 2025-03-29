@@ -57,9 +57,11 @@ export default function Signin() {
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, provider);
-      toast.success(`Hello ${user?.displayName || "User"}, Login successful!`);
+      toast.success(`Login successful!`);
       // alert(`Hello ${user.displayName || "User"}`);
-      window.location.pathname = "/";
+      setTimeout(() => {
+        window.location.pathname = "/";
+      }, 1000);
     } catch (error) {
       toast.error("Login failed. Please try again.");
       console.error(error);

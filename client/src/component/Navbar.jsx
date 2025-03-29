@@ -55,8 +55,9 @@ const Navbar = () => {
             <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
               <span className="sr-only">Open user menu</span>
               <div className="w-8 h-8 rounded-full">
-                <img className="w-full h-full rounded-full" src={user?.photoURL} alt="user photo" />
-                {/* <svg class="w-6 h-6 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg> */}
+                {user !== null ? <img src={user.photoURL} className="w-8 h-8 mx-auto rounded-full" alt="user photo" /> 
+                :
+                 <svg className="w-8 h-8 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>}
               </div>
 
             </button>
@@ -71,7 +72,8 @@ const Navbar = () => {
                   <Link to="/dashboard" className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
                 </li>
                 <li>
-                  <button className="block mx-auto px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-600 rounded border border-blue-600 dark:text-gray-200 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-auto" id='signOut' onClick={handleSignOut}>Sign out</button>
+                {user !== null ? 
+                  <button className="block mx-auto px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-600 rounded border border-blue-600 dark:text-gray-200 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-auto" id='signOut' onClick={handleSignOut}>Sign out</button>: <button className="block mx-auto px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-600 rounded border border-blue-600 dark:text-gray-200 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-auto" id='signOut' onClick={handleSignOut}>Sign in</button> }
                 </li>
               </ul>
             </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth,
@@ -9,6 +9,7 @@ import {
   setPersistence,
   browserLocalPersistence,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { toast } from "react-hot-toast";
 import Navbar from "./../../component/Navbar";
 
 export default function Signin() {
@@ -18,9 +19,9 @@ export default function Signin() {
   const firebaseConfig = {
     apiKey: import.meta.env.VITE_APIKEY,
     authDomain: import.meta.env.VITE_AUTHDOMAIN,
-    databaseURL: import.meta.env.VITE_DBURL,
+    // databaseURL: import.meta.env.VITE_DBURL,
     projectId: import.meta.env.VITE_PROJECTID,
-    storageBucket: "learning-project-717da.appspot.com",
+    storageBucket: "ziplinkss.firebasestorage.app",
     messagingSenderId: import.meta.env.VITE_MSGID,
     appId: import.meta.env.VITE_APPID,
   };
@@ -56,9 +57,11 @@ export default function Signin() {
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, provider);
-      alert(`Hello ${user?.displayName || "User"}`);
+      toast.success(`Hello ${user?.displayName || "User"}, Login successful!`);
+      // alert(`Hello ${user.displayName || "User"}`);
       window.location.pathname = "/";
     } catch (error) {
+      toast.error("Login failed. Please try again.");
       console.error(error);
     }
   };

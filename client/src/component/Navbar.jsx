@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Icon from './../assets/favicon.png'
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -10,9 +10,9 @@ const Navbar = () => {
   const firebaseConfig = {
     apiKey: import.meta.env.VITE_APIKEY,
     authDomain: import.meta.env.VITE_AUTHDOMAIN,
-    databaseURL: import.meta.env.VITE_DBURL,
+    // databaseURL: import.meta.env.VITE_DBURL,
     projectId: import.meta.env.VITE_PROJECTID,
-    storageBucket: "learning-project-717da.appspot.com",
+    storageBucket: "ziplinkss.firebasestorage.app",
     messagingSenderId: import.meta.env.VITE_MSGID,
     appId: import.meta.env.VITE_APPID,
   };
@@ -25,7 +25,7 @@ const Navbar = () => {
     signOut(auth)
       .then(() => {
         localStorage.removeItem('firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]'); // Clear user data
-        navigate('/user-login'); 
+        navigate('/user-login');
         window.location.reload(); // Reload the page to reflect the sign-out
       })
       .catch((error) => {
@@ -41,7 +41,7 @@ const Navbar = () => {
       setUser(JSON.parse(storedUser));
     }
   }, []);
-  
+
   console.log(user);
   return (
     <>
@@ -55,7 +55,9 @@ const Navbar = () => {
             <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
               <span className="sr-only">Open user menu</span>
               <div className="w-8 h-8 rounded-full">
-                <svg class="w-6 h-6 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>              </div>
+                <img className="w-full h-full rounded-full" src={user?.photoURL} alt="user photo" />
+                {/* <svg class="w-6 h-6 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg> */}
+              </div>
 
             </button>
             {/* Dropdown menu */}

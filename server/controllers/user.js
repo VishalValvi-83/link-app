@@ -41,39 +41,22 @@ const postSingup = async (req, res) => {
 const postlogin = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await User.findOne({
-            email: email,
-            password: password
-        })
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ success: false, message: "User  not found" });
+        }
 
         const isMatch = await bcryptjs.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ success: false, message: "Incorrect password" });
         }
 
-        if (user) {
-
-            res.json({
-                success: true,
-                message: "Login Successfully",
-                data: user,
-
-            })
-        }
-        else {
-            return res.status(400).json({ success: false, message: "User not found" });
-        }
-
+        res.json({ success: true, message: "Login Successfully", data: user });
     } catch (e) {
-        console.error(e)
-        res.json({
-            success: false,
-            message: "Invalid Email or Password",
-            data: null
-        })
+        console.error(e);
+        res.status(400).json({ success: false, message: "Invalid Email or Password" });
     }
-}
-
+};
 export {
     postSingup,
     postlogin

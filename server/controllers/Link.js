@@ -62,36 +62,81 @@ const getSlugRedic = async (req, res) => {
 
 }
 
+// const getlinks = async (req, res) => {
+//     try {
+//         const { userId } = req.query
+//         const user = await User.findById(userId)
+//         if (!user) {
+//             return res.status(404).json({
+//                 success: false,
+//                 message: "User not found",
+//                 data: null
+//             })
+//         }
+//         const links = await Link.find({ user: user._id }).sort({ createdAt: -1 })
+//         res.json({
+//             success: true,
+//             data: links,
+//             message: "Links fetched successfully"
+//         })
+
+
+//     } catch (error) {
+//         res.status(500).json({
+//             success: false,
+//             data: null,
+//             message: error.message
+//         })
+//         console.error(error);
+
+//     }
+// }
 const getlinks = async (req, res) => {
     try {
-        const { userId } = req.query
-        const user = await User.findById(userId)
+        const { userId } = req.query;
+        if (!userId) {
+            return res.status(400).json({
+                success: false,
+                message: "User  ID is required",
+                data: null,
+            });
+        }
+
+        const user = await User.findById(userId);
         if (!user) {
             return res.status(404).json({
                 success: false,
-                message: "User not found",
-                data: null
-            })
+                message: "User  not found",
+                data: null,
+            });
         }
-        const links = await Link.find({ user: user._id }).sort({ createdAt: -1 })
+
+        const links = await Link.find({ user: user._id })
+            .sort({ createdAt: -1 })
+            .select("_id title url createdAt");
+
+        if (links.length === 0) {
+            return res.status(200).json({
+                success: true,
+                message: "No links found for the user",
+                data: [],
+            });
+        }
+
         res.json({
             success: true,
             data: links,
-            message: "Links fetched successfully"
-        })
-
-
+            message: "Links fetched successfully",
+        });
     } catch (error) {
         res.status(500).json({
             success: false,
             data: null,
-            message: error.message
-        })
+            message: error.message,
+        });
         console.error(error);
-
     }
-}
-
+};
 
 
 export {

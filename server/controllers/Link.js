@@ -40,7 +40,7 @@ const getSlugRedic = async (req, res) => {
         const link = await Link.findOne({ slug });
 
         if (!link) {
-            return res.json({
+            return res.status(404).json({
                 success: false,
                 message: "Link not found"
             })
@@ -67,7 +67,7 @@ const getlinks = async (req, res) => {
         const { userId } = req.query
         const user = await User.findById(userId)
         if (!user) {
-            return res.json({
+            return res.status(404).json({
                 success: false,
                 message: "User not found",
                 data: null

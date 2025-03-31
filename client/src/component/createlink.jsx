@@ -43,7 +43,7 @@ const Createlink = () => {
     return (
         <>
             <Navbar />
-            <section className="text-gray-600 mt-10 body-font">
+            <section className="text-gray-600 dark:bg-gray-900 border-none body-font">
                 <div className="container px-5 py-10 mx-auto">
                     <div className="flex flex-wrap w-full mb-10 flex-col items-center text-center">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">HOW IT WORKS</h1>

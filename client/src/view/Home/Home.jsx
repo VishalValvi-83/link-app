@@ -17,7 +17,7 @@ const Home = () => {
               <p className="text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
                 Simplify your online presence with our URL shortener. Create custom links, track clicks, and analyze performance.
               </p>
-              <div className="flex flex-wrap justify-center md:justify-start">
+              <div className="flex flex-wrap mt-4  justify-center md:justify-start">
                 <a href="#" className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
                   Shorten Your URL
                   <svg className="w-5 h-5 ml-2 -mr-1"

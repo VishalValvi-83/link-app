@@ -21,7 +21,7 @@ const postSingup = async (req, res) => {
         const saveduser = await user.save()
         res.json({
             success: true,
-            message: "Signup Done Successfully",
+            message: "Signup Successfully",
             data: saveduser
         })
 

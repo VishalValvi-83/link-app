@@ -4,6 +4,12 @@ import axios from "axios";
 import ReCAPTCHA from 'react-google-recaptcha';
 
 const Signup = () => {
+  const [user, setUser] = React.useState({
+    fullname: '',
+    email: '',
+    password: ''
+  });
+
   const [recaptchaToken, setRecaptchaToken] = React.useState("");
   React.useEffect(() => {
     // Dynamically load the reCAPTCHA script
@@ -49,15 +55,47 @@ const Signup = () => {
       console.error("Error verifying reCAPTCHA:", error);
       alert("An error occurred while verifying reCAPTCHA. Please try again.");
     }
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/user`,
+
+        {
+          fullname: user.fullname,
+          email: user.email,
+          password: user.password
+        }
+      );
+
+      const data = response.data;
+      if (data.success) {
+        alert("Signup successful!");
+        setUser({
+          fullname: "",
+          email: "",
+          password: ""
+        });
+
+        // Redirect to the login page or perform any other action
+        window.location.href = "/user-login";
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error during signup:", error);
+      alert("An error occurred during signup. Please try again.");
+    }
   };
 
   const onRecaptchaChange = (token) => {
     setRecaptchaToken(token); // Save the token when the user completes the reCAPTCHA
   };
+  // const Usersignup = async () => {
+
+  // }
 
   return (
     <>
-     
+
       <section className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2 ">
           <div className="relative flex items-end px-4 pb-10 pt-10 sm:pb-14 md:justify-center lg:pb-20 bg-gray-50 sm:px-6 lg:px-8">
@@ -207,6 +245,8 @@ const Signup = () => {
                       <input
                         type="text"
                         id="name"
+                        value={user.fullname}
+                        onChange={(e) => setUser({ ...user, fullname: e.target.value })}
                         placeholder="Enter your full name"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
@@ -237,6 +277,8 @@ const Signup = () => {
                       <input
                         type="email"
                         id="email"
+                        value={user.email}
+                        onChange={(e) => setUser({ ...user, email: e.target.value })}
                         placeholder="Enter email to get started"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
@@ -269,6 +311,8 @@ const Signup = () => {
                       <input
                         type="password"
                         id="password"
+                        value={user.password}
+                        onChange={(e) => setUser({ ...user, password: e.target.value })}
                         placeholder="Enter your password"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
@@ -281,8 +325,8 @@ const Signup = () => {
                   <ReCAPTCHA
                     sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
                     onChange={onRecaptchaChange}
-                    
-                    />
+
+                  />
                   <script>
                     {
                       function onRecaptchaChange(token) {
@@ -294,7 +338,7 @@ const Signup = () => {
                   <div>
                     <button
                       type="submit"
-                      // onClick={handleRecaptcha}
+                      // onClick={Usersignup}
                       className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80"
                     >
                       Sign up

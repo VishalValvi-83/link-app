@@ -15,8 +15,7 @@ const GReCap = async (req, res) => {
             }
         );
 
-        const data = await response.json();
-        console.log("Google reCAPTCHA response:", data); // Debugging log
+        const data = await response.json(); // Debugging log
 
 
         if (data.success) {

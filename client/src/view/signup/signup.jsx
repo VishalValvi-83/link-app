@@ -1,12 +1,66 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const Signup = () => {
+  const [recaptchaToken, setRecaptchaToken] = React.useState("");
+  React.useEffect(() => {
+    // Dynamically load the reCAPTCHA script
+    const loadRecaptchaScript = () => {
+      if (!document.querySelector('script[src="https://www.google.com/recaptcha/api.js"]')) {
+        const script = document.createElement("script");
+        script.src = "https://www.google.com/recaptcha/api.js";
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+      }
+    };
+
+    loadRecaptchaScript();
+  }, []);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!recaptchaToken) {
+      alert("Please complete the reCAPTCHA.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/verify-recaptcha`,
+        { token: recaptchaToken }, // Send the token to the backend
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = response.data;
+      if (data.success) {
+        alert("reCAPTCHA verified successfully!");
+        // Proceed with form submission logic
+      } else {
+        alert("reCAPTCHA verification failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error verifying reCAPTCHA:", error);
+      alert("An error occurred while verifying reCAPTCHA. Please try again.");
+    }
+  };
+
+  const onRecaptchaChange = (token) => {
+    setRecaptchaToken(token); // Save the token when the user completes the reCAPTCHA
+  };
+
   return (
     <>
+     
       <section className="bg-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-gray-50 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 ">
+          <div className="relative flex items-end px-4 pb-10 pt-10 sm:pb-14 md:justify-center lg:pb-20 bg-gray-50 sm:px-6 lg:px-8">
             <div className="absolute inset-0">
               <img
                 className="object-cover w-full h-full"
@@ -32,15 +86,15 @@ const Signup = () => {
                         fill="currentColor"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-                      {" "}
-                      Ease of Use{" "}
+
+                      Ease of Use
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
@@ -52,15 +106,15 @@ const Signup = () => {
                         fill="currentColor"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-                      {" "}
-                      Unlimited Exports{" "}
+
+                      Unlimited Exports
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
@@ -72,15 +126,15 @@ const Signup = () => {
                         fill="currentColor"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-                      {" "}
-                      Custom Links{" "}
+
+                      Custom Links
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
@@ -92,15 +146,15 @@ const Signup = () => {
                         fill="currentColor"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         ></path>
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-                      {" "}
-                      Analytics Tracking{" "}
+
+                      Analytics Tracking
                     </span>
                   </li>
                 </ul>
@@ -108,31 +162,29 @@ const Signup = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
+          <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-12 lg:py-14">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
               <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
-                Sign up to Celebration
+                Be a Part of Something Special - Sign Up
               </h2>
               <p className="mt-2 text-base text-gray-600">
-                Already have an account?{" "}
+                Already have an account?
                 <Link
                   to="/user-login"
                   title=""
                   className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
-                >
-                  Login
+                > Login.
                 </Link>
               </p>
 
-              <form action="#" method="POST" className="mt-8">
+              <form action="?" onSubmit={handleSubmit} method="POST" className="mt-8">
                 <div className="space-y-5">
                   <div>
                     <label
-                      for=""
+                      for="name"
                       className="text-base font-medium text-gray-900"
                     >
-                      {" "}
-                      Fast & Last name{" "}
+                      First & Last name
                     </label>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -144,9 +196,9 @@ const Signup = () => {
                           stroke="currentColor"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                           />
                         </svg>
@@ -154,8 +206,7 @@ const Signup = () => {
 
                       <input
                         type="text"
-                        name=""
-                        id=""
+                        id="name"
                         placeholder="Enter your full name"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
@@ -163,13 +214,8 @@ const Signup = () => {
                   </div>
 
                   <div>
-                    <label
-                      for=""
-                      className="text-base font-medium text-gray-900"
-                    >
-                      {" "}
-                      Email address{" "}
-                    </label>
+                    <label for="email" className="text-base font-medium text-gray-900"
+                    >Email address</label>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
@@ -180,9 +226,9 @@ const Signup = () => {
                           stroke="currentColor"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
                           />
                         </svg>
@@ -190,8 +236,7 @@ const Signup = () => {
 
                       <input
                         type="email"
-                        name=""
-                        id=""
+                        id="email"
                         placeholder="Enter email to get started"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
@@ -200,12 +245,9 @@ const Signup = () => {
 
                   <div>
                     <label
-                      for=""
+                      for="password"
                       className="text-base font-medium text-gray-900"
-                    >
-                      {" "}
-                      Password{" "}
-                    </label>
+                    >Password</label>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
@@ -216,9 +258,9 @@ const Signup = () => {
                           stroke="currentColor"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"
                           />
                         </svg>
@@ -226,17 +268,33 @@ const Signup = () => {
 
                       <input
                         type="password"
-                        name=""
-                        id=""
+                        id="password"
                         placeholder="Enter your password"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
                     </div>
                   </div>
-
+                  <div
+                    class="g-recaptcha"
+                    data-sitekey="6LdduAcrAAAAAI0GMxW-53M6kCR1fQ7lSVF2xczbY"
+                  ></div>
+                  <ReCAPTCHA
+                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                    onChange={onRecaptchaChange}
+                    
+                    />
+                  <script>
+                    {
+                      function onRecaptchaChange(token) {
+                        const event = new CustomEvent('recaptcha-complete', { detail: token });
+                        window.dispatchEvent(event);
+                      }
+                    }
+                  </script>
                   <div>
                     <button
                       type="submit"
+                      // onClick={handleRecaptcha}
                       className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80"
                     >
                       Sign up
@@ -263,33 +321,18 @@ const Signup = () => {
                   Sign up with Google
                 </button>
 
-                <button
-                  type="button"
-                  className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
-                >
-                  <div className="absolute inset-y-0 left-0 p-4">
-                    <svg
-                      className="w-6 h-6 text-[#2563EB]"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
-                    </svg>
-                  </div>
-                  Sign up with Facebook
-                </button>
+
               </div>
 
               <p className="mt-5 text-sm text-gray-600">
-                This site is protected by reCAPTCHA and the Google{" "}
+                This site is protected by reCAPTCHA and the Google
                 <a
                   href="#"
                   title=""
                   className="text-blue-600 transition-all duration-200 hover:underline hover:text-blue-700"
                 >
                   Privacy Policy
-                </a>{" "}
+                </a>
                 &
                 <a
                   href="#"

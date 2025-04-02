@@ -5,6 +5,7 @@ import cors from 'cors'
 import { getlinks, getSlugRedic, postLink } from './controllers/Link.js'
 import { postlogin, postSingup } from './controllers/user.js'
 import colors from 'colors'
+import GReCap from './controllers/GReCap.js'
 dotenv.config()
 
 const app = express()
@@ -51,6 +52,8 @@ app.get('/:slug', getSlugRedic)
 app.post('/user', postSingup)
 app.post('/user-login', postlogin)
 
+// google reCAPTCHA verification API
+app.post("/verify-recaptcha",GReCap);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`.bgCyan);

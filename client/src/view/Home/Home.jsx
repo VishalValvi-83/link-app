@@ -75,13 +75,13 @@ const Home = () => {
       </section> */}
       <Createlink />
       <section className="text-gray-600 dark:text-white dark:bg-gray-900 body-font">
-        <div className="container px-5 my-5 mx-auto">
+        <div className="container px-5 mx-auto">
           <div className="text-center mb-10">
-            <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-purple-500 mb-4">FEATURES</h1>
+            <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-purple-500 py-4">FEATURES</h1>
             <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Create Smarter Links, Drive Better Results</h1>
-            <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">Transform long, messy URLs into concise, branded links that are easy to share and track. Elevate your marketing campaigns with detailed analytics, custom slugs, and secure link-sharing options designed for success.</p>
+            <p className="text-base leading-relaxe xl:w-2/4 text-justify lg:w-3/4 mx-auto">Transform long, messy URLs into concise, branded links that are easy to share and track. Elevate your marketing campaigns with detailed analytics, custom slugs, and secure link-sharing options designed for success.</p>
           </div>
-          <div className="flex text-black flex-wrap lg:w-4/ sm:mx-auto  sm:mb-2 -mx-2">
+          <div className="flex text-black flex-wrap xl:w-3/4 lg:w-4/2 sm:mx-auto sm:mb-2 -mx-2">
             <div className="p-2 text-black sm:w-1/2 w-full">
               <div className="bg-gray-100 rounded flex p-4 h-full items-center">
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" className="text-purple-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">

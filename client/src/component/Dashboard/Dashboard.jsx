@@ -3,6 +3,7 @@ import Sidebar from './Sidebar';
 import LinkModal from './linkModal';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
+import CopyIcon from '../../assets/content_copy.svg';
 // import QRCode from 'qrcode.react';
 
 const Dashboard = () => {
@@ -67,7 +68,7 @@ const Dashboard = () => {
         `${import.meta.env.VITE_BACKEND_URL}/get-short-link?userId=${user._id}`
       );
 
-      console.log("Fetched response:", response.data); // Log the response data
+      console.log("Fetched response:", response.data.data); // Log the response data
 
       if (response.data.success) {
         setLinks(response.data.data);
@@ -91,11 +92,11 @@ const Dashboard = () => {
 
   return (
     <div className='flex wrap flex-row'>
-      <aside className="md:w-1/6 h-screen w-full bg-gray-800 text-white">
+      <aside className="md:w-1/6 h-screen w-full bg-gray-800 text-white text-gray-900 dark:text-white">
         <Sidebar user={user} />
       </aside>
 
-      <div className="flex pt-12 px-5 flex-col flex-grow text-white dark:bg-gray-900">
+      <div className="flex pt-12 px-5 flex-col flex-grow text-gray-900 dark:text-white dark:bg-gray-900">
         <div className="hero-section">
           <h1 className="text-4xl font-bold mb-4">Dashboard</h1>
           <p className="text-lg">Shorten your URLs and track their performance.</p>
@@ -113,20 +114,19 @@ const Dashboard = () => {
               type="text"
               placeholder="Enter Title"
               onKeyDown={(e) => e.key === 'Enter' && handleAddLink(e.target.value, e.target.value)}
-              className="border border-gray-700 p-2 rounded w-full bg-gray-800 text-gray-100 mt-2"
+              className="border border-gray-700 p-2 rounded w-full dark:bg-gray-800 text-gray-100 mt-2"
             />
           </div>
 
           <div className="overflow-x-auto overflow-y-scroll rounded-lg shadow-lg">
-            <table className="min-w-full bg-gray-800 text-gray-100">
+            <table className="min-w-full dark:bg-gray-800 text-gray-100">
               <thead>
                 <tr>
-                  <th className="py-2 px-4">Short Link</th>
-                  <th className="py-2 px-4">Original Link</th>
                   <th className="py-2 px-4">Title</th>
+                  <th className="py-2 px-4">Original Link</th>
+                  <th className="py-2 px-4">Short Link</th>
                   <th className="py-2 px-4">QR Code</th>
                   <th className="py-2 px-4">Clicks</th>
-                  <th className="py-2 px-4">Status</th>
                   <th className="py-2 px-4">Date</th>
                   <th className="py-2 px-4">Actions</th>
                 </tr>
@@ -134,10 +134,18 @@ const Dashboard = () => {
               <tbody>
                 {links.map((link, index) => (
                   <tr key={index} className="border-t border-gray-700">
-                    <td className="py-2 px-4">{link.shortenedUrl}</td>
-                    <td className="py-2 px-4">{link.originalUrl}</td>
                     <td className="py-2 px-4">{link.title}</td>
-                    <td className="py-2 px-4">
+                    <td className="py-2 px-4">{link.target.substring(0, 40)}..</td>
+                    <td className="py-2 text-blue-400 flex flex-row justify-between hover:underline underline-offset-2 px-4">
+                      <a href={`${import.meta.env.VITE_BACKEND_URL}/${link.slug}`}>{link.slug}</a>
+                      <button onClick={() => {
+                        navigator.clipboard.writeText(`${import.meta.env.VITE_BACKEND_URL}/${link.slug}`);
+                        toast.success("Copied to clipboard");
+                      }}>
+                      <img className='hover:cursor-pointer' src={CopyIcon} alt="copy icon"/>
+                      </button>
+                    </td>
+                    <td className="py-2 text-center px-4">
                       <button
                         onClick={() => openModal(link)}
                         className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700"
@@ -145,22 +153,17 @@ const Dashboard = () => {
                         Show QR Code
                       </button>
                     </td>
-                    <td className="py-2 px-4">{link.viewCount}</td>
-                    <td className="py-2 px-4">
-                      <span className={`font-bold ${link.status === 'Active' ? 'text-green-500' : 'text-red-500'}`}>
-                        {link.status}
-                      </span>
-                    </td>
-                    <td className="py-2 px-4">{new Date(link.createdAt).toLocaleDateString()}</td>
-                    <td className="py-2 px-4">
+                    <td className="py-2 text-center px-4">{link.view}</td>
+                    <td className="py-2 text-center px-4">{new Date(link.createdAt).toLocaleDateString()}</td>
+                    <td className="py-2 text-center px-4">
                       <button
-                        onClick={() => handleEditLink(link.originalUrl)}
+                        onClick={() => handleEditLink(link.target)}
                         className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 mr-2"
                       >
                         Edit
                       </button>
                       <button
-                        onClick={() => handleDeleteLink(link.originalUrl)}
+                        onClick={() => handleDeleteLink(link.target)}
                         className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700"
                       >
                         Delete

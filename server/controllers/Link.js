@@ -113,7 +113,7 @@ const getlinks = async (req, res) => {
 
         const links = await Link.find({ user: user._id })
             .sort({ createdAt: -1 })
-            .select("_id title url createdAt");
+            .select("_id title slug target view createdAt");
 
         if (links.length === 0) {
             return res.status(200).json({

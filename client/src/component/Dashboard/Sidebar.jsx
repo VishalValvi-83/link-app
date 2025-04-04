@@ -6,7 +6,6 @@ const Sidebar = () => {
     //fetch the user photo and name from the local storage
     const storedUser = localStorage.getItem('token');
     const user = storedUser ? JSON.parse(storedUser) : null;
-    console.log(user)
 
     const fallbackPhoto = "https://avatar.iran.liara.run/public/47"; // Default profile photo
     const fallbackName = 'Guest User'; // Default name

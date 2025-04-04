@@ -22,12 +22,13 @@ const Navbar = () => {
   const auth = getAuth(app);
 
   const handleSignIn = () => {
-    const storedUser = localStorage.getItem('User');
+    const storedUser = localStorage.getItem('token') || localStorage.getItem('User') ;
     if (!storedUser) {
       navigate('/user-login');
     }
   };
   const handleSignOut = () => {
+
     signOut(auth)
       .then(() => {
         localStorage.removeItem('firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]'); // Clear user data
@@ -37,18 +38,21 @@ const Navbar = () => {
       .catch((error) => {
         console.error(error);
       });
-
+    // Clear user data from local storage
+    localStorage.removeItem('User');
+    localStorage.removeItem('token');
   };
-   
+
+  const fallbackPhoto = "https://avatar.iran.liara.run/public/47"; // Default profile photo
 
   useEffect(() => {
     // const storedUser = localStorage.getItem('firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]');
-    const storedUser = localStorage.getItem('User');
+    const storedUser = localStorage.getItem('User') || localStorage.getItem('token');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
   }, []);
-  
+
   return (
     <>
       <nav className={`bg-white fixed w-full z-20 top-0 start-0 ${window.scrollY > 0 ? 'border-b border-gray-200' : ''} dark:bg-gray-900`}>
@@ -62,16 +66,16 @@ const Navbar = () => {
               (<><button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span className="sr-only">Open user menu</span>
                 <div className="w-8 h-8 rounded-full">
-                  {user !== null ? <img src={user?.photoURL} className="w-8 h-8 mx-auto rounded-full" alt="user photo" />
+                  {user !== null ? <img src={user?.photoURL || fallbackPhoto} className="w-8 h-8 mx-auto rounded-full" alt="user photo" />
                     :
                     <svg className="w-8 h-8 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>}
                 </div>
               </button>
-              {/* Dropdown menu */}
+                {/* Dropdown menu */}
                 <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
                   <div className="px-4 py-3">
-                    <span id='userInfo' className="block text-sm text-gray-900 dark:text-white"> {user ? user.displayName || "User" : "Guest"}</span>
-                    <span className="block text-sm  text-gray-500 truncate dark:text-gray-400"> {user ? user.email || "No Email" : "Guest"}</span>
+                    <span id='userInfo' className="block text-sm text-gray-900 dark:text-white"> {user ? user?.displayName || user.fullname : "Guest"}</span>
+                    <span className="block text-sm  text-gray-500 truncate dark:text-gray-400"> {user ? user?.email || "No Email" : "Guest"}</span>
                   </div>
                   <ul className="py-2" aria-labelledby="user-menu-button">
                     <li>

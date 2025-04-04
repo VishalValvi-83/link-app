@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
 import LinkModal from './linkModal';
+import { toast } from 'react-hot-toast';
+import axios from 'axios';
 // import QRCode from 'qrcode.react';
 
 const Dashboard = () => {
@@ -10,12 +12,9 @@ const Dashboard = () => {
   const [editingLink, setEditingLink] = useState(null);
   const [editUrl, setEditUrl] = useState('');
   const [editTitle, setEditTitle] = useState('');
-  const user = {
-    name: 'John Doe',
-    profilePhoto: 'path/to/photo.jpg',
-    email: 'john@example.com'
-  };
-
+  const [linkMessage, setLinkMessage] = useState(null);
+  const storedUser = localStorage.getItem('token');
+  const user = React.useMemo(() => (storedUser ? JSON.parse(storedUser) : null), [storedUser]);
   const handleAddLink = (url, title) => {
     const newLink = {
       title,
@@ -57,6 +56,38 @@ const Dashboard = () => {
     setModalIsOpen(false);
     setSelectedLink(null);
   };
+
+  const LoadLinks = async () => {
+    if (!user._id) {
+      console.error("User ID not found");
+      return
+    }
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/get-short-link?userId=${user._id}`
+      );
+
+      console.log("Fetched response:", response.data); // Log the response data
+
+      if (response.data.success) {
+        setLinks(response.data.data);
+        toast.success(response.data.message) // Set the links if the response is successful
+      } else {
+        console.error("Error in response:", response.data.message);
+        toast.error(response.data.message || "Failed to fetch links");
+      }
+    } catch (error) {
+      console.error("Error fetching links:", error);
+      toast.error("An error occurred while fetching links");
+    }
+  }
+
+
+  useEffect(() => {
+    if (user && user._id) {
+      LoadLinks();
+    }
+  }, [user]);
 
   return (
     <div className='flex wrap flex-row'>

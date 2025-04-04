@@ -22,7 +22,7 @@ const Navbar = () => {
   const auth = getAuth(app);
 
   const handleSignIn = () => {
-    const storedUser = localStorage.getItem('token') || localStorage.getItem('User') ;
+    const storedUser = localStorage.getItem('token') || localStorage.getItem('User');
     if (!storedUser) {
       navigate('/user-login');
     }
@@ -95,7 +95,13 @@ const Navbar = () => {
                   </svg>
                 </button> </>)
 
-              : <button className="block mx-auto px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-600 rounded border border-blue-600 dark:text-gray-200 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-auto" id='sign-in' onClick={handleSignIn}  >Log in</button>
+              :
+              (<div className="flex items-center space-x-3 rtl:space-x-reverse">
+                <button className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-600 rounded border border-blue-600 dark:text-gray-200 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-auto" id='sign-in' onClick={handleSignIn}>Log in</button>
+                <Link className="px-4 py-2 text-white bg-blue-800 rounded-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-300" to={"/user-signup"}>
+                  Get Started
+                </Link>
+              </div>)
             }
           </div>
 

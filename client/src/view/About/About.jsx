@@ -25,7 +25,7 @@ function About() {
                         <img
                             class="w-full max-w-lg lg:mx-auto"
                             src={aboutimg}
-                            alt=""
+                            alt="peoples"
                         />
                     </div>
                 </div>

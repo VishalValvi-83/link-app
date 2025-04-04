@@ -11,10 +11,62 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { toast } from "react-hot-toast";
 import Navbar from "./../../component/Navbar";
+import axios from "axios";
 
 export default function Signin() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('');
+
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
+  const userLogin = async (event) => {
+    event.preventDefault();
+
+    // Reset error states
+    setEmailError(false);
+    setPasswordError(false);
+
+    // Validate email and password
+    if (password.length === 0 && email.length === 0) {
+      toast.error("Please Enter Email and Password");
+      setEmailError(true);
+      setPasswordError(true);
+      return;
+    }
+    if (email.length === 0) {
+      toast.error("Please Enter Email");
+      setEmailError(true);
+      return;
+    }
+
+    if (password.length === 0) {
+      toast.error("Please Enter Password");
+      setPasswordError(true);
+      return;
+    }
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user-login`, {
+        email,
+        password,
+      });
+      if (response.data.success) {
+        // setIsLoggedIn(true);
+        toast.success(response.data.message)
+        localStorage.setItem('token', JSON.stringify(response.data.data));
+        toast.loading('Redirecting to dashboard...')
+        setTimeout(() => {
+          window.location.pathname = "/dashboard";
+        }, 1000);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message || 'An error occurred. Please try again.');
+    }
+  }
 
   const firebaseConfig = {
     apiKey: import.meta.env.VITE_APIKEY,
@@ -100,8 +152,8 @@ export default function Signin() {
     )
   );
 
-  console.log(storedUser);
-  console.log(user?.displayName);
+  // console.log(storedUser);
+  // console.log(user?.displayName);
 
   return (
     <>
@@ -141,8 +193,8 @@ export default function Signin() {
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-                      {" "}
-                      Easy to Use{" "}
+
+                      Easy to Use
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
@@ -161,8 +213,8 @@ export default function Signin() {
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-                      {" "}
-                      Unlimited Exports{" "}
+
+                      Unlimited Exports
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
@@ -181,8 +233,8 @@ export default function Signin() {
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-                      {" "}
-                      Analytics Tracking{" "}
+
+                      Analytics Tracking
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
@@ -201,8 +253,8 @@ export default function Signin() {
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-                      {" "}
-                      Custom Links{" "}
+
+                      Custom Links
                     </span>
                   </li>
                 </ul>
@@ -216,7 +268,7 @@ export default function Signin() {
                 Sign in to Celebration
               </h2>
               <p className="mt-2 text-base text-gray-600">
-                Don’t have an account?{" "}
+                Don’t have an account?
                 <Link
                   to="/user-signup"
                   title=""
@@ -226,15 +278,13 @@ export default function Signin() {
                 </Link>
               </p>
 
-              <form action="#" method="POST" className="mt-8">
+              <form className="mt-8">
                 <div className="space-y-5">
                   <div>
                     <label
                       for=""
                       className="text-base font-medium text-gray-900"
-                    >
-                      {" "}
-                      Email address{" "}
+                    >Email address
                     </label>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -255,9 +305,18 @@ export default function Signin() {
                       </div>
                       <input
                         type="email"
+                        name="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          setEmailError(false); // Reset error on input change
+                        }}
+                        className={`block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 ${emailError ? "border border-red-500" : "border border-gray-200"} rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600`}
                         placeholder="Enter email to get started"
-                        className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
+                      {emailError && <p className="text-red-500 text-sm mt-1">Email is required.</p>}
+
                     </div>
                   </div>
 
@@ -266,18 +325,14 @@ export default function Signin() {
                       <label
                         for=""
                         className="text-base font-medium text-gray-900"
-                      >
-                        {" "}
-                        Password{" "}
+                      > Password
                       </label>
 
                       <a
                         href="#"
                         title=""
                         className="text-sm font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
-                      >
-                        {" "}
-                        Forgot password?{" "}
+                      >Forgot password?
                       </a>
                     </div>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
@@ -300,15 +355,25 @@ export default function Signin() {
 
                       <input
                         type="password"
+                        name="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value)
+                          setPasswordError(false);
+                        }}
+                        className={`block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 ${passwordError ? "border border-red-500" : "border border-gray-200"} rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600`}
                         placeholder="Enter your password"
-                        className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
+                      {passwordError && <p className="text-red-500 text-sm mt-1">Password is required.</p>}
+
                     </div>
                   </div>
 
                   <div>
                     <button
                       type="submit"
+                      onClick={userLogin}
                       className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80"
                     >
                       Log in
@@ -358,3 +423,91 @@ export default function Signin() {
     </>
   );
 }
+
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user-login`, {
+        email,
+        password,
+      });
+      if (response.data.success) {
+        setIsLoggedIn(true);
+        localStorage.setItem('token', JSON.stringify(response.data.data));
+      } else {
+        setError(response.data.message);
+      }
+    } catch (error) {
+      setError(error.response.data.message || 'An error occurred. Please try again.');
+    }
+  };
+
+  if (isLoggedIn) {
+    return <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+      <div className="bg-white shadow-2xl rounded-3xl p-8 text-center max-w-sm w-full">
+        <h2 className="text-3xl font-bold text-gray-800 mb-4">You're In!</h2>
+        <p className="text-gray-600 mb-2">Welcome, <span className="font-medium text-blue-600">Vishal</span></p>
+        <p className="text-sm text-gray-500 mb-4">vv@gmail.com</p>
+        <button
+          className="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white flex items-center justify-center gap-2 py-3 rounded-2xl"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+          </svg>
+          Go to Dashboard
+        </button>
+      </div>
+    </div>
+  }
+
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div className="max-w-md w-full bg-white rounded-lg shadow-md p-6">
+        <h2 className="text-lg font-bold mb-4">Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              className="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-2" htmlFor="password">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              className="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
+            />
+          </div>
+          {error && (
+            <div className="text-red-500 text-sm mb-4">{error}</div>
+          )}
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export { Login };

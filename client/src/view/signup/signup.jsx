@@ -2,15 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ReCAPTCHA from 'react-google-recaptcha';
+import toast from "react-hot-toast";
 
 const Signup = () => {
+  const [recaptchaToken, setRecaptchaToken] = React.useState("");
   const [user, setUser] = React.useState({
     fullname: '',
     email: '',
     password: ''
   });
 
-  const [recaptchaToken, setRecaptchaToken] = React.useState("");
+  const capitalizeFullName = (fullname) => {
+    return fullname
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
+
   React.useEffect(() => {
     // Dynamically load the reCAPTCHA script
     const loadRecaptchaScript = () => {
@@ -25,8 +33,10 @@ const Signup = () => {
 
     loadRecaptchaScript();
   }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Validate the form fields
 
     if (!recaptchaToken) {
       alert("Please complete the reCAPTCHA.");
@@ -56,11 +66,13 @@ const Signup = () => {
       alert("An error occurred while verifying reCAPTCHA. Please try again.");
     }
     try {
+      const capitalizedFullName = capitalizeFullName(user.fullname);
+
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/user`,
 
         {
-          fullname: user.fullname,
+          fullname: capitalizedFullName,
           email: user.email,
           password: user.password
         }
@@ -77,6 +89,18 @@ const Signup = () => {
 
         // Redirect to the login page or perform any other action
         window.location.href = "/user-login";
+      } else if (email.length === 0) {
+        toast.error("Please Enter Email")
+        document.getElementById('email').classList.add('border-4 border-red-500/100')
+        //   setTimeout(() => {
+        //     document.getElementById('floatingInput').classList.remove('is-invalid')
+        //   }, 3000)
+      } else if (password.length === 0) {
+        toast.error("Please Enter Password")
+        //   document.getElementById('floatingPassword').classList.add('is-invalid')
+        //   setTimeout(() => {
+        //     document.getElementById('floatingPassword').classList.remove('is-invalid')
+        //   }, 3000)
       } else {
         alert(data.message);
       }
@@ -92,6 +116,7 @@ const Signup = () => {
   // const Usersignup = async () => {
 
   // }
+  console.log("Backend URL:", `${import.meta.env.VITE_BACKEND_URL}/user`);
 
   return (
     <>
@@ -245,8 +270,13 @@ const Signup = () => {
                       <input
                         type="text"
                         id="name"
+                        required
                         value={user.fullname}
-                        onChange={(e) => setUser({ ...user, fullname: e.target.value })}
+                        onChange={(e) => {
+                          setUser({ ...user, fullname: e.target.value })
+                          document.getElementById('email').classList.remove('border-4 border-red-500/100')
+                        }
+                        }
                         placeholder="Enter your full name"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
@@ -277,8 +307,13 @@ const Signup = () => {
                       <input
                         type="email"
                         id="email"
+                        required
                         value={user.email}
-                        onChange={(e) => setUser({ ...user, email: e.target.value })}
+                        onChange={(e) => {
+                          setUser({ ...user, email: e.target.value })
+                          document.getElementById('email').classList.remove('border-4 border-red-500/100')
+                        }
+                        }
                         placeholder="Enter email to get started"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
@@ -311,8 +346,13 @@ const Signup = () => {
                       <input
                         type="password"
                         id="password"
+                        required
                         value={user.password}
-                        onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        onChange={(e) => {
+                          setUser({ ...user, password: e.target.value })
+                          document.getElementById('email').classList.remove('border-4 border-red-500/100')
+                        }
+                        }
                         placeholder="Enter your password"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />

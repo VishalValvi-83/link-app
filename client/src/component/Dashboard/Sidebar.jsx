@@ -21,17 +21,19 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="w-64 min-h-full flex flex-col justify-between items-center text-white p-4">
+        <div className="w-full min-h-full flex sm:flex-col justify-between items-center text-white p-4">
             {/* Profile Section */}
-            <div className='text-center'>
+            <div className='sm:text-center flex items-center sm:flex-col gap-2 flex-row'>
                 <img
                     src={user?.photoURL || fallbackPhoto}
                     alt="Profile"
-                    className="rounded-full h-20 w-20 mx-auto border-2 border-gray-600"
+                    className="rounded-full h-14 w-14 sm:h-20 sm:w-20 mx-auto border-2 border-gray-600"
                     onError={(e) => { e.target.src = fallbackPhoto; }}
                 />
-                <h2 className="text-lg font-bold mt-2">{user?.fullname || fallbackName}</h2>
-                <p className="text-sm text-gray-400">{user?.email || fallbackEmail}</p>
+                <div>
+                    <h2 className="text-lg font-bold mt-2">{user?.fullname || fallbackName}</h2>
+                    <p className="text-sm text-gray-400">{user?.email || fallbackEmail}</p>
+                </div>
             </div>
 
             {/* Logout Button */}

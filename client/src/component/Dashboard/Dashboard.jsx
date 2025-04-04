@@ -217,7 +217,7 @@ const Dashboard = () => {
     </div>
   );*/}
   return (
-    <div className="flex  flex-col dark:bg-gray-900 md:flex-row">
+    <div className="flex h-screen flex-col dark:bg-gray-900 md:flex-row">
       <aside className="md:w-1/6 pt-8 md:pt-12 md:h-screen h-48 w-full dark:bg-gray-800 text-white text-gray-900 dark:text-white">
         <Sidebar user={user} />
       </aside>
@@ -228,7 +228,8 @@ const Dashboard = () => {
           <div key={index} className="dark:bg-gray-800 dark:text-white text-gray-100 p-4 shadow-lg">
             {/* Short Link Row */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+              <span className='text-white'>{link.title}</span>
+              <div className="flex flex-row justify-between items-center gap-2">
                 <a href={`${import.meta.env.VITE_BACKEND_URL}/${link.slug}`} className="text-blue-400 hover:underline">
                   {link.slug}
                 </a>
@@ -250,11 +251,7 @@ const Dashboard = () => {
             {/* Dropdown Content */}
             {openDropdown === index && (
               <div className="mt-2 bg-gray-700 p-3 rounded-md space-y-2">
-
-                <div className="text-sm text-gray-300">
-                  <span className="font-semibold">Title: </span>{link.title}
-                </div>
-                <div className="text-sm text-gray-300">
+                <div className="text-sm text-gray-300 overflow-x-auto wrap-anywhere">
                   <span className="font-semibold">Original Link: </span>{link.target}
                 </div>
                 <div className="text-sm text-gray-300">
@@ -288,10 +285,10 @@ const Dashboard = () => {
       </div>
 
       {/* Desktop View (Table Style) */}
-      <main className="flex-grow  hidden sm:block w-full max-w-7xl mx-auto p-4">
+      <main className="w-full hidden sm:block overflow-x-auto mx-auto p-4">
         {/* Dashboard Content */}
 
-        <div className="hidden  max-w-7xl p-8 sm:block overflow-x-auto shadow-lg">
+        <div className="hidden p-8 sm:block overflow-x-hidden to shadow-lg">
           <div className="flex flex-row items-center mb-5">
             <a href="/" className='text-gray-400 mx-2 hover:text-blue-400 hover:underline underline-offset-4'>Home</a> <span className='text-gray-400'>/</span>
             <a href="/dashboard" className='text-gray-400 mx-2 hover:text-blue-400 hover:underline underline-offset-4'>Dashboard</a>
@@ -300,7 +297,7 @@ const Dashboard = () => {
             <p className="text-4xl text-gradient text-white font-bold ">Dashboard</p>
             <p className="text-lg text-gradient">Shorten your URLs and track their performance.</p>
           </div>
-          <table className="min-w-full dashboard rounded-md text-sm md:text-medium dark:bg-gray-800 text-gray-100">
+          <table className="w-full overflow-x-scroll dashboard rounded-md text-sm md:text-medium overflow-x-scroll dark:bg-gray-800 text-gray-100">
             <thead>
               <tr>
                 <th className="py-2 px-2 md:px-4">Title</th>

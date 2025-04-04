@@ -91,12 +91,16 @@ const Dashboard = () => {
   }, [user]);
 
   return (
-    <div className='flex wrap flex-row'>
-      <aside className="md:w-1/6 h-screen w-full bg-gray-800 text-white text-gray-900 dark:text-white">
+    <div className='flex wrap md:flex-row flex-col'>
+      <aside className="md:w-1/6 pt-8 md:pt-12 md:h-screen h-48 w-full bg-gray-800 text-white text-gray-900 dark:text-white">
         <Sidebar user={user} />
       </aside>
 
-      <div className="flex pt-12 px-5 flex-col flex-grow text-gray-900 dark:text-white dark:bg-gray-900">
+      <div className="flex pt-10 px-4 flex-col flex-grow text-gray-900 dark:text-white dark:bg-gray-900">
+        <div className="flex flex-row items-center mb-5">
+          <a href="/" className='text-gray-400 mx-2 hover:text-blue-400 hover:underline underline-offset-4'>Home</a> <span className='text-gray-400'>/</span>
+          <a href="/dashboard" className='text-gray-400 mx-2 hover:text-blue-400 hover:underline underline-offset-4'>Dashboard</a>
+        </div>
         <div className="hero-section">
           <h1 className="text-4xl font-bold mb-4">Dashboard</h1>
           <p className="text-lg">Shorten your URLs and track their performance.</p>
@@ -119,43 +123,43 @@ const Dashboard = () => {
           </div>
 
           <div className="overflow-x-auto overflow-y-scroll rounded-lg shadow-lg">
-            <table className="min-w-full dark:bg-gray-800 text-gray-100">
+            <table className="min-w-full text-sm md:text-medium dark:bg-gray-800 text-gray-100">
               <thead>
                 <tr>
-                  <th className="py-2 px-4">Title</th>
-                  <th className="py-2 px-4">Original Link</th>
-                  <th className="py-2 px-4">Short Link</th>
-                  <th className="py-2 px-4">QR Code</th>
-                  <th className="py-2 px-4">Clicks</th>
-                  <th className="py-2 px-4">Date</th>
-                  <th className="py-2 px-4">Actions</th>
+                  <th className="py-2 px-2 md:px-4">Title</th>
+                  <th className="py-2 px-2 md:px-4">Original Link</th>
+                  <th className="py-2 px-2 md:px-4">Short Link</th>
+                  <th className="py-2 px-2 md:px-4">QR Code</th>
+                  <th className="py-2 px-2 md:px-4">Clicks</th>
+                  <th className="py-2 px-2 md:px-4">Date</th>
+                  <th className="py-2 px-2 md:px-4">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {links.map((link, index) => (
                   <tr key={index} className="border-t border-gray-700">
-                    <td className="py-2 px-4">{link.title}</td>
-                    <td className="py-2 px-4">{link.target.substring(0, 40)}..</td>
-                    <td className="py-2 text-blue-400 flex flex-row justify-between hover:underline underline-offset-2 px-4">
+                    <td className="py-2 px-2 md:px-4">{link.title}</td>
+                    <td className="py-2 px-2 md:px-4">{link.target.substring(0, 30)}..</td>
+                    <td className="py-2 text-blue-400 flex flex-row justify-between hover:underline underline-offset-2 px-2 md:px-4">
                       <a href={`${import.meta.env.VITE_BACKEND_URL}/${link.slug}`}>{link.slug}</a>
                       <button onClick={() => {
                         navigator.clipboard.writeText(`${import.meta.env.VITE_BACKEND_URL}/${link.slug}`);
                         toast.success("Copied to clipboard");
                       }}>
-                      <img className='hover:cursor-pointer' src={CopyIcon} alt="copy icon"/>
+                        <img className='hover:cursor-pointer obejct-cover' src={CopyIcon} alt="copy-icon" />
                       </button>
                     </td>
-                    <td className="py-2 text-center px-4">
+                    <td className="py-2 text-center px-2 md:px-4">
                       <button
                         onClick={() => openModal(link)}
                         className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700"
                       >
-                        Show QR Code
+                        Show
                       </button>
                     </td>
-                    <td className="py-2 text-center px-4">{link.view}</td>
-                    <td className="py-2 text-center px-4">{new Date(link.createdAt).toLocaleDateString()}</td>
-                    <td className="py-2 text-center px-4">
+                    <td className="py-2 text-center px-2 md:px-4">{link.view}</td>
+                    <td className="py-2 text-center px-2 md:px-4">{new Date(link.createdAt).toLocaleDateString()}</td>
+                    <td className="py-2 text-center px-2 md:px-4">
                       <button
                         onClick={() => handleEditLink(link.target)}
                         className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 mr-2"

@@ -62,35 +62,6 @@ const getSlugRedic = async (req, res) => {
 
 }
 
-// const getlinks = async (req, res) => {
-//     try {
-//         const { userId } = req.query
-//         const user = await User.findById(userId)
-//         if (!user) {
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "User not found",
-//                 data: null
-//             })
-//         }
-//         const links = await Link.find({ user: user._id }).sort({ createdAt: -1 })
-//         res.json({
-//             success: true,
-//             data: links,
-//             message: "Links fetched successfully"
-//         })
-
-
-//     } catch (error) {
-//         res.status(500).json({
-//             success: false,
-//             data: null,
-//             message: error.message
-//         })
-//         console.error(error);
-
-//     }
-// }
 const getlinks = async (req, res) => {
     try {
         const { userId } = req.query;
@@ -113,12 +84,12 @@ const getlinks = async (req, res) => {
 
         const links = await Link.find({ user: user._id })
             .sort({ createdAt: -1 })
-            .select("_id title url createdAt");
+            .select("_id title slug target view createdAt");
 
         if (links.length === 0) {
             return res.status(200).json({
                 success: true,
-                message: "No links found for the user",
+                message: "No links found, create links to get started",
                 data: [],
             });
         }
@@ -137,10 +108,69 @@ const getlinks = async (req, res) => {
         console.error(error);
     }
 };
+//delete link
+const deleteLink = async (req, res) => {
+    try {
+        const { id } = req.params;
 
+
+        const link = await Link.findById(id);
+        if (!link) {
+            return res.status(404).json({
+                success: false,
+                message: "Link not found",
+            });
+        }
+
+        await Link.findByIdAndDelete(id);
+
+        res.json({
+            success: true,
+            message: "Link deleted successfully",
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
+    }
+};
+
+const updateLink = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { target, title, slug } = req.body;
+        const link = await Link.findById(id);
+        if (!link) {
+            return res.status(404).json({
+                success: false,
+                message: "Link not found",
+                data: null,
+            });
+        }
+
+        link.target = target;
+        link.title = title;
+        link.slug = slug;
+        await link.save();
+        res.json({
+            success: true,
+            message: "Link updated successfully",
+            data: link,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            data: null,
+            message: error.message,
+        });
+    }
+};
 
 export {
     postLink,
     getSlugRedic,
-    getlinks
+    getlinks,
+    deleteLink,
+    updateLink
 }

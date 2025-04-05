@@ -9,6 +9,7 @@ const Createlink = () => {
         title: "",
         target: "",
         slug: ""
+
     })
     const isUrlSecure = (url) => {
         try {
@@ -29,7 +30,16 @@ const Createlink = () => {
             return toast.error("The URL must be secure (HTTPS)");
         }
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/add-link`, linkData);
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/add-link`, {
+                title : title,
+                target:target,
+                slug : slug,
+                user: JSON.parse(localStorage.getItem('token'))._id
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
             if (response.data.success) {
                 toast.success("Link is shortened");
                 setLinkData({ title: "", target: "", slug: "" });

@@ -5,7 +5,7 @@ import About from "./view/About/About";
 import Contact from "./view/Contact/Contact";
 import './index.css'
 import React from "react";
-import Signin from "./view/Login/login";
+import Signin, { Login } from "./view/Login/login";
 import Signup from "./view/signup/signup";
 import Error from "./component/404";
 import Createlink from "./component/createlink";
@@ -33,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/user-login",
     element: <Signin />
+  },
+  {
+    path: "/login",
+    element: <Login />
   },
   {
     path: "/user-signup",

@@ -1,18 +1,48 @@
 import React from 'react';
-import './Style.css';
-
+import { LogOut, } from 'lucide-react'; // Import icons
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
-    //fetch the user photo and name from the local storage
-    const storedUser = localStorage.getItem('User');
+    const navigate = useNavigate();
+
+    // Fetch user details
+    const storedUser = localStorage.getItem('token');
     const user = storedUser ? JSON.parse(storedUser) : null;
-    console.log(user)
+
+    // Default values
+    const fallbackPhoto = "https://avatar.iran.liara.run/public/47";
+    const fallbackName = 'Guest User';
+    const fallbackEmail = 'guest@example.com';
+
+    // Logout function
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/user-login'); // Redirect to login page
+    };
 
     return (
-        <div className="w-64 h-screen pt-12 p-4 dark:bg-gray-800 text-white">
-            <img src={user.photoURL} alt="Profile" className="rounded-full mx-auto h-14 w-14" />
-            <h2 className="text-lg font-bold text-center mx-auto mt-2">{user.displayName}</h2>
-            <p className="text-sm text-center mx-auto">{user.email}</p>
+        <div className="w-full min-h-full flex sm:flex-col justify-between sm:justify-start no-wrap flex-col-reverse items-center text-white p-4 relative">
+            {/* Profile Section */}
+            <div className='sm:text-center flex items-center sm:flex-col gap-2 flex-row'>
+                <img
+                    src={user?.photoURL || fallbackPhoto}
+                    alt="Profile"
+                    className="rounded-full h-14 w-14 sm:h-20 sm:w-20 mx-auto border-2 border-gray-600"
+                    onError={(e) => { e.target.src = fallbackPhoto; }}
+                />
+                <div>
+                    <h2 className="text-lg font-bold mt-2">{user?.fullname || fallbackName}</h2>
+                    <p className="text-sm text-gray-400">{user?.email || fallbackEmail}</p>
+                </div>
+            </div>
+
+            {/* Logout Button */}
+            <button 
+                onClick={handleLogout} 
+                className="sm:mt-4 sm:relative sm:top-0 sm:right-0 absolute top-4 right-4 bg-red-600 sm:px-4 sm:py-2 px-4 py-2 rounded hover:bg-red-700 flex items-center gap-2"
+            >
+                <LogOut className="w-5 h-5" />Logout
+            </button>
         </div>
     );
 };

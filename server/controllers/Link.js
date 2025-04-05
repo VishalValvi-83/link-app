@@ -62,35 +62,6 @@ const getSlugRedic = async (req, res) => {
 
 }
 
-// const getlinks = async (req, res) => {
-//     try {
-//         const { userId } = req.query
-//         const user = await User.findById(userId)
-//         if (!user) {
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "User not found",
-//                 data: null
-//             })
-//         }
-//         const links = await Link.find({ user: user._id }).sort({ createdAt: -1 })
-//         res.json({
-//             success: true,
-//             data: links,
-//             message: "Links fetched successfully"
-//         })
-
-
-//     } catch (error) {
-//         res.status(500).json({
-//             success: false,
-//             data: null,
-//             message: error.message
-//         })
-//         console.error(error);
-
-//     }
-// }
 const getlinks = async (req, res) => {
     try {
         const { userId } = req.query;
@@ -137,10 +108,38 @@ const getlinks = async (req, res) => {
         console.error(error);
     }
 };
+//delete link
+const deleteLink = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+
+        const link = await Link.findById(id);
+        if (!link) {
+            return res.status(404).json({
+                success: false,
+                message: "Link not found",
+            });
+        }
+
+        await Link.findByIdAndDelete(id);
+
+        res.json({
+            success: true,
+            message: "Link deleted successfully",
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
+    }
+};
 
 
 export {
     postLink,
     getSlugRedic,
-    getlinks
+    getlinks,
+    deleteLink,
 }

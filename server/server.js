@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv, { config } from 'dotenv'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import { getlinks, getSlugRedic, postLink } from './controllers/Link.js'
+import { deleteLink, getlinks, getSlugRedic, postLink } from './controllers/Link.js'
 import { postlogin, postSingup } from './controllers/user.js'
 import colors from 'colors'
 import GReCap from './controllers/GReCap.js'
@@ -46,6 +46,7 @@ background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
 app.post('/add-link', postLink)
 app.get('/get-short-link', getlinks)
 app.get('/:slug', getSlugRedic)
+app.delete('/delete-link/:id', deleteLink )
 
 
 //user 

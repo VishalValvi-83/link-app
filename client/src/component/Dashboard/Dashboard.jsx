@@ -19,20 +19,25 @@ const Dashboard = () => {
   const [linkMessage, setLinkMessage] = useState(null);
   const storedUser = localStorage.getItem('token');
   const user = React.useMemo(() => (storedUser ? JSON.parse(storedUser) : null), [storedUser]);
-  const handleAddLink = (url, title) => {
-    const newLink = {
-      title,
-      originalUrl: url,
-      shortenedUrl: `short.ly/${Math.random().toString(36).substr(2, 5)}`, // Simulated shortened URL
-      viewCount: 0,
-      status: Math.random() > 0.5 ? "Active" : "Inactive",
-      createdAt: new Date().toISOString(),
-    };
-    setLinks([...links, newLink]);
-  };
 
-  const handleDeleteLink = (originalUrl) => {
-    setLinks(links.filter(link => link.originalUrl !== originalUrl));
+
+  const handleDeleteLink = async (id) => {
+    try {
+      console.log("Deleting link with ID:", id); // Debugging log
+      const response = await axios.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/delete-link/${id}`
+      );
+
+      if (response.data.success) {
+        setLinks(links.filter(link => link._id !== id));
+        toast.success(response.data.message || "Link deleted successfully");
+      } else {
+        toast.error(response.data.message || "Failed to delete link");
+      }
+    } catch (error) {
+      console.error("Error deleting link:", error);
+      toast.error("An error occurred while deleting the link");
+    }
   };
 
   const handleEditLink = (originalUrl) => {
@@ -93,129 +98,6 @@ const Dashboard = () => {
     }
   }, [user]);
 
-  {/*return (
-    <div className='flex wrap md:flex-row flex-col'>
-      <aside className="md:w-1/6 pt-8 md:pt-12 md:h-screen h-48 w-full bg-gray-800 text-white text-gray-900 dark:text-white">
-        <Sidebar user={user} />
-      </aside>
-
-      <div className="flex pt-10 px-4 flex-col flex-grow text-gray-900 dark:text-white dark:bg-gray-900">
-        <div className="flex flex-row items-center mb-5">
-          <a href="/" className='text-gray-400 mx-2 hover:text-blue-400 hover:underline underline-offset-4'>Home</a> <span className='text-gray-400'>/</span>
-          <a href="/dashboard" className='text-gray-400 mx-2 hover:text-blue-400 hover:underline underline-offset-4'>Dashboard</a>
-        </div>
-        <div className="hero-section">
-          <h1 className="text-4xl font-bold mb-4">Dashboard</h1>
-          <p className="text-lg">Shorten your URLs and track their performance.</p>
-        </div>
-
-        <div className="flex-grow p-4 bg-gray-900 text-gray-100">
-          <div className="mb-4">
-            <input
-              type="text"
-              placeholder="Enter URL"
-              onKeyDown={(e) => e.key === 'Enter' && handleAddLink(e.target.value, "Set Title Here")} // Basic title; replace as needed
-              className="border border-gray-700 p-2 rounded w-full bg-gray-800 text-gray-100"
-            />
-            <input
-              type="text"
-              placeholder="Enter Title"
-              onKeyDown={(e) => e.key === 'Enter' && handleAddLink(e.target.value, e.target.value)}
-              className="border border-gray-700 p-2 rounded w-full dark:bg-gray-800 text-gray-100 mt-2"
-            />
-          </div>
-
-          <div className="overflow-x-auto overflow-y-scroll rounded-lg shadow-lg">
-            <table className="min-w-full text-sm md:text-medium dark:bg-gray-800 text-gray-100">
-              <thead>
-                <tr>
-                  <th className="py-2 px-2 md:px-4">Title</th>
-                  <th className="py-2 px-2 md:px-4">Original Link</th>
-                  <th className="py-2 px-2 md:px-4">Short Link</th>
-                  <th className="py-2 px-2 md:px-4">QR Code</th>
-                  <th className="py-2 px-2 md:px-4">Clicks</th>
-                  <th className="py-2 px-2 md:px-4">Date</th>
-                  <th className="py-2 px-2 md:px-4">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {links.map((link, index) => (
-                  <tr key={index} className="border-t border-gray-700">
-                    <td className="py-2 px-2 md:px-4">{link.title}</td>
-                    <td className="py-2 px-2 md:px-4">{link.target.substring(0, 30)}..</td>
-                    <td className="py-2 text-blue-400 flex flex-row justify-between hover:underline underline-offset-2 px-2 md:px-4">
-                      <a href={`${import.meta.env.VITE_BACKEND_URL}/${link.slug}`}>{link.slug}</a>
-                      <button onClick={() => {
-                        navigator.clipboard.writeText(`${import.meta.env.VITE_BACKEND_URL}/${link.slug}`);
-                        toast.success("Copied to clipboard");
-                      }}>
-                        <img className='hover:cursor-pointer obejct-cover' src={CopyIcon} alt="copy-icon" />
-                      </button>
-                    </td>
-                    <td className="py-2 text-center px-2 md:px-4">
-                      <button
-                        onClick={() => openModal(link)}
-                        className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700"
-                      >
-                        Show
-                      </button>
-                    </td>
-                    <td className="py-2 text-center px-2 md:px-4">{link.view}</td>
-                    <td className="py-2 text-center px-2 md:px-4">{new Date(link.createdAt).toLocaleDateString()}</td>
-                    <td className="py-2 text-center px-2 md:px-4">
-                      <button
-                        onClick={() => handleEditLink(link.target)}
-                        className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 mr-2"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteLink(link.target)}
-                        className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          {editingLink && (
-            <div className="mt-4 flex">
-              <input
-                type="text"
-                value={editUrl}
-                onChange={(e) => setEditUrl(e.target.value)}
-                className="border border-gray-700 p-2 rounded w-full bg-gray-800 text-gray-100"
-                placeholder="Edit URL"
-              />
-              <input
-                type="text"
-                value={editTitle}
-                onChange={(e) => setEditTitle(e.target.value)}
-                className="border border-gray-700 p-2 rounded w-full bg-gray-800 text-gray-100 ml-2"
-                placeholder="Edit Title"
-              />
-              <button
-                onClick={handleUpdateLink}
-                className="ml-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-              >
-                Update
-              </button>
-            </div>
-          )}
-          {selectedLink && (
-            <LinkModal
-              isOpen={modalIsOpen}
-              onRequestClose={closeModal}
-              link={selectedLink}
-            />
-          )}
-        </div>
-      </div>
-    </div>
-  );*/}
   return (
     <div className="flex h-screen flex-col dark:bg-gray-900 md:flex-row">
       <aside className="md:w-1/6 pt-8 md:pt-12 md:h-screen h-48 w-full dark:bg-gray-800 text-white text-gray-900 dark:text-white">
@@ -272,7 +154,7 @@ const Dashboard = () => {
                     <Pencil className="w-4 h-4 inline" /> Edit
                   </button>
                   <button
-                    onClick={() => handleDeleteLink(link.target)}
+                    onClick={() => handleDeleteLink(link._id)} // Ensure correct ID is passed
                     className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm"
                   >
                     <Trash className="w-4 h-4 inline" /> Delete
@@ -341,7 +223,7 @@ const Dashboard = () => {
                       <Pencil className="w-4 h-4 inline" /> Edit
                     </button>
                     <button
-                      onClick={() => handleDeleteLink(link.target)}
+                      onClick={() => handleDeleteLink(link._id)} // Ensure correct ID is passed
                       className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700"
                     >
                       <Trash className="w-4 h-4 inline" /> Delete

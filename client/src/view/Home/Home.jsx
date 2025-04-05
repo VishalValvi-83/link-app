@@ -3,6 +3,7 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../component/Navbar";
 import Createlink from "../../component/createlink";
+import PromoLinkSections from "../../component/PromoCards";
 const Home = () => {
   return (
     <>
@@ -75,7 +76,7 @@ const Home = () => {
       </section> */}
       <Createlink />
       <section className="text-gray-600 dark:text-white dark:bg-gray-900 body-font">
-        <div className="container px-5 mx-auto">
+        <div className="container p-5 mx-auto">
           <div className="text-center mb-10">
             <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-purple-500 py-4">FEATURES</h1>
             <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Create Smarter Links, Drive Better Results</h1>
@@ -138,9 +139,10 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <button className="flex mx-auto mt-16 text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">Try Now</button>
+          <button className="flex mx-auto mt-16 text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">Get Started free</button>
         </div>
       </section>
+      <PromoLinkSections/>
     </>
   );
 };

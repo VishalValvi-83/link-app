@@ -45,14 +45,12 @@ const Dashboard = () => {
         toast.error(response.data.message || "Failed to update link");
       }
     } catch (error) {
-      console.error("Error updating link:", error);
       toast.error("An error occurred while updating the link");
     }
   };
 
   const handleDeleteLink = async (id) => {
     try {
-      console.log("Deleting link with ID:", id); // Debugging log
       const response = await axios.delete(
         `${import.meta.env.VITE_BACKEND_URL}/delete-link/${id}`
       );
@@ -64,7 +62,6 @@ const Dashboard = () => {
         toast.error(response.data.message || "Failed to delete link");
       }
     } catch (error) {
-      console.error("Error deleting link:", error);
       toast.error("An error occurred while deleting the link");
     }
   };
@@ -89,17 +86,14 @@ const Dashboard = () => {
         `${import.meta.env.VITE_BACKEND_URL}/get-short-link?userId=${user._id}`
       );
 
-      console.log("Fetched response:", response.data.data); // Log the response data
 
       if (response.data.success) {
         setLinks(response.data.data);
         toast.success(response.data.message) // Set the links if the response is successful
       } else {
-        console.error("Error in response:", response.data.message);
         toast.error(response.data.message || "Failed to fetch links");
       }
     } catch (error) {
-      console.error("Error fetching links:", error);
       toast.error("An error occurred while fetching links");
     }
   }

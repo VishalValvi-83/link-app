@@ -89,7 +89,7 @@ const getlinks = async (req, res) => {
         if (links.length === 0) {
             return res.status(200).json({
                 success: true,
-                message: "No links found for the user",
+                message: "No links found, create links to get started",
                 data: [],
             });
         }
@@ -136,10 +136,41 @@ const deleteLink = async (req, res) => {
     }
 };
 
+const updateLink = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { target, title, slug } = req.body;
+        const link = await Link.findById(id);
+        if (!link) {
+            return res.status(404).json({
+                success: false,
+                message: "Link not found",
+                data: null,
+            });
+        }
+
+        link.target = target;
+        link.title = title;
+        link.slug = slug;
+        await link.save();
+        res.json({
+            success: true,
+            message: "Link updated successfully",
+            data: link,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            data: null,
+            message: error.message,
+        });
+    }
+};
 
 export {
     postLink,
     getSlugRedic,
     getlinks,
     deleteLink,
+    updateLink
 }

@@ -12,14 +12,43 @@ const Dashboard = () => {
   const [links, setLinks] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedLink, setSelectedLink] = useState(null);
-  const [editingLink, setEditingLink] = useState(null);
-  const [editUrl, setEditUrl] = useState('');
-  const [editTitle, setEditTitle] = useState('');
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [linkMessage, setLinkMessage] = useState(null);
   const storedUser = localStorage.getItem('token');
   const user = React.useMemo(() => (storedUser ? JSON.parse(storedUser) : null), [storedUser]);
 
+  const [updateModalIsOpen, setUpdateModalIsOpen] = useState(false);
+  const [updateLinkDetails, setUpdateLinkDetails] = useState({ id: "", title: "", target: "" });
+
+  const openUpdateModal = (link) => {
+    setUpdateLinkDetails({ id: link._id, title: link.title, target: link.target, slug: link.slug });
+    setUpdateModalIsOpen(true);
+  };
+
+  const closeUpdateModal = () => {
+    setUpdateModalIsOpen(false);
+    setUpdateLinkDetails({ id: "", title: "", target: "", slug: "" });
+  };
+
+  const handleUpdateLink = async () => {
+    try {
+      const { id, title, target, slug} = updateLinkDetails;
+      const response = await axios.put(
+        `${import.meta.env.VITE_BACKEND_URL}/update-link/${id}`,
+        { title, target, slug }
+      );
+
+      if (response.data.success) {
+        setLinks(links.map(link => (link._id === id ? { ...link, title, target, slug } : link)));
+        toast.success(response.data.message || "Link updated successfully");
+        closeUpdateModal();
+      } else {
+        toast.error(response.data.message || "Failed to update link");
+      }
+    } catch (error) {
+      console.error("Error updating link:", error);
+      toast.error("An error occurred while updating the link");
+    }
+  };
 
   const handleDeleteLink = async (id) => {
     try {
@@ -38,22 +67,6 @@ const Dashboard = () => {
       console.error("Error deleting link:", error);
       toast.error("An error occurred while deleting the link");
     }
-  };
-
-  const handleEditLink = (originalUrl) => {
-    const linkToEdit = links.find(link => link.originalUrl === originalUrl);
-    setEditingLink(originalUrl);
-    setEditUrl(linkToEdit.originalUrl);
-    setEditTitle(linkToEdit.title);
-  };
-
-  const handleUpdateLink = () => {
-    setLinks(links.map(link =>
-      (link.originalUrl === editingLink) ? { ...link, originalUrl: editUrl, title: editTitle } : link
-    ));
-    setEditingLink(null);
-    setEditUrl('');
-    setEditTitle('');
   };
 
   const openModal = (link) => {
@@ -148,7 +161,7 @@ const Dashboard = () => {
                     Show QR
                   </button>
                   <button
-                    onClick={() => handleEditLink(link.target)}
+                    onClick={() => openUpdateModal(link)}
                     className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm"
                   >
                     <Pencil className="w-4 h-4 inline" /> Edit
@@ -217,7 +230,7 @@ const Dashboard = () => {
                   <td className="py-2 text-center px-2 md:px-4">{new Date(link.createdAt).toLocaleDateString()}</td>
                   <td className="py-2 text-center px-2 md:px-4">
                     <button
-                      onClick={() => handleEditLink(link.target)}
+                      onClick={() => openUpdateModal(link)}
                       className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 mr-2"
                     >
                       <Pencil className="w-4 h-4 inline" /> Edit
@@ -241,6 +254,55 @@ const Dashboard = () => {
           onRequestClose={closeModal}
           link={selectedLink}
         />
+      )}
+      {/* Update Link Modal */}
+      {updateModalIsOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded shadow-lg w-96">
+            <h2 className="text-lg font-bold mb-4">Update Link</h2>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1">Title</label>
+              <input
+                type="text"
+                value={updateLinkDetails.title}
+                onChange={(e) => setUpdateLinkDetails({ ...updateLinkDetails, title: e.target.value })}
+                className="w-full px-3 py-2 border rounded"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1">Slug</label>
+              <input
+                type="text"
+                value={updateLinkDetails.slug}
+                onChange={(e) => setUpdateLinkDetails({ ...updateLinkDetails, slug: e.target.value })}
+                className="w-full px-3 py-2 border rounded"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1">Target URL</label>
+              <input
+                type="text"
+                value={updateLinkDetails.target}
+                onChange={(e) => setUpdateLinkDetails({ ...updateLinkDetails, target: e.target.value })}
+                className="w-full px-3 py-2 border rounded"
+              />
+            </div>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={closeUpdateModal}
+                className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleUpdateLink}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

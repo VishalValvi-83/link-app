@@ -114,9 +114,9 @@ const Dashboard = () => {
       <div className="sm:hidden dark:bg-gray-600 pt-3 rounded-lg dark:text-white">
         <p className='mx-5 mb-2'>Shorten Links</p>
         {links.map((link, index) => (
-          <div key={index} className="dark:bg-gray-800 dark:text-white text-gray-100 p-4 shadow-lg">
+          <div key={index} className="dark:bg-gray-800 dark:text-white text-gray-100 p-2 sm:p-4 shadow-lg">
             {/* Short Link Row */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center bg-gray-700 p-1 rounded flex-wrap justify-between">
               <span className='text-white'>{link.title}</span>
               <div className="flex flex-row justify-between items-center gap-2">
                 <a href={`${import.meta.env.VITE_BACKEND_URL}/${link.slug}`} className="text-blue-400 hover:underline">

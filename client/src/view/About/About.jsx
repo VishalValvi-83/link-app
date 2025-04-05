@@ -2,6 +2,7 @@
 import React from 'react'
 import Navbar from "../../component/Navbar";
 import aboutimg from '../../assets/Good team.png'
+import vishal from '../../assets/vishal.png'
 
 function About() {
     return (
@@ -11,11 +12,11 @@ function About() {
                 <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
                     <div class="w-full mx-auto lg:w-1/2">
 
-                        <h1 class="mt-8 text-2xl font-bold text-white-800 md:text-4xl">
+                        <h1 class="mt-8 text-2xl font-bold text-white md:text-4xl">
                             Empowering Your Links, Enhancing Your Reach
 
                         </h1>
-                        <p class="mt-4 text-gray-500 dark:text-gray-400 lg:text-xl">
+                        <p class="mt-4 text-gray-500  dark:text-gray-400 lg:text-xl">
                             At ZipLink, we transform long, cumbersome URLs into concise, shareable links, making your digital interactions seamless and efficient. Whether you're a business, marketer, or individual, our fast and secure platform helps you simplify link sharing while ensuring reliability and tracking. With custom branding and built-in analytics, ZipLink makes every link smarter and more impactful.
                         </p>
                     </div>
@@ -104,6 +105,46 @@ function About() {
                         </div>
                     </div>
                 </div>
+
+                <div className='text-white text-center mt-10'>
+                    <div className="flex flex-wrap w-full mb-8 flex-col items-center text-center">
+                        <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">BUILT BY STUDENTS, FOR EVERYONE</h1>
+                    </div>
+                    <p className='w-[60%] mx-auto text-gray-500  dark:text-gray-400 lg:text-xl'>
+                        ZipLink is the result of passion, learning, and late-night coding sessions 🌙💡 by a group of final-year Computer Science students 🎓. We wanted to solve a real-world problem with a simple, useful tool anyone can use.
+                        This project represents our journey through full-stack development, teamwork, UI/UX design, and a lot of debugging 🐞💻. More than just a project, it’s a reflection of how much we’ve grown as developers and friends 🤝.
+                    </p>
+                </div>
+
+                <div className='text-white text-center mt-10'>
+                    <div className="flex flex-wrap w-full mb-8 flex-col items-center text-center">
+                        <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">MEET US</h1>
+                    </div>
+
+                    <div className='flex w-[60%] mx-auto justify-around flex-wrap'>
+                            <div className=''>
+                                <img src={vishal} alt="vishal" />
+                            </div>
+                        <div className='border-2 border-purple-500 w-[150px] h-[150px] mx-auto bg-purple-500 rounded-se-xl'>
+                            <div> 
+                                <img src={vishal} alt="vishal"/>
+                            </div>
+                        </div>  
+                         <div className='border-2 border-purple-500  w-[150px] h-[150px] mx-auto bg-purple-500'>
+                            <div> 
+                                <img src={vishal} alt="vishal" />
+                            </div>
+                        </div>  
+                         <div className='border-2 border-purple-500  w-[150px] h-[150px] mx-auto bg-purple-500'>
+                            <div> 
+                                <img src={vishal} alt="vishal" />
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
 
             </section>
         </>

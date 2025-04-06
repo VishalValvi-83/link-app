@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './style.css'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import Navbarnew from './Navb'
 
 const Createlink = () => {
     const [linkData, setLinkData] = useState({
@@ -30,9 +31,9 @@ const Createlink = () => {
         }
         try {
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/add-link`, {
-                title : title,
-                target:target,
-                slug : slug,
+                title: title,
+                target: target,
+                slug: slug,
                 user: JSON.parse(localStorage.getItem('token'))._id
             }, {
                 headers: {
@@ -51,7 +52,7 @@ const Createlink = () => {
     };
     return (
         <>
-            {/* <Navbar /> */}
+            <Navbarnew />
             <section className="text-gray-500 dark:bg-gray-900 border-none body-font">
                 <div className="container px-5 py-10 mx-auto">
                     <div className="flex flex-wrap w-full mb-10 flex-col items-center text-center">
@@ -148,6 +149,62 @@ const Createlink = () => {
                             </button>
                         </div>
                     </div>
+                </div>
+            </section>
+            <section id="createlink" className="relative bg-gray-100 dark:bg-gray-900 py-16 px-4">
+                <div className="container mx-auto max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+                    <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Create Your Short Link</h2>
+                    <form onSubmit={getData} className="space-y-6">
+
+                        {/* Title Input */}
+                        <div>
+                            <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">Title</label>
+                            <input
+                                type="text"
+                                value={linkData.title}
+                                onChange={(e) => setLinkData({ ...linkData, title: e.target.value })}
+                                placeholder="Title for the short link"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            />
+                        </div>
+                        {/* Slug Input */}
+                        <div>
+                            <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">Slug</label>
+                            <input
+                                type="text"
+                                value={linkData.slug}
+                                onChange={(e) => setLinkData({ ...linkData, slug: e.target.value })}
+                                placeholder="e.g., myapp or shortlink2025"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            />
+                        </div>
+                        {/* URL Input */}
+                        <div>
+                            <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">Long URL</label>
+                            <div className="flex">
+                                <span className="inline-flex items-center px-2 bg-gray-200 text-gray-600 rounded-l-md border border-r-0 border-gray-300 dark:bg-gray-700 dark:text-white">
+                                    https://    
+                                </span>
+                                <input
+                                    type="text"
+                                    value={linkData.target}
+                                    onChange={(e) => setLinkData({ ...linkData, target: e.target.value })}
+                                    placeholder="Paste your secure (HTTPS) URL"
+                                    className="w-full px-4 mt-0 object-cover py-2 border border-gray-300 dark:border-gray-600 rounded-r-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Submit Button */}
+                        <div className="text-center">
+                            <button
+                                type="submit"
+                                className="w-full md:w-auto px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition duration-300"
+                            >
+                                Generate Short Link
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </section>
             {/* <section className="text-gray-600 body-font">

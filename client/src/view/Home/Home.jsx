@@ -1,12 +1,10 @@
 import React from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
-// import Navbarnew from "../../component/Navb.jsx";
-
-import Createlink from "../../component/createlink";
 import PromoLinkSections from "../../component/PromoCards";
 import Navbarnew from "../../component/Navb";
 const Home = () => {
+  
   return (
     <>
       <Navbarnew />
@@ -20,8 +18,8 @@ const Home = () => {
               <p className="text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
                 Simplify your online presence with our URL shortener. Create custom links, track clicks, and analyze performance.
               </p>
-              <div className="flex flex-wrap mt-4  justify-center md:justify-start">
-                <a href="#" className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+              <div className="flex flex-wrap mt-4 justify-center md:justify-start">
+                <Link to={"/create-link"} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
                   Shorten Your URL
                   <svg className="w-5 h-5 ml-2 -mr-1"
                     fill="currentColor"
@@ -31,7 +29,7 @@ const Home = () => {
                       d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
                       clipRule="evenodd" />
                   </svg>
-                </a>
+                </Link>
                 <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800 animate__animated animate__fadeInRight" > Learn More</a>
               </div>
             </div>
@@ -76,7 +74,6 @@ const Home = () => {
           </div>
         </div>
       </section> */}
-      <Createlink />
       <section className="text-gray-600 dark:text-white dark:bg-gray-900 body-font">
         <div className="container p-5 mx-auto">
           <div className="text-center mb-10">

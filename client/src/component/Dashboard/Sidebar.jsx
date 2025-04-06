@@ -6,7 +6,7 @@ const Sidebar = () => {
     const navigate = useNavigate();
 
     // Fetch user details
-    const storedUser = localStorage.getItem('token');
+    const storedUser = localStorage.getItem('token') || localStorage.getItem('User');
     const user = storedUser ? JSON.parse(storedUser) : null;
 
     // Default values
@@ -31,7 +31,7 @@ const Sidebar = () => {
                     onError={(e) => { e.target.src = fallbackPhoto; }}
                 />
                 <div>
-                    <h2 className="text-lg font-bold mt-2">{user?.fullname || fallbackName}</h2>
+                    <h2 className="text-lg font-bold mt-2">{user?.fullname || user?.displayName || fallbackName}</h2>
                     <p className="text-sm text-gray-400">{user?.email || fallbackEmail}</p>
                 </div>
             </div>

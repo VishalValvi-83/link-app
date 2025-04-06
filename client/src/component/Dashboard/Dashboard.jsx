@@ -4,6 +4,7 @@ import LinkModal from './linkModal';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { ChevronDown, ChevronUp, Copy, Trash, Pencil, Eye } from "lucide-react";
+import Navbarnew from '../Navb';
 
 
 const Dashboard = () => {
@@ -105,6 +106,7 @@ const Dashboard = () => {
 
   return (
     <>
+      <Navbarnew />
       <div className="flex h-screen flex-col dark:bg-gray-900 md:flex-row">
         <aside className="md:w-1/6 pt-8 md:pt-12 md:h-screen h-48 w-full dark:bg-gray-800 text-white text-gray-900 dark:text-white">
           <Sidebar user={user} />

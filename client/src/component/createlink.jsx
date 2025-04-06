@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import './style.css'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import Navbar from './Navbar'
 
 const Createlink = () => {
     const [linkData, setLinkData] = useState({
@@ -52,7 +51,7 @@ const Createlink = () => {
     };
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <section className="text-gray-500 dark:bg-gray-900 border-none body-font">
                 <div className="container px-5 py-10 mx-auto">
                     <div className="flex flex-wrap w-full mb-10 flex-col items-center text-center">

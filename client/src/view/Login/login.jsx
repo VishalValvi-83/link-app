@@ -10,8 +10,8 @@ import {
   browserLocalPersistence,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { toast } from "react-hot-toast";
-import Navbar from "./../../component/Navbar";
 import axios from "axios";
+import Navbarnew from "../../component/Navb";
 
 export default function Signin() {
   const [user, setUser] = useState(null);
@@ -99,7 +99,9 @@ export default function Signin() {
         localStorage.removeItem("User");
       }
       setUser(user);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     });
 
     // Cleanup on unmount
@@ -157,9 +159,9 @@ export default function Signin() {
 
   return (
     <>
-      <Navbar user={user} />
+      {/* <Navbarnew user={user} /> */}
       <section className="bg-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="grid h-screen grid-cols-1 lg:grid-cols-2">
           <div className="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-gray-50 sm:px-6 lg:px-8">
             <div className="absolute inset-0">
               <img
@@ -264,7 +266,7 @@ export default function Signin() {
 
           <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
-              <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
+              <h2 className="text-3xl lg:pb-2 font-bold leading-tight text-black sm:text-4xl">
                 Sign in to Celebration
               </h2>
               <p className="mt-2 text-base text-gray-600">

@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "./Navbar";
 import ErrorImage from './../assets/error404.svg'
+import Navbarnew from "./Navb";
 
 const Error = () => {
     return (
         <>
-        <Navbar/>
+        <Navbarnew/>
         {/* dark:bg-gray-900 dark:text-blue-400 dark:text-white */}
             <section class="bg-white ">
                 <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">

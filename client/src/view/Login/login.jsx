@@ -110,9 +110,17 @@ export default function Signin() {
 
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      const userInfo = {
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+      };
+
+      localStorage.setItem("User", JSON.stringify(userInfo));
       toast.success(`Login successful!`);
-      // alert(`Hello ${user.displayName || "User"}`);
       setTimeout(() => {
         window.location.pathname = "/";
       }, 1000);

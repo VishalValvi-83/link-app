@@ -110,7 +110,7 @@ function About() {
                     <div className="flex flex-wrap w-full mb-8 flex-col items-center text-center">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">BUILT BY STUDENTS, FOR EVERYONE</h1>
                     </div>
-                    <p className='w-[60%] mx-auto my-4 text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300'>
+                    <p className='w-[80%] mx-auto my-4 text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300'>
                         ZipLink is the result of passion, learning, and late-night coding sessions 🌙💡 by a group of final-year Computer Science students 🎓. We wanted to solve a real-world problem with a simple, useful tool anyone can use.
                         This project represents our journey through full-stack development, teamwork, UI/UX design, and a lot of debugging 🐞💻. More than just a project, it’s a reflection of how much we’ve grown as developers and friends 🤝.
                     </p>
@@ -122,25 +122,25 @@ function About() {
                     </div>
 
                     <div className='flex w-[60%] mx-auto justify-around flex-wrap'>
-                            <div className=''>
-                                <img src={vishal} alt="vishal" />
-                            </div>
+                        <div className=''>
+                            <img src={vishal} alt="vishal" />
+                        </div>
                         <div className='border-2 border-purple-500 w-[150px] h-[150px] mx-auto bg-purple-500 rounded-se-xl'>
-                            <div> 
-                                <img src={vishal} alt="vishal"/>
-                            </div>
-                        </div>  
-                         <div className='border-2 border-purple-500  w-[150px] h-[150px] mx-auto bg-purple-500'>
-                            <div> 
-                                <img src={vishal} alt="vishal" />
-                            </div>
-                        </div>  
-                         <div className='border-2 border-purple-500  w-[150px] h-[150px] mx-auto bg-purple-500'>
-                            <div> 
+                            <div>
                                 <img src={vishal} alt="vishal" />
                             </div>
                         </div>
-                        
+                        <div className='border-2 border-purple-500  w-[150px] h-[150px] mx-auto bg-purple-500'>
+                            <div>
+                                <img src={vishal} alt="vishal" />
+                            </div>
+                        </div>
+                        <div className='border-2 border-purple-500  w-[150px] h-[150px] mx-auto bg-purple-500'>
+                            <div>
+                                <img src={vishal} alt="vishal" />
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

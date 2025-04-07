@@ -67,7 +67,7 @@ const Createlink = () => {
                                     </svg>
                                 </div>
                                 <h2 className="text-lg dark:text-white text-gray-900 font-medium title-font mb-2">Step 1: Enter Your Long URL</h2>
-                                <p className="leading-relaxed text-sm">Start by entering the long URL you want to shorten into the input field. <br />
+                                <p className="leading-relaxed text-sm text-gray-400">Start by entering the long URL you want to shorten into the input field. <br />
                                     <b>Example:</b> https://example.com/my-very-long-link-with-parameters.</p>
                             </div>
                         </div>
@@ -81,7 +81,7 @@ const Createlink = () => {
                                     </svg>
                                 </div>
                                 <h2 className="text-lg dark:text-white text-gray-900 font-medium title-font mb-2">Step 2: Customize Your Link</h2>
-                                <p className="leading-relaxed text-base">Personalize your short URL with a custom slug. <br /> <b>Example:</b> Your link could look like https://linkzip.com/my-app.</p>
+                                <p className="leading-relaxed text-gray-400">Personalize your short URL with a custom slug. <br /> <b>Example:</b> Your link could look like https://linkzip.com/my-app.</p>
                             </div>
                         </div>
                         <div className="xl:w-1/3 md:w-1/2 p-4">
@@ -93,7 +93,7 @@ const Createlink = () => {
                                     </svg>
                                 </div>
                                 <h2 className="text-lg dark:text-white text-gray-900 font-medium title-font mb-2">Step 3: Generate Your Short Link</h2>
-                                <p className="leading-relaxed text-base">Click on the “Generate Short Link” button, and your customized link will be ready instantly!</p>
+                                <p className="leading-relaxed text-gray-400">Click on the “Generate Short Link” button, and your customized link will be ready instantly!</p>
                             </div>
                         </div>
                         <div className="xl:w-1/3 md:w-1/2 p-4">
@@ -104,7 +104,7 @@ const Createlink = () => {
                                     </svg>
                                 </div>
                                 <h2 className="dark:text-white text-lg text-gray-900 font-medium title-font mb-2">Step 4: Track Link Performance</h2>
-                                <p className="leading-relaxed text-base">Access detailed analytics for your link, including: <br />Number of clicks,
+                                <p className="leading-relaxed text-gray-400">Access detailed analytics for your link, including: <br />Number of clicks,
                                     Geographic location of users,
                                     Devices and browsers used.</p>
                             </div>
@@ -117,7 +117,7 @@ const Createlink = () => {
                                     </svg>
                                 </div>
                                 <h2 className="dark:text-white text-lg text-gray-900 font-medium title-font mb-2">Step 4: Share Your Link</h2>
-                                <p className="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waist co, subway tile poke farm.</p>
+                                <p className="leading-relaxed text-gray-400">Fingerstache flexitarian street art 8-bit waist co, subway tile poke farm.</p>
                             </div>
                         </div>
 

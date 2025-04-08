@@ -10,15 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
+
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-=======
     "aos": "^2.3.4",
->>>>>>> 685872cf93b8f53082e411f8c97205f3a769ac34
     "axios": "^1.7.7",
     "lucide-react": "^0.487.0",
     "qrcode": "^1.5.4",

@@ -1,10 +1,11 @@
 import React from 'react'
-import Navbar from '../../component/Navbar'
+import Navbarnew from '../../component/Navb';
+// import Navbar from '../../component/Navbar'
 
 const Service = () => {
   return (
     <>
-      <Navbar />
+      <Navbarnew />
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">

@@ -87,20 +87,13 @@ const Signup = () => {
           password: ""
         });
 
-        // Redirect to the login page or perform any other action
         window.location.href = "/user-login";
       } else if (email.length === 0) {
         toast.error("Please Enter Email")
         document.getElementById('email').classList.add('border-4 border-red-500/100')
-        //   setTimeout(() => {
-        //     document.getElementById('floatingInput').classList.remove('is-invalid')
-        //   }, 3000)
+
       } else if (password.length === 0) {
         toast.error("Please Enter Password")
-        //   document.getElementById('floatingPassword').classList.add('is-invalid')
-        //   setTimeout(() => {
-        //     document.getElementById('floatingPassword').classList.remove('is-invalid')
-        //   }, 3000)
       } else {
         alert(data.message);
       }

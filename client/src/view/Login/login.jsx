@@ -10,8 +10,8 @@ import {
   browserLocalPersistence,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { toast } from "react-hot-toast";
-import Navbar from "./../../component/Navbar";
 import axios from "axios";
+import Navbarnew from "../../component/Navb";
 
 export default function Signin() {
   const [user, setUser] = useState(null);
@@ -99,7 +99,9 @@ export default function Signin() {
         localStorage.removeItem("User");
       }
       setUser(user);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     });
 
     // Cleanup on unmount
@@ -108,9 +110,17 @@ export default function Signin() {
 
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      const userInfo = {
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+      };
+
+      localStorage.setItem("User", JSON.stringify(userInfo));
       toast.success(`Login successful!`);
-      // alert(`Hello ${user.displayName || "User"}`);
       setTimeout(() => {
         window.location.pathname = "/";
       }, 1000);
@@ -157,6 +167,9 @@ export default function Signin() {
 
   return (
     <>
+      {/* <Navbarnew user={user} /> */}
+      <section className="bg-white">
+        <div className="grid h-screen grid-cols-1 lg:grid-cols-2">
       <Navbar user={user} />
       <section className="bg-white mt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -264,6 +277,8 @@ export default function Signin() {
 
           <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
+              <h2 className="text-3xl lg:pb-2 font-bold leading-tight text-black sm:text-4xl">
+                Sign in to Celebration
               <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
                 Sign in
               </h2>

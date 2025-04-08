@@ -167,12 +167,9 @@ export default function Signin() {
 
   return (
     <>
-      {/* <Navbarnew user={user} /> */}
+      <Navbarnew user={user} />
       <section className="bg-white">
         <div className="grid h-screen grid-cols-1 lg:grid-cols-2">
-      <Navbar user={user} />
-      <section className="bg-white mt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-gray-50 sm:px-6 lg:px-8">
             <div className="absolute inset-0">
               <img
@@ -186,8 +183,8 @@ export default function Signin() {
             <div className="relative">
               <div className="w-full max-w-xl xl:w-full xl:mx-auto xl:pr-24 xl:max-w-xl">
                 <h3 className="text-4xl font-bold text-white">
-                Join a growing community <br className="hidden xl:block" />&
-                  simplify your links!
+                  “Join a growing community <br className="hidden xl:block" />&
+                  simplify your links!”
                 </h3>
                 <ul className="grid grid-cols-1 mt-10 sm:grid-cols-2 gap-x-8 gap-y-4">
                   <li className="flex items-center space-x-3">
@@ -279,8 +276,6 @@ export default function Signin() {
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
               <h2 className="text-3xl lg:pb-2 font-bold leading-tight text-black sm:text-4xl">
                 Sign in to Celebration
-              <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
-                Sign in
               </h2>
               <p className="mt-2 text-base text-gray-600">
                 Don’t have an account?

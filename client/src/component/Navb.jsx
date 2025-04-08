@@ -54,7 +54,7 @@ const Navbarnew = () => {
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
-        if(!storedUser) {
+        if (!storedUser) {
             toast.error("Please login to continue", {
                 duration: 1000,
                 position: "top-right",
@@ -68,7 +68,7 @@ const Navbarnew = () => {
     }, []);
 
     return (
-        <nav className={`w-full justify-between fixed w-full z-20 top-0 start-0  dark:bg-gray-900 bg-white relative ${window.scrollY > 0 ? 'border-b border-gray-200' : ''} `}>
+        <nav className={`w-full justify-between fixed w-full z-20 top-0 start-0  dark:bg-gray-900  bg-white  ${window.scrollY > 0 ? 'shadow-md' : ''} `}>
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between transition ease-in-out mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src={Icon} className="h-8" alt="Flowbite Logo" />
@@ -133,13 +133,21 @@ const Navbarnew = () => {
                 }
                 {/* Mobile Menu */}
                 {menuOpen && (
-                    <div className="absolute top-16 transition ease-in-out delay-200 rounded-md right-0 w-1/3 dark:bg-gray-800 bg-white shadow-md md:hidden z-40 py-4 px-6 space-y-4 dark:text-white text-gray-700 text-sm">
-                        <a href="#" className="block">About</a>
-                        <a href="#" className="block">Careers</a>
-                        <a href="#" className="block">History</a>
-                        <a href="#" className="block">Services</a>
-                        <a href="#" className="block">Projects</a>
-                        <a href="#" className="block">Blog</a>
+                    <div className="absolute top-16 transition ease-in-out delay-200 rounded-md right-0 w-1/3 dark:bg-gray-800 bg-white shadow-md md:hidden z-40 space-y-4 dark:text-white text-gray-700 text-sm">
+                        <ul className="flex flex-col font-medium rounded-lg rtl:space-y-reverse md:mt-0 md:border-0 dark:border-gray-700">
+                            <li>
+                                <Link to="/" className={`block py-2 px-3 ${window.location.pathname === '/' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`} aria-current="page">Home</Link>
+                            </li>
+                            <li>
+                                <Link to="/service" className={`block py-2 px-3 ${window.location.pathname === '/service' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Services</Link>
+                            </li>
+                            <li>
+                                <Link to="/about" className={`block py-2 px-3 ${window.location.pathname === '/about' ? 'md:text-blue-700 md:dark:text-blue-500 ' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>About</Link>
+                            </li>
+                            <li>
+                                <Link to="/contact" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Contact</Link>
+                            </li>
+                        </ul>
                     </div>
                 )}
             </div>

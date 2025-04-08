@@ -107,7 +107,7 @@ const Dashboard = () => {
   return (
     <>
       <Navbarnew />
-      <div className="flex h-screen flex-col dark:bg-gray-900 md:flex-row">
+      <div className="flex h-screen mt-8 flex-col dark:bg-gray-900 md:flex-row">
         <aside className="md:w-1/6 pt-8 md:pt-12 md:h-screen h-48 w-full dark:bg-gray-800 text-white text-gray-900 dark:text-white">
           <Sidebar user={user} />
         </aside>

@@ -3,15 +3,18 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import PromoLinkSections from "../../component/PromoCards";
 import Navbarnew from "../../component/Navb";
+import LinkUsage from "./../../assets/worldLinkEntrance.svg"
+
 const Home = () => {
   
   return (
     <>
       <Navbarnew />
-      <section className="bg-white dark:bg-gray-900 py-14 md:py-16 lg:py-16">
+      {/* hero section */}
+      <section className="bg-white dark:bg-gray-900 py-12 md:py-10 lg:py-10">
         <div className="container mx-auto p-4 md:p-6 lg:p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 my-auto">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
                 Shorten, Share, and Track Your URLs
               </h1>
@@ -35,7 +38,7 @@ const Home = () => {
             </div>
             <div className="hidden lg:block">
               <img
-                src="https://go.ox4.in/Assets/image/Define-GoShort.png"
+                src={LinkUsage}
                 alt="mockup"
                 className="w-full"
               />

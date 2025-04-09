@@ -15,7 +15,7 @@ const CreateLinkButton = () => {
     const user = localStorage.getItem('User') || localStorage.getItem('token');
     if (user) {
       setUserLoginModal(false);
-    
+
       window.location.href = '/create-link';
     }
     if (!user) {
@@ -26,7 +26,7 @@ const CreateLinkButton = () => {
 
   const checkUser = () => {
     const user = localStorage.getItem('User') || localStorage.getItem('token');
-    if (user) {    
+    if (user) {
       setShowQRModal(true);
     }
     if (!user) {
@@ -37,7 +37,7 @@ const CreateLinkButton = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 relative">
+    <>
       <Toaster />
       {/* Fixed Create Now Button */}
       <div className="fixed bottom-6 right-6 flex flex-col items-end gap-2 z-50">
@@ -89,7 +89,7 @@ const CreateLinkButton = () => {
           <QRGenerator onClose={() => setShowQRModal(false)} />
         </Modal>
       )}
-    </div>
+    </>
   );
 }
 

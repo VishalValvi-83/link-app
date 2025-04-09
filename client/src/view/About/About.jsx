@@ -12,11 +12,11 @@ function About() {
                 <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
                     <div class="w-full mx-auto lg:w-1/2">
 
-                        <h1 class="mt-8 text-2xl font-bold text-white md:text-4xl">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
                             Empowering Your Links, Enhancing Your Reach
 
                         </h1>
-                        <p class="mt-4 text-gray-500  dark:text-gray-400 lg:text-xl">
+                        <p class=" my-4 text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
                             At ZipLink, we transform long, cumbersome URLs into concise, shareable links, making your digital interactions seamless and efficient. Whether you're a business, marketer, or individual, our fast and secure platform helps you simplify link sharing while ensuring reliability and tracking. With custom branding and built-in analytics, ZipLink makes every link smarter and more impactful.
                         </p>
                     </div>
@@ -32,7 +32,7 @@ function About() {
                 </div>
                 <div>
                     <div className="flex flex-wrap w-full mb-10 flex-col items-center text-center">
-                        <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">HOW IT WORKS</h1>
+                        <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">CORE VALUES</h1>
                     </div>
                     <div className="flex flex-wrap justify-around -m-4">
                         <div className="xl:w-1/4 md:w-1/2 p-4">
@@ -49,7 +49,7 @@ function About() {
                                     </div>
 
                                 </div>
-                                <p className="leading-relaxed text-sm">We constantly evolve and improve ZipLink to stay ahead in the fast-paced digital world, always bringing users the latest features and tech.</p>
+                                <p className="leading-relaxed text-sm lg:text-lg">We constantly evolve and improve ZipLink to stay ahead in the fast-paced digital world, always bringing users the latest features and tech.</p>
                             </div>
                         </div>
                         <div className="xl:w-1/4 md:w-1/2 p-4">
@@ -66,7 +66,7 @@ function About() {
                                     </div>
 
                                 </div>
-                                <p className="leading-relaxed text-base">Every decision we make is centered around delivering the best possible experience for our users simple, intuitive, and hassle-free.</p>
+                                <p className="leading-relaxed  text-sm lg:text-lg">Every decision we make is centered around delivering the best possible experience for our users simple, intuitive, and hassle-free.</p>
                             </div>
                         </div>
                         <div className="xl:w-1/4 md:w-1/2 p-4">
@@ -83,7 +83,7 @@ function About() {
 
                                     </div>
                                 </div>
-                                <p className="leading-relaxed text-base">Trust is key. We’re committed to providing a secure and transparent platform that protects your data and your audience.</p>
+                                <p className="leading-relaxed  text-sm lg:text-lg">Trust is key. We’re committed to providing a secure and transparent platform that protects your data and your audience.</p>
                             </div>
                         </div>
                         <div className="xl:w-1/4 md:w-1/2 p-4">
@@ -100,7 +100,7 @@ function About() {
                                         <h2 className="dark:text-white text-lg text-gray-900 font-medium title-font mb-2">Collaboration</h2>
                                     </div>
                                 </div>
-                                <p className="leading-relaxed text-base">We believe in building together with our team, our users, and our partners to shape the future of digital communication.</p>
+                                <p className="leading-relaxed  text-sm lg:text-lg">We believe in building together with our team, our users, and our partners to shape the future of digital communication.</p>
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@ function About() {
                     <div className="flex flex-wrap w-full mb-8 flex-col items-center text-center">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">BUILT BY STUDENTS, FOR EVERYONE</h1>
                     </div>
-                    <p className='w-[60%] mx-auto text-gray-500  dark:text-gray-400 lg:text-xl'>
+                    <p className='w-[80%] mx-auto my-4 text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300'>
                         ZipLink is the result of passion, learning, and late-night coding sessions 🌙💡 by a group of final-year Computer Science students 🎓. We wanted to solve a real-world problem with a simple, useful tool anyone can use.
                         This project represents our journey through full-stack development, teamwork, UI/UX design, and a lot of debugging 🐞💻. More than just a project, it’s a reflection of how much we’ve grown as developers and friends 🤝.
                     </p>
@@ -122,25 +122,25 @@ function About() {
                     </div>
 
                     <div className='flex w-[60%] mx-auto justify-around flex-wrap'>
-                            <div className=''>
-                                <img src={vishal} alt="vishal" />
-                            </div>
+                        <div className=''>
+                            <img src={vishal} alt="vishal" />
+                        </div>
                         <div className='border-2 border-purple-500 w-[150px] h-[150px] mx-auto bg-purple-500 rounded-se-xl'>
-                            <div> 
-                                <img src={vishal} alt="vishal"/>
-                            </div>
-                        </div>  
-                         <div className='border-2 border-purple-500  w-[150px] h-[150px] mx-auto bg-purple-500'>
-                            <div> 
-                                <img src={vishal} alt="vishal" />
-                            </div>
-                        </div>  
-                         <div className='border-2 border-purple-500  w-[150px] h-[150px] mx-auto bg-purple-500'>
-                            <div> 
+                            <div>
                                 <img src={vishal} alt="vishal" />
                             </div>
                         </div>
-                        
+                        <div className='border-2 border-purple-500  w-[150px] h-[150px] mx-auto bg-purple-500'>
+                            <div>
+                                <img src={vishal} alt="vishal" />
+                            </div>
+                        </div>
+                        <div className='border-2 border-purple-500  w-[150px] h-[150px] mx-auto bg-purple-500'>
+                            <div>
+                                <img src={vishal} alt="vishal" />
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

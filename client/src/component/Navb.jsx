@@ -54,17 +54,17 @@ const Navbarnew = () => {
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
-        if (!storedUser) {
-            toast.error("Please login to continue", {
-                duration: 1000,
-                position: "top-right",
-                style: {
-                    background: "#333",
-                    color: "#fff",
-                },
-            });
-            navigate('/user-login');
-        }
+        // if (!storedUser) {
+        //     toast.error("Please login to continue", {
+        //         duration: 1000,
+        //         position: "top-right",
+        //         style: {
+        //             background: "#333",
+        //             color: "#fff",
+        //         },
+        //     });
+        //     navigate('/user-login');
+        // }
     }, []);
 
     return (

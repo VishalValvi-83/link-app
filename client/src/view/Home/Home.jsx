@@ -5,6 +5,7 @@ import PromoLinkSections from "../../component/PromoCards";
 import Navbarnew from "../../component/Navb";
 import LinkUsage from "./../../assets/worldLinkEntrance.svg"
 import CreateLinkButton from "../../component/CreateLinkButton";
+import Footer from "../../component/Footer";
 
 const Home = () => {
   
@@ -146,6 +147,7 @@ const Home = () => {
       </section>
       <PromoLinkSections/>
       <CreateLinkButton/>
+      <Footer/>
     </>
   );
 };

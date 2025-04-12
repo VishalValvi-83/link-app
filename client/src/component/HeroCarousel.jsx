@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "flowbite-react";
 import { Link } from "react-router-dom";
-import AnalyticImage from "./../assets/Analytics.svg";
+import AnalyticImage from "./../assets/analytics-img.svg";
 import QrCodeImage from './../assets/qrcodeanimate.svg' 
 import LinkUsage from "./../assets/worldLinkEntrance.svg";
 import { LayoutDashboard, QrCodeIcon } from "lucide-react";
@@ -52,7 +52,7 @@ export default function HeroCarousel() {
                 See how your links perform with detailed metrics — clicks, geography, device, and more.
               </p>
               <div className="flex flex-wrap mt-6 gap-4">
-                <Link to="/dashboard" className="px-6 py-3 inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
+                <Link to="/dashboard" className="px-6 py-3 font-medium inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
                   View Dashboard <LayoutDashboard className="w-5 h-5 ml-2 -mr-1" />
                 </Link>
                 <Link to="/help/analytics" className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -76,7 +76,7 @@ export default function HeroCarousel() {
                 Every shortened link includes a QR code. Download and share it anywhere — print, screens, posters.
               </p>
               <div className="flex flex-wrap mt-6 gap-4">
-                <Link to="/create-link" className="px-6 py-3 inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
+                <Link to="/create-link" className="px-6 text-md font-medium py-3 inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
                   Generate QR
                   <QrCodeIcon className="w-5 h-5 ml-2 -mr-1" />
                 </Link>

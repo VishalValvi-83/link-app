@@ -10,7 +10,6 @@ export default function HeroCarousel() {
   return (
     <section className="h-screen bg-white dark:bg-gray-900">
       <Carousel slideInterval={5000}>
-        {/* Slide 1 */}
         <div className="flex items-center justify-center px-6 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="my-auto">
@@ -43,7 +42,6 @@ export default function HeroCarousel() {
           </div>
         </div>
 
-        {/* Slide 2 */}
         <div className="flex items-center justify-center px-6 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="my-auto">
@@ -68,7 +66,6 @@ export default function HeroCarousel() {
           </div>
         </div>
 
-        {/* Slide 3 */}
         <div className="flex items-center justify-center px-6 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="my-auto">

@@ -2,8 +2,8 @@ import React from "react";
 import { Carousel } from "flowbite-react";
 import { Link } from "react-router-dom";
 import AnalyticImage from "./../assets/Analytics.svg";
-import QrCodeImage from './../assets/qrcodeanimate.svg' // your image
-import LinkUsage from "./../assets/worldLinkEntrance.svg"; // your image
+import QrCodeImage from './../assets/qrcodeanimate.svg' 
+import LinkUsage from "./../assets/worldLinkEntrance.svg";
 import { LayoutDashboard, QrCodeIcon } from "lucide-react";
 
 export default function HeroCarousel() {

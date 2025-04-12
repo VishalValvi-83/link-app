@@ -13,8 +13,8 @@ const Home = () => {
     <>
       <Navbarnew />
       {/* hero section */}
-      <section className="bg-white relative dark:bg-gray-900 py-12 md:py-10 lg:py-10">
-        <div className="container mx-auto p-4 md:p-6 lg:p-8">
+      <section className="bg-white flex lg:h-screen relative border-0 dark:bg-gray-900 py-12 md:py-10 lg:py-10">
+        <div className="container m-auto p-4 md:p-6 lg:p-8 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             <div className="lg:col-span-2 my-auto">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
@@ -38,7 +38,7 @@ const Home = () => {
                 <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800 animate__animated animate__fadeInRight" > Learn More</a>
               </div>
             </div>
-            <div className="hidden lg:block">
+            <div className="hidden md:block">
               <img
                 src={LinkUsage}
                 alt="mockup"
@@ -79,12 +79,12 @@ const Home = () => {
           </div>
         </div>
       </section> */}
-      <section className="text-gray-600 dark:text-white dark:bg-gray-900 body-font">
+      <section className="text-gray-600 dark:text-white pt-5 dark:bg-gray-900 body-font">
         <div className="container p-5 mx-auto">
           <div className="text-center mb-10">
             <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-purple-500 py-4">FEATURES</h1>
-            <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Create Smarter Links, Drive Better Results</h1>
-            <p className="text-base leading-relaxe xl:w-2/4 text-justify lg:w-3/4 mx-auto">Transform long, messy URLs into concise, branded links that are easy to share and track. Elevate your marketing campaigns with detailed analytics, custom slugs, and secure link-sharing options designed for success.</p>
+            <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-100 mb-4">Create Smarter Links, Drive Better Results</h1>
+            <p className="text-base text-lg leading-relaxe xl:w-2/4 text-justify lg:w-3/4 mx-auto">Transform long, messy URLs into concise, branded links that are easy to share and track. Elevate your marketing campaigns with detailed analytics, custom slugs, and secure link-sharing options designed for success.</p>
           </div>
           <div className="flex text-black flex-wrap xl:w-3/4 lg:w-4/2 sm:mx-auto sm:mb-2 -mx-2">
             <div className="p-2 text-black sm:w-1/2 w-full">

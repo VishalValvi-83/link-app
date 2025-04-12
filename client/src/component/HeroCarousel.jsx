@@ -80,7 +80,7 @@ export default function HeroCarousel() {
                   Generate QR
                   <QrCodeIcon className="w-5 h-5 ml-2 -mr-1" />
                 </Link>
-                <Link to="/help/qr" className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                <Link to="/help/qr-help" className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                   How it works?
                 </Link>
               </div>

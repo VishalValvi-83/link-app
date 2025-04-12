@@ -1,10 +1,7 @@
 import React from "react";
 import "./Home.css";
-
-import { Link } from "react-router-dom";
 import PromoLinkSections from "../../component/PromoCards";
 import Navbarnew from "../../component/Navb";
-import LinkUsage from "./../../assets/worldLinkEntrance.svg"
 import CreateLinkButton from "../../component/CreateLinkButton";
 import Footer from "../../component/Footer";
 import Aos from "aos";

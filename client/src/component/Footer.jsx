@@ -5,18 +5,18 @@ const Footer = () => {
         <footer className="bg-white dark:bg-gray-900">
             <div className="mx-auto max-w-screen-xl px-4 pt-10 pb-8 sm:px-6">
 
-                <div className="mt-10 border-t border-gray-100 pt-8 sm:flex sm:items-center sm:justify-between lg:mt-24 dark:border-gray-800">
+                <div className="mt-10 border-t border-gray-100 pt-8 space-y-3 sm:flex sm:items-center sm:justify-between lg:mt-24 dark:border-gray-800">
                     <div className="">
                         <p className="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left">
                             &copy; 2025 ZipLink. All rights reserved.
                             <br className="hidden sm:inline-block" />
-                            Made by{" "}
+                            {" "}Made by{" "}
                             <a
                                 href="https://github.com/VishalValvi-83/link-app"
                                 rel="noreferrer"
                                 target="_blank"
                                 className="text-gray-500 transition hover:opacity-75 dark:text-gray-400"
-                            >ZipLink Team
+                            >ZipLink Team.
                             </a>
                         </p>
                     </div>

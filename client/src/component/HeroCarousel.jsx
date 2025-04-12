@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "flowbite-react";
 import { Link } from "react-router-dom";
-import AnalyticImage from "./../assets/analytics-img.svg";
+import AnalyticImage from "./../assets/Dashboard-cuate.png";
 import QrCodeImage from './../assets/qrcodeanimate.svg' 
 import LinkUsage from "./../assets/worldLinkEntrance.svg";
 import { LayoutDashboard, QrCodeIcon } from "lucide-react";

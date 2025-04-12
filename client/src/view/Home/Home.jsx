@@ -1,6 +1,8 @@
 import React from "react";
 import "./Home.css";
-import AOS from "aos";
+
+import AnalyticsImage from "C:/Users/visha/Downloads/Analytics.svg";
+import QRCodeImage from "C:/Users/visha/Downloads/qrcodeanimate.svg";
 import { Link } from "react-router-dom";
 import PromoLinkSections from "../../component/PromoCards";
 import Navbarnew from "../../component/Navb";
@@ -16,7 +18,7 @@ const Home = () => {
     easing: "ease-in-out",
     once: true,
     mirror: false,
-    offset: 100,
+    offset: 700,
 
   });
 
@@ -61,6 +63,65 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <section className="bg-white flex lg:h-screen relative border-0 dark:bg-gray-900 py-12 md:py-10 lg:py-10">
+        <div className="container m-auto p-4 md:p-6 lg:p-8 lg:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            <div className="lg:col-span-2 my-auto">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
+                Powerful Analytics at Your Fingertips
+              </h1>
+              <p className="text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
+                Track clicks, location, device type, and more to make data-driven decisions with real-time analytics.
+              </p>
+              <div className="flex flex-wrap mt-4 justify-center md:justify-start">
+                <Link to={"/dashboard"} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+                  View Dashboard
+                </Link>
+                <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800 animate__animated animate__fadeInRight">
+                  Learn More
+                </a>
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <img
+                src={AnalyticsImage} // import or use your image
+                alt="analytics"
+                className="w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-white flex lg:h-screen relative border-0 dark:bg-gray-900 py-12 md:py-10 lg:py-10">
+  <div className="container m-auto p-4 md:p-6 lg:p-8 lg:px-16">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+      <div className="lg:col-span-2 my-auto">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
+          Generate QR Codes Instantly
+        </h1>
+        <p className="text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
+          Turn any shortened link into a QR code for offline sharing or digital campaigns in seconds.
+        </p>
+        <div className="flex flex-wrap mt-4 justify-center md:justify-start">
+          <Link to={"/create-link"} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+            Generate QR
+          </Link>
+          <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800 animate__animated animate__fadeInRight">
+            How it works?
+          </a>
+        </div>
+      </div>
+      <div className="hidden md:block">
+        <img
+          src={QRCodeImage} // import or use your image
+          alt="QR Code"
+          className="w-full"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
       {/* <section className="bg-gray-900 text-white">
         <div className="mx-auto max-w-screen-xl px-4 pt-32 pb-10 lg:flex lg:h-3/6 lg:items-center">
           <div className="mx-auto max-w-3xl text-center">
@@ -101,7 +162,7 @@ const Home = () => {
           </div>
           <div className="flex text-black flex-wrap xl:w-3/4 lg:w-4/2 sm:mx-auto sm:mb-2 -mx-2">
 
-            <div data-aos="fade-right"  className="p-2 text-black  sm:w-1/2 w-full">
+            <div data-aos="fade-right" className="p-2 text-black  sm:w-1/2 w-full">
               <div className="bg-gray-100 rounded flex p-4 h-full items-center">
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" className="text-purple-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                   <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>

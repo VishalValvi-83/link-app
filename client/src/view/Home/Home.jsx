@@ -1,8 +1,6 @@
 import React from "react";
 import "./Home.css";
 
-import AnalyticsImage from "C:/Users/visha/Downloads/Analytics.svg";
-import QRCodeImage from "C:/Users/visha/Downloads/qrcodeanimate.svg";
 import { Link } from "react-router-dom";
 import PromoLinkSections from "../../component/PromoCards";
 import Navbarnew from "../../component/Navb";
@@ -10,6 +8,7 @@ import LinkUsage from "./../../assets/worldLinkEntrance.svg"
 import CreateLinkButton from "../../component/CreateLinkButton";
 import Footer from "../../component/Footer";
 import Aos from "aos";
+import HeroCarousel from "../../component/HeroCarousel";
 
 const Home = () => {
 
@@ -28,99 +27,7 @@ const Home = () => {
     <>
       <Navbarnew />
       {/* hero section */}
-      <section className="bg-white flex lg:h-screen relative border-0 dark:bg-gray-900 py-12 md:py-10 lg:py-10">
-        <div className="container m-auto p-4 md:p-6 lg:p-8 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-            <div className="lg:col-span-2 my-auto">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
-                Shorten, Share, and Track Your URLs
-              </h1>
-              <p className="text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
-                Simplify your online presence with our URL shortener. Create custom links, track clicks, and analyze performance.
-              </p>
-              <div className="flex flex-wrap mt-4 justify-center md:justify-start">
-                <Link to={"/create-link"} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-                  Shorten Your URL
-                  <svg className="w-5 h-5 ml-2 -mr-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg" >
-                    <path fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd" />
-                  </svg>
-                </Link>
-                <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800 animate__animated animate__fadeInRight" > Learn More</a>
-              </div>
-            </div>
-            <div className="hidden md:block">
-              <img
-                src={LinkUsage}
-                alt="mockup"
-                className="w-full"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="bg-white flex lg:h-screen relative border-0 dark:bg-gray-900 py-12 md:py-10 lg:py-10">
-        <div className="container m-auto p-4 md:p-6 lg:p-8 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-            <div className="lg:col-span-2 my-auto">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
-                Powerful Analytics at Your Fingertips
-              </h1>
-              <p className="text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
-                Track clicks, location, device type, and more to make data-driven decisions with real-time analytics.
-              </p>
-              <div className="flex flex-wrap mt-4 justify-center md:justify-start">
-                <Link to={"/dashboard"} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-                  View Dashboard
-                </Link>
-                <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800 animate__animated animate__fadeInRight">
-                  Learn More
-                </a>
-              </div>
-            </div>
-            <div className="hidden md:block">
-              <img
-                src={AnalyticsImage} // import or use your image
-                alt="analytics"
-                className="w-full"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="bg-white flex lg:h-screen relative border-0 dark:bg-gray-900 py-12 md:py-10 lg:py-10">
-  <div className="container m-auto p-4 md:p-6 lg:p-8 lg:px-16">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-      <div className="lg:col-span-2 my-auto">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
-          Generate QR Codes Instantly
-        </h1>
-        <p className="text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
-          Turn any shortened link into a QR code for offline sharing or digital campaigns in seconds.
-        </p>
-        <div className="flex flex-wrap mt-4 justify-center md:justify-start">
-          <Link to={"/create-link"} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-            Generate QR
-          </Link>
-          <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800 animate__animated animate__fadeInRight">
-            How it works?
-          </a>
-        </div>
-      </div>
-      <div className="hidden md:block">
-        <img
-          src={QRCodeImage} // import or use your image
-          alt="QR Code"
-          className="w-full"
-        />
-      </div>
-    </div>
-  </div>
-</section>
+      <HeroCarousel/>
 
       {/* <section className="bg-gray-900 text-white">
         <div className="mx-auto max-w-screen-xl px-4 pt-32 pb-10 lg:flex lg:h-3/6 lg:items-center">

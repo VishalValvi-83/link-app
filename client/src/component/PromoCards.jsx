@@ -5,7 +5,7 @@ export default function PromoLinkSections() {
     return (
         <div className="space-y-20 bg-white dark:bg-gray-900 p-8">
             <div className="flex flex-col md:flex-row items-center justify-center gap-16">
-                <div className="w-full max-w-2xl rounded-2xl p-4 sm:p-8 space-y-6 order-2 md:order-1 bg-gray-100 relative">
+                <div data-aos="zoom-in-right" className="w-full max-w-2xl rounded-2xl p-4 sm:p-8 space-y-6 order-2 md:order-1 bg-gray-100 relative">
                     <BarChart3 className="absolute -top-6 -left-6 w-12 h-12 dark:hidden text-orange-100" />
                     <div className="border bg-white border-dashed border-gray-400 rounded-xl p-4">
                         <div className="flex items-center space-x-2">
@@ -68,7 +68,7 @@ export default function PromoLinkSections() {
                         </li>
                     </ul>
                 </div>
-                <div className="w-full max-w-2xl rounded-2xl p-4 sm:p-8 space-y-6 bg-gray-100 relative">
+                <div data-aos="zoom-in-left" className="w-full max-w-2xl rounded-2xl p-4 sm:p-8 space-y-6 bg-gray-100 relative">
                     <Truck className="absolute dark:hidden -top-6 -right-6 w-12 h-12 text-green-100" />
                     <div className="border bg-white border-dashed border-gray-400 rounded-xl p-4">
                         <div className="flex items-center space-x-2">
@@ -95,7 +95,7 @@ export default function PromoLinkSections() {
                 </div>
             </div>
             <div className="flex flex-col md:flex-row items-center justify-center gap-16">
-                <div className="w-full max-w-2xl rounded-2xl p-4 sm:p-8 space-y-6 order-2 md:order-1 bg-gray-100 relative">
+                <div data-aos="zoom-in-right" className="w-full max-w-2xl rounded-2xl p-4 sm:p-8 space-y-6 order-2 md:order-1 bg-gray-100 relative">
                     <Share2 className="absolute -top-6 -left-6 w-12 h-12 dark:hidden text-purple-100" />
                     <div className="border bg-white border-dashed border-gray-400 rounded-xl p-4">
                         <div className="flex items-center space-x-2">

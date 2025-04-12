@@ -1,14 +1,27 @@
 import React from "react";
 import "./Home.css";
+import AOS from "aos";
 import { Link } from "react-router-dom";
 import PromoLinkSections from "../../component/PromoCards";
 import Navbarnew from "../../component/Navb";
 import LinkUsage from "./../../assets/worldLinkEntrance.svg"
 import CreateLinkButton from "../../component/CreateLinkButton";
 import Footer from "../../component/Footer";
+import Aos from "aos";
 
 const Home = () => {
-  
+
+  Aos.init({
+    duration: 1000,
+    easing: "ease-in-out",
+    once: true,
+    mirror: false,
+    offset: 100,
+
+  });
+
+
+
   return (
     <>
       <Navbarnew />
@@ -87,7 +100,8 @@ const Home = () => {
             <p className="text-base text-lg leading-relaxe xl:w-2/4 text-justify lg:w-3/4 mx-auto">Transform long, messy URLs into concise, branded links that are easy to share and track. Elevate your marketing campaigns with detailed analytics, custom slugs, and secure link-sharing options designed for success.</p>
           </div>
           <div className="flex text-black flex-wrap xl:w-3/4 lg:w-4/2 sm:mx-auto sm:mb-2 -mx-2">
-            <div className="p-2 text-black sm:w-1/2 w-full">
+
+            <div data-aos="fade-right"  className="p-2 text-black  sm:w-1/2 w-full">
               <div className="bg-gray-100 rounded flex p-4 h-full items-center">
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" className="text-purple-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                   <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
@@ -96,7 +110,7 @@ const Home = () => {
                 <span className="title-font font-medium">QR Code Generation</span>
               </div>
             </div>
-            <div className="p-2 sm:w-1/2 w-full">
+            <div data-aos="fade-left" className="p-2 sm:w-1/2 w-full">
               <div className="bg-gray-100 rounded flex p-4 h-full items-center">
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" className="text-purple-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                   <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
@@ -105,7 +119,7 @@ const Home = () => {
                 <span className="title-font font-medium">Click Tracking & Analytics</span>
               </div>
             </div>
-            <div className="p-2 sm:w-1/2 w-full">
+            <div data-aos="fade-right" className="p-2 transition delay-200 sm:w-1/2 w-full">
               <div className="bg-gray-100 rounded flex p-4 h-full items-center">
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" className="text-purple-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                   <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
@@ -114,7 +128,7 @@ const Home = () => {
                 <span className="title-font font-medium">Custom Domain Support</span>
               </div>
             </div>
-            <div className="p-2 sm:w-1/2 w-full">
+            <div data-aos="fade-left" className="p-2 transition delay-200 sm:w-1/2 w-full">
               <div className="bg-gray-100 rounded flex p-4 h-full items-center">
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" className="text-purple-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                   <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
@@ -123,7 +137,7 @@ const Home = () => {
                 <span className="title-font font-medium">Customizable Slugs</span>
               </div>
             </div>
-            <div className="p-2 sm:w-1/2 w-full">
+            <div data-aos="fade-right" className="p-2 transition delay-300 sm:w-1/2 w-full">
               <div className="bg-gray-100 rounded flex p-4 h-full items-center">
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" className="text-purple-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                   <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
@@ -133,7 +147,7 @@ const Home = () => {
                 </span>
               </div>
             </div>
-            <div className="p-2 sm:w-1/2 w-full">
+            <div data-aos="fade-left" className="p-2 transition delay-300 sm:w-1/2 w-full">
               <div className="bg-gray-100 rounded flex p-4 h-full items-center">
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" className="text-purple-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                   <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
@@ -145,9 +159,9 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <PromoLinkSections/>
-      <CreateLinkButton/>
-      <Footer/>
+      <PromoLinkSections />
+      <CreateLinkButton />
+      <Footer />
     </>
   );
 };

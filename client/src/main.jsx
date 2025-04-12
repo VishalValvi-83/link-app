@@ -12,6 +12,7 @@ import Createlink from "./component/createlink";
 import { Toaster } from 'react-hot-toast'
 import Service from "./view/Service_page/service";
 import Dashboard from './component/Dashboard/Dashboard'
+import QRHelpPage from "./component/Help/QRHelpPage";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />
+  },
+  {
+    path: "/help/qr-help",
+    element: <QRHelpPage />
   },
   {
     path: "*",

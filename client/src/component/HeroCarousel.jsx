@@ -31,7 +31,7 @@ export default function HeroCarousel() {
                       clipRule="evenodd" />
                   </svg>
                 </Link>
-                <Link to="/help/qr" className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                <Link to="" className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                   Learn More
                 </Link>
               </div>

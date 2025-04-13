@@ -7,9 +7,9 @@ const QRHelpPage = () => {
   return (
     <>
     <Navbarnew/>
-      <section className="bg-white dark:bg-gray-900 pt-12 px-6 lg:px-24">
+      <section className="bg-white dark:bg-gray-900 sm:py-10 pt-12 px-6 lg:px-24">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-extrabold mb-6 text-gray-900 dark:text-white">
+          <h1 className="text-4xl mt-10 font-extrabold mb-6 text-gray-900 dark:text-gray-200">
             How QR Code Generation Works
           </h1>
 
@@ -18,28 +18,28 @@ const QRHelpPage = () => {
           </p>
 
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">🔗 Step 1: Create a Short URL</h2>
+            <h2 className="sm:text-xl text-lg lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">🔗 Step 1: Create a Short URL</h2>
             <p className="text-gray-700 dark:text-gray-400">
               Go to the <a href="/create-link" className="bg-gray-100 text-sky-500 dark:bg-gray-800 px-2 py-1 rounded">create link</a> page, paste your long URL, and enter a custom short name.
             </p>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">⚙️ Step 2: QR Code is Auto-Generated</h2>
+            <h2 className="sm:text-xl text-lg lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">⚙️ Step 2: QR Code is Auto-Generated</h2>
             <p className="text-gray-700 dark:text-gray-400">
               Once your short URL is created, our system automatically generates a QR code image for it. This QR code points to your short URL.
             </p>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">📥 Step 3: Download or Share</h2>
-            <p className="text-gray-700 dark:text-gray-400">
+            <h2 className="sm:text-xl text-lg lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">📥 Step 3: Download or Share</h2>
+            <p className="text-gray-700  dark:text-gray-400">
               You can preview the QR code on your dashboard and download it as an image file to share on flyers, posters, websites, and more.
             </p>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">❓ Frequently Asked Questions</h2>
+            <h2 className="sm:text-xl text-lg lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">❓ Frequently Asked Questions</h2>
             <ul className="list-disc list-inside text-gray-700 dark:text-gray-400 space-y-2">
               <li><strong>Is the QR code permanent?</strong> Yes, it always points to your short URL unless deleted.</li>
               <li><strong>Can I customize the QR code?</strong> Customization isn't supported yet, but it’s coming soon!</li>
@@ -47,8 +47,8 @@ const QRHelpPage = () => {
             </ul>
           </div>
 
-          <div className="mt-10 inline-block">
-            <a href="/create-link" className="inline-block px-6 py-3 border border-blue-800 transition ease-out text-white font-semibold rounded hover:bg-indigo-700  hover:bg-primary-800">
+          <div className="mt-10 w-5/6 mx-auto text-center">
+            <a href="/create-link" className="inline-block px-3 sm:px-6 py-4 border border-blue-800 transition ease-out text-white font-semibold rounded bg-indigo-700 hover:bg-indigo-800 hover:text-white ">
               Create a QR Code Now
               <QrCodeIcon className="inline-block ml-2" size={20} />
             </a>

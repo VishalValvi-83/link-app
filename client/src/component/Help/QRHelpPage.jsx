@@ -40,11 +40,20 @@ const QRHelpPage = () => {
 
           <div className="mb-8">
             <h2 className="sm:text-xl text-lg lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">❓ Frequently Asked Questions</h2>
-            <ul className="list-disc list-inside text-gray-700 dark:text-gray-400 space-y-2">
-              <li><strong>Is the QR code permanent?</strong> Yes, it always points to your short URL unless deleted.</li>
-              <li><strong>Can I customize the QR code?</strong> Customization isn't supported yet, but it’s coming soon!</li>
-              <li><strong>Is scanning tracked?</strong> Yes, each scan counts as a visit in your link analytics.</li>
-            </ul>
+            <dl class="space-y-4">
+              <div>
+                <dt class="font-bold text-gray-800 dark:text-gray-100">Is the QR code permanent ?</dt>
+                <dd class="text-gray-700 dark:text-gray-400">Yes, it always points to your short URL unless deleted.</dd>
+              </div>
+              <div>
+                <dt class="font-bold text-gray-800 dark:text-gray-100">Can I customize the QR code ?</dt>
+                <dd class="text-gray-700 dark:text-gray-400">Customization isn't supported yet, but it’s coming soon!</dd>
+              </div>
+              <div>
+                <dt class="font-bold text-gray-800 dark:text-gray-100">Is scanning tracked ?</dt>
+                <dd class="text-gray-700 dark:text-gray-400">Yes, each scan counts as a visit in your link analytics.</dd>
+              </div>
+            </dl>
           </div>
 
           <div className="mt-10 w-5/6 mx-auto text-center">

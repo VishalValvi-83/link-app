@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import PromoLinkSections from "../../component/PromoCards";
 import Navbarnew from "../../component/Navb";
@@ -9,14 +9,16 @@ import HeroCarousel from "../../component/HeroCarousel";
 
 const Home = () => {
 
-  Aos.init({
-    duration: 1000,
-    easing: "ease-in-out",
-    once: true,
-    mirror: false,
-    offset: 700,
-
-  });
+  useEffect(() => {
+    const isSmallScreen = window.innerWidth <= 768; 
+    Aos.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false,
+      offset: isSmallScreen ? 100 : 500,
+    });
+  }, []);
 
 
 

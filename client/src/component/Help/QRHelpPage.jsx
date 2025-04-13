@@ -9,11 +9,11 @@ const QRHelpPage = () => {
     <Navbarnew/>
       <section className="bg-white dark:bg-gray-900 sm:py-10 pt-12 px-6 lg:px-24">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl mt-10 font-extrabold mb-6 text-gray-900 dark:text-gray-200">
+          <h1 className="text-2xl sm:text-4xl text-center mt-10 font-extrabold mb-6 text-gray-900 dark:text-gray-200">
             How QR Code Generation Works
           </h1>
 
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+          <p className="text-lg leading-relaxe text-gray-700 text-justify dark:text-gray-300 mb-6">
             Our URL shortener lets you instantly generate a QR code for any link you shorten. This is useful for print, offline sharing, or quick access via mobile scanning.
           </p>
 

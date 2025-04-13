@@ -1,10 +1,12 @@
 import React from "react";
 import Footer from "../Footer";
 import { QrCodeIcon } from "lucide-react";
+import Navbarnew from "../Navb";
 
 const QRHelpPage = () => {
   return (
     <>
+    <Navbarnew/>
       <section className="bg-white dark:bg-gray-900 pt-12 px-6 lg:px-24">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl font-extrabold mb-6 text-gray-900 dark:text-white">

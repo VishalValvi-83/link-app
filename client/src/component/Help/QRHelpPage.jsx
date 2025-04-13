@@ -5,7 +5,7 @@ import { QrCodeIcon } from "lucide-react";
 const QRHelpPage = () => {
   return (
     <>
-      <section className="bg-white dark:bg-gray-900 min-h-screen pt-12 px-6 lg:px-24">
+      <section className="bg-white dark:bg-gray-900 pt-12 px-6 lg:px-24">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl font-extrabold mb-6 text-gray-900 dark:text-white">
             How QR Code Generation Works
@@ -53,6 +53,7 @@ const QRHelpPage = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

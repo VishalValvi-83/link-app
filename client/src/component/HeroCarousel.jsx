@@ -1,12 +1,59 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Carousel } from "flowbite-react";
 import { Link } from "react-router-dom";
 import AnalyticImage from "./../assets/Dashboard-cuate.png";
-import QrCodeImage from './../assets/qrcodeanimate.svg' 
+import QrCodeImage from './../assets/qrcodeanimate.svg'
 import LinkUsage from "./../assets/worldLinkEntrance.svg";
 import { LayoutDashboard, QrCodeIcon } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function HeroCarousel() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  useEffect(() => {
+    const userData = localStorage.getItem("token") || localStorage.getItem("User");
+    const user = JSON.parse(userData);
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const createLink = () => {
+    if (isLoggedIn) {
+      toast.loading("Loading..");
+      setTimeout(() => {
+        toast.dismiss();
+        window.location.href = "/create-link";
+      }, 2000);
+    } else {
+      toast.error("Please login to create a link.");
+      setTimeout(() => {
+        window.location.href = "/user-login";
+      }, 2000);
+    }
+  };
+
+  const viewDashboard = () => {
+    if (isLoggedIn) {
+      window.location.href = "/dashboard";
+    } else {
+      toast.error("Please login to view the dashboard.");
+      setTimeout(() => {
+        window.location.href = "/user-login";
+      }, 2000);
+    }
+  };
+  const generateQRCode = () => {
+    if (isLoggedIn) {
+      window.location.href = "/create-link";
+    } else {
+      toast.error("Please login to view the dashboard.");
+      setTimeout(() => {
+        window.location.href = "/user-login";
+      }, 2000);
+    }
+  }
+
   return (
     <section className="h-screen bg-white dark:bg-gray-900">
       <Carousel slideInterval={5000}>
@@ -20,7 +67,7 @@ export default function HeroCarousel() {
                 Simplify your online presence with our URL shortener. Create custom links, track clicks, and analyze performance.
               </p>
               <div className="flex flex-wrap mt-6 gap-4">
-                <Link to={"/create-link"} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-2 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 hover:text-sky-500">
+                <button onClick={createLink} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-2 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 hover:text-sky-500">
                   Shorten Your URL
                   <svg className="w-5 h-5 ml-2 -mr-1"
                     fill="currentColor"
@@ -30,7 +77,7 @@ export default function HeroCarousel() {
                       d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
                       clipRule="evenodd" />
                   </svg>
-                </Link>
+                </button>
                 <Link to="" className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                   Learn More
                 </Link>
@@ -52,9 +99,9 @@ export default function HeroCarousel() {
                 See how your links perform with detailed metrics — clicks, geography, device, and more.
               </p>
               <div className="flex flex-wrap mt-6 gap-4">
-                <Link to="/dashboard" className="px-6 py-3 font-medium inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
+                <button onClick={viewDashboard} className="px-6 py-3 font-medium inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
                   View Dashboard <LayoutDashboard className="w-5 h-5 ml-2 -mr-1" />
-                </Link>
+                </button>
                 <Link to="/help/analytics" className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                   Learn More
                 </Link>
@@ -76,10 +123,10 @@ export default function HeroCarousel() {
                 Every shortened link includes a QR code. Download and share it anywhere — print, screens, posters.
               </p>
               <div className="flex flex-wrap mt-6 gap-4">
-                <Link to="/create-link" className="px-6 text-md font-medium py-3 inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
+                <button onClick={generateQRCode} className="px-6 text-md font-medium py-3 inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
                   Generate QR
                   <QrCodeIcon className="w-5 h-5 ml-2 -mr-1" />
-                </Link>
+                </button>
                 <Link to="/help/qr-help" className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                   How it works?
                 </Link>

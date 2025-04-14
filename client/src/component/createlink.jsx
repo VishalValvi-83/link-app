@@ -3,16 +3,20 @@ import './style.css'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import Navbarnew from './Navb'
-import { Link } from 'lucide-react';
+import { Link, QrCode } from "lucide-react";
 
 
 const Createlink = () => {
+    const [qrCodeUrl, setQrCodeUrl] = useState("");
+    const [activeTab, setActiveTab] = useState("create");
     const [linkData, setLinkData] = useState({
         title: "",
         target: "",
         slug: ""
 
     })
+    
+
     const isUrlSecure = (url) => {
         try {
             const parsedUrl = new URL(url);
@@ -52,6 +56,12 @@ const Createlink = () => {
             toast.error(error.message || "An error occurred");
         }
     };
+
+    const generateQRCode = (e) => {
+        e.preventDefault();
+        console.log("QR code ");
+    };
+
     return (
         <>
             <Navbarnew />
@@ -137,49 +147,110 @@ const Createlink = () => {
                 </div>
             </section>
             <section id="createlink" className="relative bg-gray-100 dark:bg-gray-900 py-16 px-4">
-                <div className="container mx-auto max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
-                    <h2 className="text-2xl inline-flex items-center justify-center gap-3 mx-auto font-bold text-purple-500 mb-6"><Link /> Create Your Short Link</h2>
-                    <form onSubmit={getData} className="space-y-6">
-                        <div>
-                            <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">Title</label>
-                            <input
-                                type="text"
-                                value={linkData.title}
-                                onChange={(e) => setLinkData({ ...linkData, title: e.target.value })}
-                                placeholder="Title for the short link"
-                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                <div className="container mx-auto max-w-2xl">
+                    {/* Toggle Buttons */}
+                    <div className="flex justify-center gap-4 mb-8">
+                        <button
+                            onClick={() => setActiveTab("create")}
+                            className={`px-6 py-2 rounded-lg font-semibold shadow transition ${activeTab === "create"
+                                ? "bg-indigo-600 text-white"
+                                : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white"
+                                }`}
+                        >
+                            <span className="inline-flex items-center gap-2"><Link size={18} /> Create Link</span>
+                        </button>
+                        <button
+                            onClick={() => setActiveTab("qr")}
+                            className={`px-6 py-2 rounded-lg font-semibold shadow transition ${activeTab === "qr"
+                                ? "bg-indigo-600 text-white"
+                                : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white"
+                                }`}
+                        >
+                            <span className="inline-flex items-center gap-2"><QrCode size={18} /> Generate QR</span>
+                        </button>
+                    </div>
+
+                    {/* Create Link Section */}
+                    {activeTab === "create" && (
+                        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+                            <h2 className="text-2xl font-bold text-purple-500 mb-6 flex items-center gap-3"><Link /> Create Your Short Link</h2>
+                            <form onSubmit={getData} className="space-y-6">
+                                <div>
+                                    <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">Title</label>
+                                    <input
+                                        type="text"
+                                        value={linkData.title}
+                                        onChange={(e) => setLinkData({ ...linkData, title: e.target.value })}
+                                        placeholder="Title for the short link"
+                                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">Slug</label>
+                                    <input
+                                        type="text"
+                                        value={linkData.slug}
+                                        onChange={(e) => setLinkData({ ...linkData, slug: e.target.value })}
+                                        placeholder="e.g., myapp or shortlink2025"
+                                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">Long URL</label>
+                                    <div className="flex">
+                                        <span className="inline-flex items-center px-2 bg-gray-200 text-gray-600 rounded-l-md border border-r-0 border-gray-300 dark:bg-gray-700 dark:text-white">https://</span>
+                                        <input
+                                            type="text"
+                                            value={linkData.target}
+                                            onChange={(e) => setLinkData({ ...linkData, target: e.target.value })}
+                                            placeholder="Paste your secure (HTTPS) URL"
+                                            className="w-full mt-0 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-r-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="text-center">
+                                    <button
+                                        type="submit"
+                                        className="w-full md:w-auto px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition duration-300"
+                                    >
+                                        Generate Short Link
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <div>
-                            <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">Slug</label>
-                            <input
-                                type="text"
-                                value={linkData.slug}
-                                onChange={(e) => setLinkData({ ...linkData, slug: e.target.value })}
-                                placeholder="e.g., myapp or shortlink2025"
-                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                            />
+                    )}
+
+                    {/* QR Code Section */}
+                    {activeTab === "qr" && (
+                        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+                            <h2 className="text-2xl font-bold text-purple-500 mb-6 flex items-center gap-3"><QrCode /> Generate QR Code</h2>
+                            <form onSubmit={generateQRCode} className="space-y-6">
+                                <div>
+                                    <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">URL</label>
+                                    <input
+                                        type="text"
+                                        value={qrCodeUrl}
+                                        onChange={(e) => setQrCodeUrl({ ...linkData, target: e.target.value })}
+                                        placeholder="Enter a valid HTTPS URL"
+                                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    />
+                                </div>
+                                <div className="text-center">
+                                    <button
+                                        type="submit"
+                                        className="w-full md:w-auto px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition duration-300"
+                                    >
+                                        Generate QR Code
+                                    </button>
+                                </div>
+
+                                {/* Preview or output of QR code can go here */}
+                                {/* <div className="text-center mt-4">
+                                <img src={qrCodeImage} alt="Generated QR" />
+                            </div> */}
+                            </form>
                         </div>
-                        <div>
-                            <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">Long URL</label>
-                            <div className="flex">
-                                <span className="inline-flex items-center px-2 bg-gray-200 text-gray-600 rounded-l-md border border-r-0 border-gray-300 dark:bg-gray-700 dark:text-white">https://</span>
-                                <input
-                                    type="text"
-                                    value={linkData.target}
-                                    onChange={(e) => setLinkData({ ...linkData, target: e.target.value })}
-                                    placeholder="Paste your secure (HTTPS) URL"
-                                    className="w-full px-4 mt-0 object-cover py-2 border border-gray-300 dark:border-gray-600 rounded-r-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                />
-                            </div>
-                        </div>
-                        <div className="text-center">
-                            <button
-                                type="submit"
-                                className="w-full md:w-auto px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition duration-300"
-                            >Generate Short Link
-                            </button>
-                        </div>
-                    </form>
+                    )}
                 </div>
             </section>
 

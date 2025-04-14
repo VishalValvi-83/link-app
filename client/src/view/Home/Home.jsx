@@ -16,7 +16,7 @@ const Home = () => {
       easing: "ease-in-out",
       once: true,
       mirror: false,
-      offset: isSmallScreen ? 100 : 500,
+      offset: isSmallScreen ? 100 : 150,
     });
   }, []);
 

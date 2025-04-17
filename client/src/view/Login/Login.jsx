@@ -25,11 +25,11 @@ export default function Signin() {
   const userLogin = async (event) => {
     event.preventDefault();
 
-    // Reset error states
+
     setEmailError(false);
     setPasswordError(false);
 
-    // Validate email and password
+
     if (password.length === 0 && email.length === 0) {
       toast.error("Please Enter Email and Password");
       setEmailError(true);
@@ -53,7 +53,7 @@ export default function Signin() {
         password,
       });
       if (response.data.success) {
-        // setIsLoggedIn(true);
+
         toast.success(response.data.message)
         localStorage.setItem('token', JSON.stringify(response.data.data));
         toast.loading('Redirecting to dashboard...')

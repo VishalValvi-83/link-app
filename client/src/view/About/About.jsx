@@ -122,7 +122,7 @@ function About() {
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">MEET US</h1>
                     </div>
 
-                    <div className='flex w-[60%] mx-auto justify-around flex-wrap'>
+                    {/* <div className='flex w-[60%] mx-auto justify-around flex-wrap'>
                         <div className=''>
                             <img src={vishal} alt="vishal" />
                         </div>
@@ -142,7 +142,7 @@ function About() {
                             </div>
                         </div>
 
-                    </div>
+                    </div> */}
                 </div>
 
 

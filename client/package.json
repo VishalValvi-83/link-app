@@ -19,6 +19,7 @@
     "aos": "^2.3.4",
     "axios": "^1.7.7",
     "flowbite-react": "^0.11.7",
+    "lightningcss": "^1.29.3",
     "lucide-react": "^0.487.0",
     "qrcode": "^1.5.4",
     "qrcode.react": "^4.2.0",

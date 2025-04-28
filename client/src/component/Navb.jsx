@@ -95,7 +95,7 @@ const Navbarnew = () => {
                 {/* Profile and Hamburger - Right Section */}
                 <div className='space-x-3 inline-flex items-center rtl:space-x-reverse'>
                     {user != null ?
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center cursor-pointer space-x-4">
                             {/* Profile Dropdown */}
                             <div className="relative ">
                                 {user !== null ? <img src={user?.photoURL || FallbackPhoto} onClick={() => setIsOpen(!isOpen)} className="w-8 h-8 mx-auto rounded-full" alt="user photo" />

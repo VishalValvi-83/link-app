@@ -16,7 +16,8 @@
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@tailwindcss/vite": "^4.1.4",
+    "@vitejs/plugin-react": "^4.4.1",
     "aos": "^2.3.4",
     "axios": "^1.7.7",
     "flowbite-react": "^0.11.7",
@@ -30,7 +31,8 @@
     "react-hot-toast": "^2.4.1",
     "react-modal": "^3.16.3",
     "react-qr-code": "^2.0.15",
-    "react-router-dom": "^6.26.2"
+    "react-router-dom": "^6.26.2",
+    "tailwindcss": "^4.1.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
@@ -43,7 +45,11 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
+    "rollup": "^4.40.1",
     "tailwindcss": "^4.1.3",
     "vite": "^5.4.1"
+  },
+  "resolutions": {
+    "@rollup/rollup-linux-x64-gnu": "latest"
   }
 }

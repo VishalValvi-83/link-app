@@ -1,15 +1,19 @@
 import React from "react";
-
+import Logo from "./../assets/favicon.png";
 const Footer = () => {
     return (
         <footer id="footer" className="bg-white dark:bg-gray-900">
             <div className="mx-auto max-w-screen-xl px-4 pt-10 pb-8 sm:px-6">
 
                 <div className="border-t border-gray-100 pt-8 space-y-3 sm:flex sm:items-center sm:justify-between lg:mt-15 dark:border-gray-800">
+                    <div className="inline-flex items-center justify-center">
+                        <img src={Logo} alt="ziplink" />
+                        <span className="text-2xl  font-extrabold text-gray-200 mx-2 ">ZipLink</span>
+                    </div>
                     <div className="">
-                        <p className="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left">
+                        <p className="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left w-full">
                             &copy; 2025 ZipLink. All rights reserved.
-                            <br className="hidden sm:inline-block" />
+                            {/* <br className="hidden sm:inline-block" /> */}
                             {" "}Made by{" "}
                             <a
                                 href="https://github.com/VishalValvi-83/link-app"
@@ -20,7 +24,7 @@ const Footer = () => {
                             </a>
                         </p>
                     </div>
-                    <ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
+                    {/* <ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
                         <li>
                             <a href="/terms"
                                 className="text-gray-500 transition hover:opacity-75 dark:text-gray-400"
@@ -40,10 +44,10 @@ const Footer = () => {
                             >Cookies
                             </a>
                         </li>
-                    </ul>
+                    </ul> */}
                     <ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end lg:mb-8">
                         <li>
-                            <a href="https://facebook.com" rel="noreferrer" target="_blank" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+                            <a href="https://facebook.com/ziplink.in" rel="noreferrer" target="_blank" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
                             ><span className="sr-only">Facebook</span>
                                 <svg
                                     className="w-6 h-6"
@@ -62,7 +66,7 @@ const Footer = () => {
 
                         <li>
                             <a
-                                href="https://instagram.com"
+                                href="https://www.instagram.com/ziplink.in"
                                 rel="noreferrer"
                                 target="_blank"
                                 className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
@@ -80,6 +84,25 @@ const Footer = () => {
                                 </svg>
                             </a>
                         </li>
+                        <li>
+                            <a
+                                href="https://www.instagram.com/ziplink.in"
+                                rel="noreferrer"
+                                target="_blank"
+                                className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+                            ><span className="sr-only">Twitter</span>
+                                <svg viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    aria-hidden="true" className="w-6 h-6">
+                                    <g>
+                                        <path fillRule="evenodd" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                                            clipRule="evenodd"
+                                        ></path>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>

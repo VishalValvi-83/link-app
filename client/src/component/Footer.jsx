@@ -2,10 +2,10 @@ import React from "react";
 
 const Footer = () => {
     return (
-        <footer className="bg-white dark:bg-gray-900">
+        <footer id="footer" className="bg-white dark:bg-gray-900">
             <div className="mx-auto max-w-screen-xl px-4 pt-10 pb-8 sm:px-6">
 
-                <div className="mt-10 border-t border-gray-100 pt-8 space-y-3 sm:flex sm:items-center sm:justify-between lg:mt-24 dark:border-gray-800">
+                <div className="border-t border-gray-100 pt-8 space-y-3 sm:flex sm:items-center sm:justify-between lg:mt-15 dark:border-gray-800">
                     <div className="">
                         <p className="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left">
                             &copy; 2025 ZipLink. All rights reserved.

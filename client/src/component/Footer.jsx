@@ -19,7 +19,7 @@ const Footer = () => {
                                 href="https://github.com/VishalValvi-83/link-app"
                                 rel="noreferrer"
                                 target="_blank"
-                                className="text-gray-500 transition hover:opacity-75 dark:text-gray-400"
+                                className="text-blue-500 transition hover:opacity-75 dark:text-blue-400"
                             >ZipLink Team.
                             </a>
                         </p>

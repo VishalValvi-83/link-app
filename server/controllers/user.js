@@ -57,7 +57,46 @@ const postlogin = async (req, res) => {
         res.status(400).json({ success: false, message: "Invalid Email or Password" });
     }
 };
+
+const postGoogleSignin = async (req, res) => {
+    const { email, fullname } = req.body;
+
+    try {
+        // Check if the user already exists by email
+        let user = await User.findOne({ email });
+
+        if (!user) {
+            // If the user doesn't exist, create a new user
+            user = new User({
+                email,
+                fullname,
+                password: null,  // No password needed for Google users
+            });
+
+            const savedUser = await user.save();
+            return res.json({
+                success: true,
+                message: "User created and logged in successfully",
+                data: savedUser,
+            });
+        }
+
+        // If the user exists, return their data
+        res.json({
+            success: true,
+            message: "Logged in successfully",
+            data: user,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: "Something went wrong. Please try again.",
+        });
+    }
+};
 export {
     postSingup,
-    postlogin
+    postlogin,
+    postGoogleSignin
 }

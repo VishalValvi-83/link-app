@@ -55,7 +55,7 @@ export default function HeroCarousel() {
   }
 
   return (
-    <section className="h-screen bg-white dark:bg-gray-900">
+    <section className="sm:h-[700px] h-[550px] bg-white dark:bg-gray-900">
       <Carousel slideInterval={5000}>
         <div className="flex items-center justify-center px-6 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -66,7 +66,7 @@ export default function HeroCarousel() {
               <p className="mt-4 font-light  animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300 text-lg lg:text-2xl  dark:text-gray-300">
                 Simplify your online presence with our URL shortener. Create custom links, track clicks, and analyze performance.
               </p>
-              <div className="flex flex-wrap mt-6 gap-4">
+              <div className="flex justify-center flex-wrap mt-6 gap-4">
                 <button onClick={createLink} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-2 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 hover:text-sky-500">
                   Shorten Your URL
                   <svg className="w-5 h-5 ml-2 -mr-1"
@@ -98,7 +98,7 @@ export default function HeroCarousel() {
               <p className="mt-4 font-light  animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300 text-lg lg:text-2xl  dark:text-gray-300">
                 See how your links perform with detailed metrics — clicks, geography, device, and more.
               </p>
-              <div className="flex flex-wrap mt-6 gap-4">
+              <div className="flex justify-center flex-wrap mt-6 gap-4">
                 <button onClick={viewDashboard} className="px-6 py-3 font-medium inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
                   View Dashboard <LayoutDashboard className="w-5 h-5 ml-2 -mr-1" />
                 </button>
@@ -122,7 +122,7 @@ export default function HeroCarousel() {
               <p className="mt-4 font-light  animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300 text-lg lg:text-2xl  dark:text-gray-300">
                 Every shortened link includes a QR code. Download and share it anywhere — print, screens, posters.
               </p>
-              <div className="flex flex-wrap mt-6 gap-4">
+              <div className="flex justify-center flex-wrap mt-6 gap-4">
                 <button onClick={generateQRCode} className="px-6 text-md font-medium py-3 inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
                   Generate QR
                   <QrCodeIcon className="w-5 h-5 ml-2 -mr-1" />

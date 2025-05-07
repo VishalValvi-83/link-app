@@ -108,7 +108,7 @@ const Dashboard = () => {
     <>
       <Navbarnew />
       <div className="flex h-screen mt-8 flex-col dark:bg-gray-900 md:flex-row">
-        <aside className="md:w-1/6 pt-8 md:pt-12 md:h-screen h-48 w-full dark:bg-gray-800 text-white text-gray-900 dark:text-white">
+        <aside className="md:w-1/6 pt-8 md:pt-12 md:h-screen h-48 w-full dark:bg-gray-800 text-gray-900 dark:text-white">
           <Sidebar user={user} />
         </aside>
         {/* Mobile View (Card Style) */}
@@ -187,7 +187,7 @@ const Dashboard = () => {
               <p className="text-4xl text-gradient text-white font-bold ">Dashboard</p>
               <p className="text-lg text-gradient">Shorten your URLs and track their performance.</p>
             </div>
-            <table className="w-full overflow-x-scroll dashboard rounded-md text-sm md:text-medium overflow-x-scroll dark:bg-gray-800 text-gray-100">
+            <table className="w-full dashboard rounded-md text-sm md:text-medium overflow-x-scroll dark:bg-gray-800 text-gray-100">
               <thead>
                 <tr>
                   <th className="py-2 px-2 md:px-4">Title</th>

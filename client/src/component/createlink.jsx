@@ -146,7 +146,7 @@ const Createlink = () => {
                     <a href='#createlink' className="flex w-32 justify-center mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 text-center px-3 focus:outline-none hover:bg-indigo-600 rounded text-lg">Lets Make</a>
                 </div>
             </section>
-            <section id="createlink" className="relative bg-gray-100 dark:bg-gray-900 py-16 px-4">
+            <section id="createlink" className="relative bg-gray-100 dark:bg-gray-900 py-16 min-h-[700px]">
                 <div className="container mx-auto max-w-2xl">
                     {/* Toggle Buttons */}
                     <div className="flex justify-center gap-4 mb-8">

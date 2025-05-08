@@ -1,21 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './style.css'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import Navbarnew from './Navb'
 import { Link, QrCode } from "lucide-react";
+import QRCode from 'react-qr-code';
 
 
 const Createlink = () => {
     const [qrCodeUrl, setQrCodeUrl] = useState("");
+    const [generatedQR, setGeneratedQR] = useState(false);
     const [activeTab, setActiveTab] = useState("create");
+    const qrRef = useRef(null);
+
     const [linkData, setLinkData] = useState({
         title: "",
         target: "",
         slug: ""
 
     })
-    
+
 
     const isUrlSecure = (url) => {
         try {
@@ -59,9 +63,44 @@ const Createlink = () => {
 
     const generateQRCode = (e) => {
         e.preventDefault();
-        console.log("QR code ");
+        if (!qrCodeUrl) {
+            alert("Please enter a valid URL");
+            setGeneratedQR(false);
+            return;
+        }
+        setGeneratedQR(true);
     };
+    useEffect(() => {
+        if (!qrCodeUrl) {
+            // alert("Please enter a valid URL");
+            setGeneratedQR(false);
+            return;
+        }
+    }, [qrCodeUrl]);
+    const downloadQRCode = () => {
+        const svg = qrRef.current.querySelector('svg');
+        const serializer = new XMLSerializer();
+        const svgData = serializer.serializeToString(svg);
+        const canvas = document.createElement('canvas');
+        const img = new Image();
 
+        img.onload = () => {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+
+            const pngUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = pngUrl;
+            link.download = 'qr-code.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+
+        img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+    };
     return (
         <>
             <Navbarnew />
@@ -230,25 +269,34 @@ const Createlink = () => {
                                     <input
                                         type="text"
                                         value={qrCodeUrl}
-                                        onChange={(e) => setQrCodeUrl({ ...linkData, target: e.target.value })}
+                                        onChange={(e) => setQrCodeUrl(e.target.value)}
                                         placeholder="Enter a valid HTTPS URL"
-                                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    />
+                                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                        {/* clear qr code button also qr url */}
+                                    <button type='button' onClick={() => {setQrCodeUrl(""); setGeneratedQR(false)}} className="bg-red-800 text-white mt-2 px-4 py-1 rounded hover:bg-red-700 mb-3">Clear QR</button>
+
                                 </div>
+
                                 <div className="text-center">
                                     <button
                                         type="submit"
-                                        className="w-full md:w-auto px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition duration-300"
-                                    >
+                                        className="w-full md:w-auto px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition duration-300">
                                         Generate QR Code
                                     </button>
                                 </div>
-
-                                {/* Preview or output of QR code can go here */}
-                                {/* <div className="text-center mt-4">
-                                <img src={qrCodeImage} alt="Generated QR" />
-                            </div> */}
                             </form>
+                            {generatedQR && (
+                                <div className="text-center container max-w-xs p-5 rounded-md bg-gray-100 mx-auto mt-6">
+                                    <div ref={qrRef} className="mx-auto">
+                                        <QRCode className='mx-auto' value={qrCodeUrl} size={150} />
+                                    </div>
+                                    <button
+                                        onClick={downloadQRCode}
+                                        className="mt-4 bg-indigo-600 hover:bg-indigo-700 px-3 text-white text-smpx-6 py-2 rounded-lg font-semibold transition duration-300">
+                                        Download QR Code
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>

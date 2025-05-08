@@ -15,22 +15,48 @@ function QRGenerator() {
     }
     setShowQR(true);
     toast.success('QR code generated!');
+    setUrl('');
   };
 
   const handleDownload = () => {
     const svg = qrRef.current.querySelector('svg');
     const serializer = new XMLSerializer();
     const svgData = serializer.serializeToString(svg);
-    const blob = new Blob([svgData], { type: 'image/png' });
-    const urlBlob = URL.createObjectURL(blob);
+    const canvas = document.createElement('canvas');
+    const img = new Image();
 
-    const link = document.createElement('a');
-    link.href = urlBlob;
-    link.download = 'qr-code.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+
+      const pngUrl = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = pngUrl;
+      link.download = 'qr-code.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
+    img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
   };
+
+  // const handleDownload = () => {
+  //   const svg = qrRef.current.querySelector('svg');
+  //   const serializer = new XMLSerializer();
+  //   const svgData = serializer.serializeToString(svg);
+  //   const blob = new Blob([svgData], { type: 'image/png' });
+  //   const urlBlob = URL.createObjectURL(blob);
+
+  //   const link = document.createElement('a');
+  //   link.href = urlBlob;
+  //   link.download = 'qr-code.png';
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   return (
     <>
@@ -41,6 +67,8 @@ function QRGenerator() {
         placeholder="Enter URL"
         className="w-full mb-3 px-3 py-2 border rounded"
       />
+      <button type='button' onClick={
+        () => setShowQR(false) } className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 mb-3" >Clear QR</button>
       <button
         onClick={handleGenerate}
         className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"

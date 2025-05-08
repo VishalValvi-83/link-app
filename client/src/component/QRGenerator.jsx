@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react';
 import QRCode from 'react-qr-code';
 import { toast } from 'react-hot-toast';
+import { DownloadIcon } from 'lucide-react';
 
 function QRGenerator() {
   const [url, setUrl] = useState('');
@@ -67,23 +68,21 @@ function QRGenerator() {
         placeholder="Enter URL"
         className="w-full mb-3 px-3 py-2 border rounded"
       />
-      <button type='button' onClick={
-        () => setShowQR(false) } className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 mb-3" >Clear QR</button>
+
       <button
         onClick={handleGenerate}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
       >
         Generate QR
       </button>
       {showQR && (
         <div className="mt-4 text-center" ref={qrRef}>
-          <QRCode value={url} size={150} />
+          <QRCode value={url} className='mx-auto' size={150} />
           <button
             onClick={handleDownload}
-            className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            className="mt-3 bg-indigo-600  text-white text-center px-2 py-1 rounded hover:bg-indigo-700"
           >
-            Download QR
-          </button>
+            <DownloadIcon className="w-4 h-4 inline-block mr-1" />Download QR </button>
         </div>
       )}
     </>

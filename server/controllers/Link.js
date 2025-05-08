@@ -48,16 +48,14 @@ const getSlugRedic = async (req, res) => {
 
         link.view = link.view + 1;
         await link.save();
-        res.redirect(link.target)
-
-        res.json({
-            success: true,
-            slug: slug,
-            message: "redirecting to target"
-        })
+       return res.redirect(link.target)
 
     } catch (error) {
         console.error(error)
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
     }
 
 }

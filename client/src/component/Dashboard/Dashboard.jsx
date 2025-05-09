@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 import LinkModal from './linkModal';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
-import { ChevronDown, ChevronUp, Copy, Trash, Pencil, Eye } from "lucide-react";
+import { ChevronDown, ChevronUp, Copy, Trash, Pencil, Eye, EyeIcon } from "lucide-react";
 import Navbarnew from '../Navb';
 
 
@@ -88,6 +88,8 @@ const Dashboard = () => {
 
       if (response.data.success) {
         setLinks(response.data.data);
+        console.log(response.data.data)
+
         toast.success(response.data.message) // Set the links if the response is successful
       } else {
         toast.error(response.data.message || "Failed to fetch links");
@@ -97,6 +99,7 @@ const Dashboard = () => {
     }
   }
 
+  console.log(import.meta.env.VITE_BACKEND_URL)
 
   useEffect(() => {
     if (user && user._id) {
@@ -107,8 +110,8 @@ const Dashboard = () => {
   return (
     <>
       <Navbarnew />
-      <div className="flex h-screen mt-8 flex-col dark:bg-gray-900 md:flex-row">
-        <aside className="md:w-1/6 pt-8 md:pt-12 md:h-screen h-48 w-full dark:bg-gray-800 text-white text-gray-900 dark:text-white">
+      <div className="flex h-screen flex-col dark:bg-gray-900 md:flex-row">
+        <aside className="md:w-1/6 pt-8 md:pt-16 md:h-screen h-48 w-full dark:bg-gray-800 text-gray-900 dark:text-white">
           <Sidebar user={user} />
         </aside>
         {/* Mobile View (Card Style) */}
@@ -175,7 +178,7 @@ const Dashboard = () => {
         </div>
 
         {/* Desktop View (Table Style) */}
-        <main className="w-full hidden sm:block overflow-x-auto mx-auto p-4">
+        <main className="w-full hidden md:pt-12 sm:block overflow-x-auto mx-auto p-4">
           {/* Dashboard Content */}
 
           <div className="hidden p-8 sm:block overflow-x-hidden to shadow-lg">
@@ -185,9 +188,20 @@ const Dashboard = () => {
             </div>
             <div className="hero-section mb-4">
               <p className="text-4xl text-gradient text-white font-bold ">Dashboard</p>
-              <p className="text-lg text-gradient">Shorten your URLs and track their performance.</p>
+              <p className="text-lg font-light text-gradient">Shorten your URLs and track their performance.</p>
             </div>
-            <table className="w-full overflow-x-scroll dashboard rounded-md text-sm md:text-medium overflow-x-scroll dark:bg-gray-800 text-gray-100">
+            <div className="flex flex-col mb-4 ">
+              <div className="flex flex-row items-center justify-between">
+                <h2 className="text-2xl font-bold text-gray-200">Shortened Links</h2>
+                <button
+                  onClick={() => window.location.href = '/create-link'}
+                  className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+                >
+                  Create New Link
+                </button>
+              </div>
+            </div>
+            <table className="w-full dashboard rounded-md text-sm md:text-medium overflow-x-scroll dark:bg-gray-800 text-gray-100">
               <thead>
                 <tr>
                   <th className="py-2 px-2 md:px-4">Title</th>
@@ -202,7 +216,7 @@ const Dashboard = () => {
               <tbody>
                 {links.map((link, index) => (
                   <tr key={index} className="border-t border-gray-700">
-                    <td className="py-2 px-2 md:px-4">{link.title}</td>
+                    <td className="py-2 px-2 text-center font-bold md:px-4">{link.title}</td>
                     <td className="py-2 px-2 md:px-4">{link.target.substring(0, 30)}..</td>
                     <td className="py-2 text-blue-400 flex flex-row justify-between hover:underline underline-offset-2 px-2 md:px-4">
                       <a href={`${import.meta.env.VITE_BACKEND_URL}/${link.slug}`}>{link.slug}</a>
@@ -221,7 +235,7 @@ const Dashboard = () => {
                         Show
                       </button>
                     </td>
-                    <td className="py-2 text-center px-2 md:px-4">{link.view}</td>
+                    <td className="py-2 text-center px-2 md:px-4"><Eye className='w-4 inline-flex mb-1 h-4'/> {link.view}</td>
                     <td className="py-2 text-center px-2 md:px-4">{new Date(link.createdAt).toLocaleDateString()}</td>
                     <td className="py-2 text-center px-2 md:px-4">
                       <button

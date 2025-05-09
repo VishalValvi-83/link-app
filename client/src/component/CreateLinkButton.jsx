@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import { Link as LinkIcon, Loader, QrCode } from 'lucide-react';
 import QRGenerator from './QRGenerator';
@@ -10,6 +10,8 @@ const CreateLinkButton = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [showQRModal, setShowQRModal] = useState(false);
   const [userloginModal, setUserLoginModal] = useState(false);
+  const [buttonStyle, setButtonStyle] = useState({ position: "fixed", bottom: "16px" });
+
 
   const CreateLinkRedirect = () => {
     const user = localStorage.getItem('User') || localStorage.getItem('token');
@@ -23,6 +25,42 @@ const CreateLinkButton = () => {
       toast.error('Please login to create a link!');
     }
   }
+
+
+  useEffect(() => {
+    const adjustButtonPosition = () => {
+      const footer = document.getElementById("footer");
+      const createBtn = document.getElementById("createBtn");
+
+      if (!footer || !createBtn) return;
+
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      if (footerRect.top < windowHeight) {
+        setButtonStyle({
+          position: "fixed",
+          bottom: `${windowHeight - footerRect.top}px`,
+        });
+      } else {
+        setButtonStyle({
+          position: "fixed",
+          bottom: "16px",
+        });
+      }
+    };
+
+    window.addEventListener("scroll", adjustButtonPosition);
+    window.addEventListener("resize", adjustButtonPosition);
+
+    adjustButtonPosition();
+
+    return () => {
+      window.removeEventListener("scroll", adjustButtonPosition);
+      window.removeEventListener("resize", adjustButtonPosition);
+    };
+  }, []);
+
 
   const checkUser = () => {
     const user = localStorage.getItem('User') || localStorage.getItem('token');
@@ -40,7 +78,7 @@ const CreateLinkButton = () => {
     <>
       <Toaster />
       {/* Fixed Create Now Button */}
-      <div className="fixed bottom-6 right-6 flex flex-col items-end gap-2 z-50">
+      <div id='createBtn' style={buttonStyle} className="fixed bottom-6 right-6 flex flex-col items-end gap-2 z-50">
         {showOptions && (
           <div className="flex flex-col gap-2 mb-2">
             <button

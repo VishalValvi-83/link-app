@@ -68,7 +68,7 @@ const Navbarnew = () => {
     }, []);
 
     return (
-        <nav className={`w-full justify-between fixed w-full z-20 top-0 start-0  dark:bg-gray-900  bg-white  ${window.scrollY > 0 ? 'shadow-md' : ''} `}>
+        <nav className={`w-full justify-between fixed z-20 top-0 start-0  dark:bg-gray-900  bg-white  ${window.scrollY > 0 ? 'shadow-md' : ''} `}>
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between transition ease-in-out mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src={Icon} className="h-8" alt="Flowbite Logo" />
@@ -93,59 +93,70 @@ const Navbarnew = () => {
                 </div>
 
                 {/* Profile and Hamburger - Right Section */}
-                {user != null ?
-                    <div className="flex items-center space-x-4">
-                        {/* Profile Dropdown */}
-                        <div className="relative ">
-                            {user !== null ? <img src={user?.photoURL || FallbackPhoto} onClick={() => setIsOpen(!isOpen)} className="w-8 h-8 mx-auto rounded-full" alt="user photo" />
-                                :
-                                <svg className="w-8 h-8 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>}
+                <div className='space-x-3 inline-flex items-center rtl:space-x-reverse'>
+                    {user != null ?
+                        <div className="flex items-center cursor-pointer space-x-4">
+                            {/* Profile Dropdown */}
+                            <div className="relative ">
+                                {user !== null ? <img src={user?.photoURL || FallbackPhoto} onClick={() => setIsOpen(!isOpen)} className="w-8 h-8 mx-auto rounded-full" alt="user photo" />
+                                    :
+                                    <svg className="w-8 h-8 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>}
 
-                            {isOpen && (
-                                <div role="menu" className="absolute dark:bg-gray-800 dark:text-white right-0 mt-2 w-56 bg-white rounded-md shadow-lg z-50 py-2">
-                                    <div className="px-4 py-3">
-                                        <span id='userInfo' className="block text-sm text-gray-900 dark:text-white"> {user ? user?.displayName || user.fullname : "Guest"}</span>
-                                        <span className="block text-sm  text-gray-500 truncate dark:text-gray-400"> {user ? user?.email || "No Email" : "Guest"}</span>
+                                {isOpen && (
+                                    <div role="menu" className="absolute dark:bg-gray-800 dark:text-white right-0 mt-2 w-56 bg-white rounded-md shadow-lg z-50 py-2">
+                                        <div className="px-4 py-3">
+                                            <span id='userInfo' className="block text-sm text-gray-900 dark:text-white"> {user ? user?.displayName || user.fullname : "Guest"}</span>
+                                            <span className="block text-sm  text-gray-500 truncate dark:text-gray-400"> {user ? user?.email || "No Email" : "Guest"}</span>
+                                        </div>
+                                        <a href="#" role="menuitem"
+                                            className="block px-4 py-2 text-sm  hover:bg-gray-600"
+                                        >My profile
+                                        </a>
+                                        <Link to="/dashboard" className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
+                                        <div className="border-t pt-3 my-2 ">
+                                            {user != null ?
+                                                <button className="flex btn justify-center mx-auto items-center px-2 py-2 text-sm text-red-600 hover:bg-gray-600 rounded border border-blue-600 dark:text-gray-300 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-36" id='signOut' onClick={handleSignOut}> <LogOut className="w-4 h-4 mr-2" /> Logout</button>
+                                                : null}
+                                        </div>
                                     </div>
-                                    <a href="#" role="menuitem"
-                                        className="block px-4 py-2 text-sm  hover:bg-gray-600"
-                                    >My profile
-                                    </a>
-                                    <Link to="/dashboard" className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
-                                    <div className="border-t pt-3 my-2 ">
-                                        {user != null ?
-                                            <button className="flex btn justify-center mx-auto items-center px-2 py-2 text-sm text-red-600 hover:bg-gray-600 rounded border border-blue-600 dark:text-gray-300 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-36" id='signOut' onClick={handleSignOut}> <LogOut className="w-4 h-4 mr-2" /> Logout</button>
-                                            : null}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Hamburger Icon - Mobile */}
-                        <div className="md:hidden">
-                            <button onClick={() => setMenuOpen(!menuOpen)}>
-                                <Menu className="w-6 h-6 dark:text-white text-gray-700" />
-                            </button>
-                        </div>
-                    </div> : (<div className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <button className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-600 rounded border border-blue-600 dark:text-gray-200 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-auto" id='sign-in' onClick={handleSignIn}>Log in</button>
-                    </div>)
-                }
+                                )}
+                            </div>
+                        </div> : (<div className="flex items-center">
+                            <button className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-600 rounded border border-blue-600 dark:text-gray-200 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-auto" id='sign-in' onClick={handleSignIn}>Log in</button>
+                        </div>)
+                    }
+                    {/* Hamburger Icon - Mobile */}
+                    <div className="md:hidden inlie-block">
+                        <button onClick={() => setMenuOpen(!menuOpen)}>
+                            <Menu className="w-6 h-6 dark:text-white text-gray-700" />
+                        </button>
+                    </div>
+                </div>
                 {/* Mobile Menu */}
                 {menuOpen && (
-                    <div className="absolute top-16 transition ease-in-out delay-200 rounded-md right-0 w-1/3 dark:bg-gray-800 bg-white shadow-md md:hidden z-40 space-y-4 dark:text-white text-gray-700 text-sm">
-                        <ul className="flex flex-col font-medium rounded-lg rtl:space-y-reverse md:mt-0 md:border-0 dark:border-gray-700">
+                    <div className="absolute animate__animated animate__backInDown top-16 right-0 w-1/2 bg-white dark:bg-gray-800 shadow-md rounded-md z-40 md:hidden">
+                        <ul className="flex flex-col font-medium rounded-lg rtl:space-y-reverse md:mt-0 md:border-0 ">
                             <li>
-                                <Link to="/" className={`block py-2 px-3 ${window.location.pathname === '/' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`} aria-current="page">Home</Link>
+                                <Link to="/" className={`block py-2 px-3 rounded ${window.location.pathname === '/'
+                                    ? 'text-blue-700 dark:text-blue-500'
+                                    : 'hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600'
+                                    }`} aria-current="page">Home</Link>
                             </li>
                             <li>
-                                <Link to="/service" className={`block py-2 px-3 ${window.location.pathname === '/service' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Services</Link>
+                                <Link to="/service" className={`block py-2 px-3 rounded ${window.location.pathname === '/service'
+                                    ? 'text-blue-700 dark:text-blue-500'
+                                    : 'hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600'
+                                    }`} aria-current="page">Services</Link>
                             </li>
                             <li>
-                                <Link to="/about" className={`block py-2 px-3 ${window.location.pathname === '/about' ? 'md:text-blue-700 md:dark:text-blue-500 ' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>About</Link>
+                                <Link to="/about" className={`block py-2 px-3 ${window.location.pathname === '/about' ? 'text-blue-700 dark:text-blue-500'
+                                    : 'hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600'
+                                    }`} aria-current="page">About</Link>
                             </li>
                             <li>
-                                <Link to="/contact" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Contact</Link>
+                                <Link to="/contact" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'text-blue-700 dark:text-blue-500'
+                                    : 'hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600'
+                                    }`} aria-current="page">Contact</Link>
                             </li>
                         </ul>
                     </div>

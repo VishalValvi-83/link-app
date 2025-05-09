@@ -3,7 +3,7 @@ import dotenv, { config } from 'dotenv'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import { deleteLink, getlinks, getSlugRedic, postLink, updateLink } from './controllers/Link.js'
-import { postlogin, postSingup } from './controllers/user.js'
+import { postGoogleSignin, postlogin, postSingup } from './controllers/user.js'
 import colors from 'colors'
 import GReCap from './controllers/GReCap.js'
 dotenv.config()
@@ -54,6 +54,7 @@ app.put('/update-link/:id', updateLink)
 app.post('/user', postSingup)
 app.post('/user-login', postlogin)
 
+app.post('/google-signin', postGoogleSignin)
 // google reCAPTCHA verification API
 app.post("/verify-recaptcha",GReCap);
 

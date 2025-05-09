@@ -183,8 +183,8 @@ export default function Signin() {
             <div className="relative">
               <div className="w-full max-w-xl xl:w-full xl:mx-auto xl:pr-24 xl:max-w-xl">
                 <h3 className="text-4xl font-bold text-white">
-                  “Join a growing community <br className="hidden xl:block" />&
-                  simplify your links!”
+                Join a growing community <br className="hidden xl:block" />&
+                  simplify your links!
                 </h3>
                 <ul className="grid grid-cols-1 mt-10 sm:grid-cols-2 gap-x-8 gap-y-4">
                   <li className="flex items-center space-x-3">
@@ -274,8 +274,8 @@ export default function Signin() {
 
           <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
-              <h2 className="text-3xl lg:pb-2 font-bold leading-tight text-black sm:text-4xl">
-                Sign in to Celebration
+              <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
+                Sign in
               </h2>
               <p className="mt-2 text-base text-gray-600">
                 Don’t have an account?
@@ -433,91 +433,3 @@ export default function Signin() {
     </>
   );
 }
-
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user-login`, {
-        email,
-        password,
-      });
-      if (response.data.success) {
-        setIsLoggedIn(true);
-        localStorage.setItem('token', JSON.stringify(response.data.data));
-      } else {
-        setError(response.data.message);
-      }
-    } catch (error) {
-      setError(error.response.data.message || 'An error occurred. Please try again.');
-    }
-  };
-
-  if (isLoggedIn) {
-    return <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-      <div className="bg-white shadow-2xl rounded-3xl p-8 text-center max-w-sm w-full">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">You're In!</h2>
-        <p className="text-gray-600 mb-2">Welcome, <span className="font-medium text-blue-600">Vishal</span></p>
-        <p className="text-sm text-gray-500 mb-4">vv@gmail.com</p>
-        <button
-          className="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white flex items-center justify-center gap-2 py-3 rounded-2xl"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-          </svg>
-          Go to Dashboard
-        </button>
-      </div>
-    </div>
-  }
-
-  return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-lg font-bold mb-4">Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2" htmlFor="email">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2" htmlFor="password">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
-            />
-          </div>
-          {error && (
-            <div className="text-red-500 text-sm mb-4">{error}</div>
-          )}
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
-          >
-            Login
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-export { Login };

@@ -6,11 +6,12 @@ import CreateLinkButton from "../../component/CreateLinkButton";
 import Footer from "../../component/Footer";
 import Aos from "aos";
 import HeroCarousel from "../../component/HeroCarousel";
+import FAQs from "./../../component/FAQs";
 
 const Home = () => {
 
   useEffect(() => {
-    const isSmallScreen = window.innerWidth <= 768; 
+    const isSmallScreen = window.innerWidth <= 768;
     Aos.init({
       duration: 1000,
       easing: "ease-in-out",
@@ -25,7 +26,7 @@ const Home = () => {
   return (
     <>
       <Navbarnew />
-      <HeroCarousel/>     
+      <HeroCarousel />
       <section className="text-gray-600 bg-white dark:text-white pt-5 dark:bg-gray-900 body-font">
         <div className="container p-5 mx-auto">
           <div className="text-center mb-10">
@@ -94,6 +95,8 @@ const Home = () => {
         </div>
       </section>
       <PromoLinkSections />
+      <section className="dark:bg-gray-800"><FAQs />
+      </section>
       <CreateLinkButton />
       <Footer />
     </>

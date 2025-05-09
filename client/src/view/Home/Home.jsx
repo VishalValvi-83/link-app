@@ -6,7 +6,8 @@ import CreateLinkButton from "../../component/CreateLinkButton";
 import Footer from "../../component/Footer";
 import Aos from "aos";
 import HeroCarousel from "../../component/HeroCarousel";
-import FAQs from "./../../component/FAQs";
+import FAQs from "../../component/UseCases";
+import FAQSection from "../../component/FAQs";
 
 const Home = () => {
 
@@ -97,6 +98,9 @@ const Home = () => {
       <PromoLinkSections />
       <section className="dark:bg-gray-800"><FAQs />
       </section>
+      <div className="dark:bg-gray-900">
+        <FAQSection />
+      </div>
       <CreateLinkButton />
       <Footer />
     </>

@@ -2,12 +2,13 @@ import React from 'react'
 import Navbar from './../../component/Navb'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone,faEnvelope} from '@fortawesome/free-solid-svg-icons';
+import Navbarnew from '../../component/Navb';
 
 
 function Contact() {
   return (
     <>
-      <Navbar />
+      <Navbarnew />
       <section className=" w-[100%]  text-gray-500 dark:bg-gray-900 border-none body-font">
         <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
           <div class="w-full mx-auto lg:w-1/2">

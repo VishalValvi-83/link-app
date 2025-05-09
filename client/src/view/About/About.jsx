@@ -3,11 +3,12 @@ import React from 'react'
 // import Navbar from "../../component/Navbar";
 import aboutimg from '../../assets/Good team.png'
 import vishal from '../../assets/vishal.png'
+import Navbarnew from '../../component/Navb'
 
 function About() {
     return (
         <>
-            {/* <Navbar /> */}
+            <Navbarnew />
             <section className=" w-[100%] text-gray-500 dark:bg-gray-900 border-none body-font">
                 <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
                     <div class="w-full mx-auto lg:w-1/2">
@@ -121,7 +122,7 @@ function About() {
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">MEET US</h1>
                     </div>
 
-                    <div className='flex w-[60%] mx-auto justify-around flex-wrap'>
+                    {/* <div className='flex w-[60%] mx-auto justify-around flex-wrap'>
                         <div className=''>
                             <img src={vishal} alt="vishal" />
                         </div>
@@ -141,7 +142,7 @@ function About() {
                             </div>
                         </div>
 
-                    </div>
+                    </div> */}
                 </div>
 
 

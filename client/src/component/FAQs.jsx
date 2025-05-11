@@ -11,11 +11,11 @@ const faqs = [
     },
     {
         question: "Does ZipLink track personal user data?",
-        answer: "No, ZipLink only collects anonymous click data like time, location, and device type to help you analyze traffic. We respect user privacy and comply with data protection laws.",
+        answer: "No, ZipLink only collects anonymous click data like time, location to help you analyze traffic. We respect user privacy and comply with data protection laws.",
     },
     {
         question: "Is there a limit on how many links I can create?",
-        answer: "There’s no limit on the number of links in the free tier, but advanced features like branded domains or deeper analytics are available in the premium plan.",
+        answer: "There’s no limit on the number of links in the free tier.",
     },
 ];
 

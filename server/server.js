@@ -56,7 +56,7 @@ app.post('/user-login', postlogin)
 
 app.post('/google-signin', postGoogleSignin)
 // google reCAPTCHA verification API
-app.post("/verify-recaptcha",GReCap);
+// app.post("/verify-recaptcha",GReCap);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`.bgCyan);

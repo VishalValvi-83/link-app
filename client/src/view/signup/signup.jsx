@@ -4,7 +4,26 @@ import axios from "axios";
 // import ReCAPTCHA from 'react-google-recaptcha';
 import toast from "react-hot-toast";
 import { Mail } from 'lucide-react';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 const Signup = () => {
+  const firebaseConfig = {
+    apiKey: import.meta.env.VITE_APIKEY,
+    authDomain: import.meta.env.VITE_AUTHDOMAIN,
+    projectId: import.meta.env.VITE_PROJECTID,
+    storageBucket: "ziplinkss.firebasestorage.app",
+    messagingSenderId: import.meta.env.VITE_MSGID,
+    appId: import.meta.env.VITE_APPID,
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
   // const [recaptchaToken, setRecaptchaToken] = React.useState("");
   const [user, setUser] = React.useState({
     fullname: '',
@@ -109,6 +128,35 @@ const Signup = () => {
   // const Usersignup = async () => {
 
   // }
+  const handleGoogleSignup = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/google-signin`, {
+        email: user.email,
+        fullname: user.displayName,
+      });
+
+      if (response.data.success) {
+        const loggedInUser = response.data.data;
+        if (loggedInUser && loggedInUser._id) {
+          localStorage.setItem("token", JSON.stringify(loggedInUser));
+          toast.success("Signup successful!");
+          setTimeout(() => {
+            window.location.pathname = "/dashboard";
+          }, 1000);
+        } else {
+          toast.error("Error: No user ID returned from backend");
+        }
+      } else {
+        toast.error("Signup failed. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Signup failed. Please try again.");
+      console.error(error);
+    }
+  };
   console.log("Backend URL:", `${import.meta.env.VITE_BACKEND_URL}/user`);
 
   return (
@@ -384,6 +432,7 @@ const Signup = () => {
               <div className="mt-3 space-y-3">
                 <button
                   type="button"
+                  onClick={handleGoogleSignup}
                   className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
                 >
                   <div className="absolute inset-y-0 left-0 p-4">

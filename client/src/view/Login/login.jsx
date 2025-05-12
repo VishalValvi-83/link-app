@@ -78,7 +78,7 @@ export default function Signin() {
     appId: import.meta.env.VITE_APPID,
   };
 
-  // Initialize Firebase
+  
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
@@ -94,7 +94,7 @@ export default function Signin() {
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        localStorage.setItem("User", JSON.stringify(user)); // Fix: Stringify the user object
+        localStorage.setItem("User", JSON.stringify(user)); 
       } else {
         localStorage.removeItem("User");
       }
@@ -104,20 +104,21 @@ export default function Signin() {
       }, 1000);
     });
 
-    // Cleanup on unmount
+    
     return () => unsubscribe();
   }, [auth]);
 
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("User"));
     if (userInfo && userInfo._id) {
-      // Proceed with using user._id
+      
     } else {
-      // Handle the case where the user is not found or logged in
+      
       console.log("No user found in localStorage");
     }
   }, [])
   JSON.parse(localStorage.getItem('token'))
+  
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -129,9 +130,9 @@ export default function Signin() {
       });
 
       if (response.data.success) {
-        const loggedInUser = response.data.data; // Ensure this contains _id
+        const loggedInUser = response.data.data; 
         if (loggedInUser && loggedInUser._id) {
-          // Save user data with _id to localStorage
+          
           localStorage.setItem("token", JSON.stringify(loggedInUser));
           console.log(loggedInUser)
 
@@ -179,9 +180,6 @@ export default function Signin() {
       "firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]"
     )
   );
-
-  // console.log(storedUser);
-  // console.log(user?.displayName);
 
   return (
     <>

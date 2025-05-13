@@ -3,6 +3,7 @@ import Navbar from './../../component/Navb'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone,faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import Navbarnew from '../../component/Navb';
+import Footer from '../../component/Footer';
 
 
 function Contact() {
@@ -71,6 +72,7 @@ function Contact() {
         </div>
 
       </section>
+      <Footer />
     </>
   )
 }

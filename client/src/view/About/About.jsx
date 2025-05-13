@@ -4,10 +4,7 @@ import React from 'react'
 import aboutimg from '../../assets/Good team.png'
 import vishal from '../../assets/vishal.png'
 import Navbarnew from '../../component/Navb'
-<<<<<<< HEAD
 import Footer from '../../component/Footer'
-=======
->>>>>>> cbd1fd836154474bf08ba8a33a0a989afc952e32
 
 function About() {
     return (
@@ -21,13 +18,8 @@ function About() {
                             Empowering Your Links, Enhancing Your Reach
 
                         </h1>
-<<<<<<< HEAD
                         <p class="mt-9 text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
-                        We are a team dedicated to improving how links are shared and secured online. With URLShot, we aim to solve common problems like long, messy URLs and unsafe links. Our tool not only shortens URLs for easy sharing but also checks their safety to protect users from harmful sites. Whether for businesses, educators, or everyday users, URLShot offers a fast, secure, and reliable way to manage links.
-=======
-                        <p class=" my-4 text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
-                            At ZipLink, we transform long, cumbersome URLs into concise, shareable links, making your digital interactions seamless and efficient. Whether you're a business, marketer, or individual, our fast and secure platform helps you simplify link sharing while ensuring reliability and tracking. With custom branding and built-in analytics, ZipLink makes every link smarter and more impactful.
->>>>>>> cbd1fd836154474bf08ba8a33a0a989afc952e32
+                            We are a team dedicated to improving how links are shared and secured online. With URLShot, we aim to solve common problems like long, messy URLs and unsafe links. Our tool not only shortens URLs for easy sharing but also checks their safety to protect users from harmful sites. Whether for businesses, educators, or everyday users, URLShot offers a fast, secure, and reliable way to manage links.
                         </p>
                     </div>
 
@@ -116,11 +108,7 @@ function About() {
                     </div>
                 </div>
 
-<<<<<<< HEAD
                 {/* <div className='text-white text-center mt-10'>
-=======
-                <div className='text-white text-center mt-10'>
->>>>>>> cbd1fd836154474bf08ba8a33a0a989afc952e32
                     <div className="flex flex-wrap w-full mb-8 flex-col items-center text-center">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">BUILT BY STUDENTS, FOR EVERYONE</h1>
                     </div>
@@ -128,21 +116,12 @@ function About() {
                         ZipLink is the result of passion, learning, and late-night coding sessions 🌙💡 by a group of final-year Computer Science students 🎓. We wanted to solve a real-world problem with a simple, useful tool anyone can use.
                         This project represents our journey through full-stack development, teamwork, UI/UX design, and a lot of debugging 🐞💻. More than just a project, it’s a reflection of how much we’ve grown as developers and friends 🤝.
                     </p>
-<<<<<<< HEAD
                 </div> */}
 
                 <div className='text-white text-center mt-10'>
                     {/* <div className="flex flex-wrap w-full mb-8 flex-col items-center text-center">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">MEET US</h1>
                     </div> */}
-=======
-                </div>
-
-                <div className='text-white text-center mt-10'>
-                    <div className="flex flex-wrap w-full mb-8 flex-col items-center text-center">
-                        <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">MEET US</h1>
-                    </div>
->>>>>>> cbd1fd836154474bf08ba8a33a0a989afc952e32
 
                     {/* <div className='flex w-[60%] mx-auto justify-around flex-wrap'>
                         <div className=''>
@@ -168,11 +147,7 @@ function About() {
                 </div>
 
 
-<<<<<<< HEAD
-<Footer/>
-=======
-
->>>>>>> cbd1fd836154474bf08ba8a33a0a989afc952e32
+                <Footer />
             </section>
         </>
     )

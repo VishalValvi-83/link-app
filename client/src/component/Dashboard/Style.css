@@ -1,0 +1,65 @@
+.dashboard {
+    background-image: url('https://images.rawpixel.com/image_social_landscape/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjQ3NS1rYXRpZS0xMDEtYWJzdHJhY3RibGFja2FuZHdoaXRlYmdfMS5qcGc.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* height: 100vh; */
+    overflow-x: scroll;
+
+}
+
+.text-gradient {
+    color: #D98880;
+    background-image: linear-gradient(45deg, #4A90E2, #50E3C2, #B8E986, #F8E71C);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-white-imp{
+    color: white !important;
+}
+.sidebar {
+    width: 200px;
+    float: left;
+    padding: 10px;
+}
+
+.link-list {
+    margin-left: 220px;
+    padding: 10px;
+}
+
+.link-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+input {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+/* src/index.css */
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    /* or your desired background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+}

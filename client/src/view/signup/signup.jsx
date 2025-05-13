@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-// import ReCAPTCHA from 'react-google-recaptcha';
 import toast from "react-hot-toast";
 import { Mail } from 'lucide-react';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -24,7 +23,6 @@ const Signup = () => {
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
-  // const [recaptchaToken, setRecaptchaToken] = React.useState("");
   const [user, setUser] = React.useState({
     fullname: '',
     email: '',
@@ -38,52 +36,8 @@ const Signup = () => {
       .join(" ");
   };
 
-  // React.useEffect(() => {
-  //   // Dynamically load the reCAPTCHA script
-  //   const loadRecaptchaScript = () => {
-  //     if (!document.querySelector('script[src="https://www.google.com/recaptcha/api.js"]')) {
-  //       const script = document.createElement("script");
-  //       script.src = "https://www.google.com/recaptcha/api.js";
-  //       script.async = true;
-  //       script.defer = true;
-  //       document.body.appendChild(script);
-  //     }
-  //   };
-
-  //   loadRecaptchaScript();
-  // }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Validate the form fields
-
-    // if (!recaptchaToken) {
-    //   alert("Please complete the reCAPTCHA.");
-    //   return;
-    // }
-
-    // try {
-    //     const response = await axios.post(
-    //       `${import.meta.env.VITE_BACKEND_URL}/verify-recaptcha`,
-    //       { token: recaptchaToken }, // Send the token to the backend
-    //       {
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //       }
-    //     );
-
-    //     const data = response.data;
-    //     if (data.success) {
-    //       alert("reCAPTCHA verified successfully!");
-    //       // Proceed with form submission logic
-    //     } else {
-    //       alert("reCAPTCHA verification failed. Please try again.");
-    //     }
-    //   } catch (error) {
-    //     console.error("Error verifying reCAPTCHA:", error);
-    //     alert("An error occurred while verifying reCAPTCHA. Please try again.");
-    //   }
     try {
       const capitalizedFullName = capitalizeFullName(user.fullname);
 
@@ -121,13 +75,6 @@ const Signup = () => {
       toast.error("An error occurred during signup. Please try again.");
     }
   };
-
-  // const onRecaptchaChange = (token) => {
-  //   setRecaptchaToken(token); // Save the token when the user completes the reCAPTCHA
-  // };
-  // const Usersignup = async () => {
-
-  // }
   const handleGoogleSignup = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -217,7 +164,6 @@ const Signup = () => {
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-
                       Unlimited Exports
                     </span>
                   </li>
@@ -237,7 +183,6 @@ const Signup = () => {
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-
                       Custom Links
                     </span>
                   </li>
@@ -257,7 +202,6 @@ const Signup = () => {
                       </svg>
                     </div>
                     <span className="text-lg font-medium text-white">
-
                       Analytics Tracking
                     </span>
                   </li>
@@ -271,7 +215,7 @@ const Signup = () => {
               <h2 className="text-3xl font-bold leading-tight dark:text-white text-black sm:text-4xl">
                 Be a Part of Something Special - Sign Up
               </h2>
-              <p className="mt-2 text-base font-light text-gray-400">
+              <p className="mt-2 text-base font-light mr-1 text-gray-400">
                 Already have an account?
                 <Link
                   to="/user-login"
@@ -287,9 +231,7 @@ const Signup = () => {
                     <label
                       for="name"
                       className="text-base font-medium text-gray-900 dark:text-white"
-                    >
-                      First & Last name
-                    </label>
+                    >First & Last name</label>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
@@ -315,9 +257,7 @@ const Signup = () => {
                         value={user.fullname}
                         onChange={(e) => {
                           setUser({ ...user, fullname: e.target.value })
-                          document.getElementById('email').classList.remove('border-4 border-red-500/100')
-                        }
-                        }
+                          document.getElementById('email').classList.remove('border-4 border-red-500/100')}}
                         placeholder="Enter First & Last name"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                       />
@@ -329,20 +269,6 @@ const Signup = () => {
                     >Email address</label>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        {/* <svg
-                          className="w-5 h-5"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                          />
-                        </svg> */}
                         <Mail className="w-5 h-5" />
                       </div>
 
@@ -404,23 +330,9 @@ const Signup = () => {
                     class="g-recaptcha"
                     data-sitekey="6LdduAcrAAAAAI0GMxW-53M6kCR1fQ7lSVF2xczbY"
                   ></div>
-                  {/* <ReCAPTCHA
-                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                    onChange={onRecaptchaChange}
-
-                  /> */}
-                  {/* <script>
-                    {
-                      function onRecaptchaChange(token) {
-                        const event = new CustomEvent('recaptcha-complete', { detail: token });
-                        window.dispatchEvent(event);
-                      }
-                    }
-                  </script> */}
                   <div>
                     <button
                       type="submit"
-                      // onClick={Usersignup}
                       className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 border border-transparent rounded-md bg-gradient-to-r from-fuchsia-600 to-blue-600 focus:outline-none hover:opacity-80 focus:opacity-80"
                     >
                       Sign up
@@ -461,28 +373,7 @@ const Signup = () => {
                   </div>
                   Sign up with Google
                 </button>
-
-
               </div>
-
-              {/* <p className="mt-5 text-sm text-gray-600">
-                This site is protected by reCAPTCHA and the Google
-                <a
-                  href="#"
-                  title=""
-                  className="text-blue-600 transition-all duration-200 hover:underline hover:text-blue-700"
-                >
-                  Privacy Policy
-                </a>
-                &
-                <a
-                  href="#"
-                  title=""
-                  className="text-blue-600 transition-all duration-200 hover:underline hover:text-blue-700"
-                >
-                  Terms of Service
-                </a>
-              </p> */}
             </div>
           </div>
         </div>

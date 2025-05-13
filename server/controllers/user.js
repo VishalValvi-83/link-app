@@ -29,11 +29,19 @@ const postSingup = async (req, res) => {
     }
     catch (e) {
         console.error(e)
+<<<<<<< HEAD
         res.json({
             success: false,
             message: e.message,
             data: null
         })
+=======
+        // res.json({
+        //     success: false,
+        //     message: e.message,
+        //     data: null
+        // })
+>>>>>>> cbd1fd836154474bf08ba8a33a0a989afc952e32
     }
 
 }

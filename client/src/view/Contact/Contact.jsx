@@ -72,8 +72,7 @@ function Contact() {
         </div>
 
       </section>
-      
-      
+      <Footer />
     </>
   )
 }

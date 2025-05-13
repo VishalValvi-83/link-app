@@ -5,7 +5,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { LogOut, Menu } from "lucide-react";
 import FallbackPhoto from '../assets/FallBackUserImg.png'
-import toast from 'react-hot-toast';
 
 const Navbarnew = () => {
     const navigate = useNavigate();
@@ -38,7 +37,7 @@ const Navbarnew = () => {
             .then(() => {
                 localStorage.removeItem('firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]'); // Clear user data
                 navigate('/user-login');
-                window.location.reload(); // Reload the page to reflect the sign-out
+                window.location.reload(); 
             })
             .catch((error) => {
                 console.error(error);
@@ -49,22 +48,10 @@ const Navbarnew = () => {
     };
 
     useEffect(() => {
-        // const storedUser = localStorage.getItem('firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]');
         const storedUser = localStorage.getItem('User') || localStorage.getItem('token');
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
-        // if (!storedUser) {
-        //     toast.error("Please login to continue", {
-        //         duration: 1000,
-        //         position: "top-right",
-        //         style: {
-        //             background: "#333",
-        //             color: "#fff",
-        //         },
-        //     });
-        //     navigate('/user-login');
-        // }
     }, []);
 
     return (
@@ -72,7 +59,7 @@ const Navbarnew = () => {
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between transition ease-in-out mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src={Icon} className="h-8" alt="Flowbite Logo" />
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ZipLink</span>
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">URK Shortner</span>
                 </Link>
                 {/* Navigation Links - Desktop */}
                 <div className="hidden md:flex  space-x-6 dark:text-white text-gray-700 text-sm">
@@ -81,13 +68,17 @@ const Navbarnew = () => {
                             <Link to="/" className={`block py-2 px-3 ${window.location.pathname === '/' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`} aria-current="page">Home</Link>
                         </li>
                         <li>
-                            <Link to="/service" className={`block py-2 px-3 ${window.location.pathname === '/service' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Services</Link>
-                        </li>
-                        <li>
                             <Link to="/about" className={`block py-2 px-3 ${window.location.pathname === '/about' ? 'md:text-blue-700 md:dark:text-blue-500 ' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>About</Link>
                         </li>
                         <li>
+                            <Link to="/service" className={`block py-2 px-3 ${window.location.pathname === '/service' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Services</Link>
+                        </li>
+                        
+                        <li>
                             <Link to="/contact" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Contact</Link>
+                        </li>
+                        <li>
+                            <Link to="/help" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Help</Link>
                         </li>
                     </ul>
                 </div>
@@ -157,6 +148,11 @@ const Navbarnew = () => {
                                 <Link to="/contact" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'text-blue-700 dark:text-blue-500'
                                     : 'hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600'
                                     }`} aria-current="page">Contact</Link>
+                            </li>
+                            <li>
+                                <Link to="/help" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'text-blue-700 dark:text-blue-500'
+                                    : 'hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600'
+                                    }`} aria-current="page">Help</Link>
                             </li>
                         </ul>
                     </div>

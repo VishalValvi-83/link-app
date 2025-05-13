@@ -94,7 +94,7 @@ export default function Signin() {
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        localStorage.setItem("User", JSON.stringify(user)); // Fix: Stringify the user object
+        localStorage.setItem("User", JSON.stringify(user)); 
       } else {
         localStorage.removeItem("User");
       }
@@ -104,16 +104,15 @@ export default function Signin() {
       }, 1000);
     });
 
-    // Cleanup on unmount
+    
     return () => unsubscribe();
   }, [auth]);
 
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("User"));
     if (userInfo && userInfo._id) {
-      // Proceed with using user._id
+    
     } else {
-      // Handle the case where the user is not found or logged in
       console.log("No user found in localStorage");
     }
   }, [])
@@ -129,9 +128,8 @@ export default function Signin() {
       });
 
       if (response.data.success) {
-        const loggedInUser = response.data.data; // Ensure this contains _id
+        const loggedInUser = response.data.data; 
         if (loggedInUser && loggedInUser._id) {
-          // Save user data with _id to localStorage
           localStorage.setItem("token", JSON.stringify(loggedInUser));
           console.log(loggedInUser)
 
@@ -179,9 +177,6 @@ export default function Signin() {
       "firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]"
     )
   );
-
-  // console.log(storedUser);
-  // console.log(user?.displayName);
 
   return (
     <>
@@ -338,7 +333,7 @@ export default function Signin() {
                         value={email}
                         onChange={(e) => {
                           setEmail(e.target.value);
-                          setEmailError(false); // Reset error on input change
+                          setEmailError(false); 
                         }}
                         className={`block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 ${emailError ? "border border-red-500" : "border border-gray-200"} rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600`}
                         placeholder="Enter email to get started"

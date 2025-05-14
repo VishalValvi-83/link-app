@@ -78,7 +78,7 @@ const Navbarnew = () => {
                             <Link to="/contact" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Contact</Link>
                         </li>
                         <li>
-                            <Link to="/help" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Help</Link>
+                            <Link to="/help" className={`block py-2 px-3 ${window.location.pathname === '/help' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Help</Link>
                         </li>
                     </ul>
                 </div>
@@ -150,7 +150,7 @@ const Navbarnew = () => {
                                     }`} aria-current="page">Contact</Link>
                             </li>
                             <li>
-                                <Link to="/help" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'text-blue-700 dark:text-blue-500'
+                                <Link to="/help" className={`block py-2 px-3 ${window.location.pathname === '/help' ? 'text-blue-700 dark:text-blue-500'
                                     : 'hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600'
                                     }`} aria-current="page">Help</Link>
                             </li>

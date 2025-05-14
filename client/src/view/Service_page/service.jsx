@@ -4,13 +4,11 @@ import Footer from './../../component/Footer';
 import PromoCards from './../../component/PromoCards'
 import './Services.css'
 import {
-
   QrCode,
   Activity,
   Link,
 } from "lucide-react";
 import Aos from "aos";
-import { NavLink } from "react-router-dom";
 
 const Service = () => {
 
@@ -33,7 +31,7 @@ const Service = () => {
           Our Services
         </h1>
         <p className="md:text-xl text-sm text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          ZipLink offers tools to enhance your digital reach with modern, efficient, and insightful link services.
+          Our <strong>URL Shortner</strong> offers tools to enhance your digital reach with modern, efficient, and insightful link services.
         </p>
       </section>
       <section className="text-gray-700 bg-white dark:text-gray-300 dark:bg-gray-900 py-16">

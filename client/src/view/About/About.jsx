@@ -36,7 +36,7 @@ function About() {
                     <div className="flex flex-wrap w-full mb-10 flex-col items-center text-center">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">CORE VALUES</h1>
                     </div>
-                    <div className="flex flex-wrap justify-around -m-4">
+                    <div className="flex flex-wrap justify-around ">
                         <div className="xl:w-1/4 md:w-1/2 p-4">
                             <div className="border border-gray-200 p-6 rounded-lg">
                                 <div className=" flex items-center gap-4">

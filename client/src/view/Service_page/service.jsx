@@ -10,6 +10,7 @@ import {
   Link,
 } from "lucide-react";
 import Aos from "aos";
+import { NavLink } from "react-router-dom";
 
 const Service = () => {
 
@@ -51,7 +52,6 @@ const Service = () => {
               </p>
             </div>
 
-            {/* Service 2 */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:scale-105 transition-transform">
               <Activity className="text-blue-500 w-16 h-16 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-center text-gray-900 dark:text-white mb-2">
@@ -62,7 +62,6 @@ const Service = () => {
               </p>
             </div>
 
-            {/* Service 3 */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:scale-105 transition-transform">
               <Link className="text-blue-500 w-16 h-16 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-center text-gray-900 dark:text-white mb-2">
@@ -75,9 +74,9 @@ const Service = () => {
           </div>
 
           <div className="text-center mt-16">
-            <button className="bg-blue-600 text-white text-lg px-8 py-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors">
+            <a href="/create-link" className="bg-blue-600 text-white cursor-pointer text-lg px-8 py-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors">
               Get Started Now
-            </button>
+            </a>
           </div>
         </div>
       </section>

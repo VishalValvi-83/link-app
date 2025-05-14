@@ -34,7 +34,6 @@ const Profile = () => {
         <Navbarnew/>
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-fuchsia-50 dark:from-gray-900 dark:to-gray-800 flex flex-col justify-center items-center py-8 px-2">
             <div className="w-full max-w-sm bg-white dark:bg-gray-900 rounded-2xl mt-8 shadow-xl p-6">
-                {/* Avatar and Name */}
                 <div className="flex flex-col items-center mb-6">
                     <div className="w-20 h-20 rounded-full bg-fuchsia-100 dark:bg-fuchsia-900 flex items-center justify-center text-3xl font-bold text-fuchsia-700 dark:text-white mb-2 overflow-hidden">
                         {user?.photoURL ? (
@@ -58,7 +57,6 @@ const Profile = () => {
                     </div>
                 </div>
 
-                {/* General Info */}
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-xl relative p-4 mb-6">
                     <div className="flex items-center gap-3 mb-3">
                         <User className="w-5 h-5 text-fuchsia-600" />
@@ -72,42 +70,6 @@ const Profile = () => {
                     <a href="/edit-profile" className=" absolute top-2 right-3 "><Edit3 className="w-5 h-5 text-white cursor-pointer" /></a>
                 </div>
 
-                {/* Notifications */}
-                {/* <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 mb-6">
-                    <div className="font-semibold text-gray-900 dark:text-white mb-4">Notifications</div>
-                    <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                            <Bell className="w-5 h-5 text-fuchsia-600" />
-                            <span className="text-gray-800 dark:text-gray-200">Push notifications</span>
-                        </div>
-                        <label className="inline-flex items-center relative cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={pushNotif}
-                                onChange={() => setPushNotif((v) => !v)}
-                                className="sr-only peer "
-                            />
-                            <div className="w-10 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-fuchsia-600 transition"></div>
-                            <div className={`absolute w-4 h-4 bg-white rounded-full shadow -translate-y-1/2 left-1 top-1/2 transition peer-checked:translate-x-4`}></div>
-                        </label>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <Smartphone className="w-5 h-5 text-blue-600" />
-                            <span className="text-gray-800 dark:text-gray-200">SMS notifications</span>
-                        </div>
-                        <label className="inline-flex items-center relative cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={smsNotif}
-                                onChange={() => setSmsNotif((v) => !v)}
-                                className="sr-only peer"
-                            />
-                            <div className="w-10 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600 transition"></div>
-                            <div className={`absolute w-4 h-4 bg-white rounded-full shadow -translate-y-1/2 left-1 top-1/2 transition peer-checked:translate-x-4`}></div>
-                        </label>
-                    </div>
-                </div> */}
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 mb-6 flex flex-col gap-3">
                     <button className="w-full flex items-center justify-center gap-2 py-2 rounded-xl dark:text-white font-semibold bg-blue-600 hover:bg-blue-700 transition"
                     // onClick={handleEditProfile}

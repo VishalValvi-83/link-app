@@ -12,7 +12,7 @@ function About() {
             <Navbarnew />
             <section className=" w-[100%] text-gray-500 dark:bg-gray-900 border-none body-font">
                 <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
-                    <div class="w-full mx-auto lg:w-1/2">
+                    <div class="w-full mt-8 mx-auto lg:w-1/2">
 
                         <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
                             Empowering Your Links, Enhancing Your Reach

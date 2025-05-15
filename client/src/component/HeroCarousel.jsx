@@ -99,7 +99,7 @@ export default function HeroCarousel() {
                 See how your links perform with detailed metrics — clicks, geography, device, and more.
               </p>
               <div className="flex justify-center flex-wrap mt-6 gap-4">
-                <button onClick={viewDashboard} className="px-6 py-3 font-medium inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
+                <button onClick={viewDashboard} className="px-6 py-3 font-medium inline-flex items-center justify-center bg-primary-700 text-gray-900  dark:text-white rounded-lg hover:text-sky-500">
                   View Dashboard <LayoutDashboard className="w-5 h-5 ml-2 -mr-1" />
                 </button>
                 <Link to="/help/analytics" className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">

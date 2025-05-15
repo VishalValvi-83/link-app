@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import { deleteLink, getlinks, getSlugRedic, postLink, updateLink } from './controllers/Link.js'
 import { postGoogleSignin, postlogin, postSingup } from './controllers/user.js'
+import { createContact } from './controllers/contact.js'
 import colors from 'colors'
 import GReCap from './controllers/GReCap.js'
 dotenv.config()
@@ -56,11 +57,10 @@ app.post('/user-login', postlogin)
 
 app.post('/google-signin', postGoogleSignin)
 // google reCAPTCHA verification API
-<<<<<<< HEAD
-app.post("/verify-recaptcha",GReCap);
-=======
 // app.post("/verify-recaptcha",GReCap);
->>>>>>> cbd1fd836154474bf08ba8a33a0a989afc952e32
+
+app.post("/contact", createContact);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`.bgCyan);

@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Navbarnew from '../../component/Navb';
 import Footer from '../../component/Footer';
 import axios from 'axios';
 import { toast } from 'react-hot-toast'
+import Phone from '../../assets/phone.svg'
 
 
 const Contact = () => {
@@ -51,30 +50,10 @@ const Contact = () => {
             </p>
 
 
-            <div className='width-[30%] border border-red-500 text-2xl font-bold flex gap-4 mt-8 animate__animated animate__fadeInUp'>
-
-              <a href="" className=''>
-                <FontAwesomeIcon icon={faEnvelope} style={{ color: "#8c5cf6", }} />
-              </a>
-
+            <div className='width-[30%] border border-red-500 text-sm font-bold flex gap-4 mt-8'>
               <a href="">
-                <FontAwesomeIcon icon={faPhone} style={{ color: "#8b5cf6" }} />
+                <img src={Phone} alt="" />
               </a>
-
-              {/* <a href="">
-              <FontAwesomeIcon icon={faInstagram}  style={{ color: "#8b5cf6" }} />
-              </a> */}
-
-              {/* <a href="">
-              <FontAwesomeIcon icon={faGithub} style={{ color: "#8b5cf6" }} />
-              </a>   */}
-
-              {/* <a href="">
-               <FontAwesomeIcon icon={faLinkedin} style={{ color: "#8b5cf6" }} />
-              </a> */}
-
-
-
             </div>
           </div>
           <div class="relative w-full mt-12 lg:w-1/2 lg:mt-0">

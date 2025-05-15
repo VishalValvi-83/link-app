@@ -111,12 +111,21 @@ const Dashboard = () => {
     <>
       <Navbarnew />
       <div className="flex h-screen flex-col dark:bg-gray-900 md:flex-row">
-        <aside className="md:w-1/6 pt-8 md:pt-16 md:h-screen h-48 w-full dark:bg-gray-800 text-gray-900 dark:text-white">
+        <aside className="md:w-1/6 pt-14 md:pt-16 md:h-screen h-48 w-full dark:bg-gray-800 text-gray-900 dark:text-white">
           <Sidebar user={user} />
         </aside>
         {/* Mobile View (Card Style) */}
-        <div className="sm:hidden dark:bg-gray-600 pt-3 rounded-lg dark:text-white">
-          <p className='mx-5 mb-2'>Shorten Links</p>
+        <div className="sm:hidden dark:bg-gray-600 p-3 rounded-lg dark:text-white">
+          <div className="flex flex-row items-center justify-between">
+            <p className='mx-5 mb-2'>Shorten Links</p>
+
+            <button
+              onClick={() => window.location.href = '/create-link'}
+              className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+            >
+              Create New Link
+            </button>
+          </div>
           {links.map((link, index) => (
             <div key={index} className="dark:bg-gray-800 dark:text-white text-gray-100 p-2 sm:p-4 shadow-lg">
               {/* Short Link Row */}
@@ -235,7 +244,7 @@ const Dashboard = () => {
                         Show
                       </button>
                     </td>
-                    <td className="py-2 text-center px-2 md:px-4"><Eye className='w-4 inline-flex mb-1 h-4'/> {link.view}</td>
+                    <td className="py-2 text-center px-2 md:px-4"><Eye className='w-4 inline-flex mb-1 h-4' /> {link.view}</td>
                     <td className="py-2 text-center px-2 md:px-4">{new Date(link.createdAt).toLocaleDateString()}</td>
                     <td className="py-2 text-center px-2 md:px-4">
                       <button

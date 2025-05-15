@@ -23,7 +23,7 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="w-full min-h-full flex sm:flex-col justify-between sm:justify-start no-wrap flex-col-reverse items-center text-white p-4 relative">
+        <div className="w-full min-h-full flex sm:flex-col justify-between sm:justify-start flex-wrap items-center text-white p-4 relative">
 
             <div className="sm:text-center flex items-center sm:flex-col gap-2 flex-row">
                 <img
@@ -44,7 +44,7 @@ const Sidebar = () => {
 
             <button
                 onClick={handleLogout}
-                className="sm:mt-4 sm:relative sm:top-0 sm:right-0 absolute top-4 right-4 bg-red-600 sm:px-4 sm:py-2 px-4 py-2 rounded hover:bg-red-700 flex items-center gap-2">
+                className="sm:mt-4  bg-red-600 sm:px-4 sm:py-2 px-2 py-1 rounded hover:bg-red-700 flex items-center gap-2">
                 <LogOut className="w-5 h-5" /> Logout
             </button>
         </div>

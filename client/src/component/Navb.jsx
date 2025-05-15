@@ -32,17 +32,15 @@ const Navbarnew = () => {
         }
     };
     const handleSignOut = () => {
-
         signOut(auth)
             .then(() => {
                 localStorage.removeItem('firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]'); // Clear user data
                 navigate('/user-login');
-                window.location.reload(); 
+                window.location.reload();
             })
             .catch((error) => {
                 console.error(error);
             });
-        // Clear user data from local storage
         localStorage.removeItem('User');
         localStorage.removeItem('token');
     };
@@ -73,7 +71,7 @@ const Navbarnew = () => {
                         <li>
                             <Link to="/service" className={`block py-2 px-3 ${window.location.pathname === '/service' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Services</Link>
                         </li>
-                        
+
                         <li>
                             <Link to="/contact" className={`block py-2 px-3 ${window.location.pathname === '/contact' ? 'md:text-blue-700 md:dark:text-blue-500' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>Contact</Link>
                         </li>
@@ -99,10 +97,10 @@ const Navbarnew = () => {
                                             <span id='userInfo' className="block text-sm text-gray-900 dark:text-white"> {user ? user?.displayName || user.fullname : "Guest"}</span>
                                             <span className="block text-sm  text-gray-500 truncate dark:text-gray-400"> {user ? user?.email || "No Email" : "Guest"}</span>
                                         </div>
-                                        <a href="#" role="menuitem"
+                                        <Link to="/user/profile" role="menuitem"
                                             className="block px-4 py-2 text-sm  hover:bg-gray-600"
                                         >My profile
-                                        </a>
+                                        </Link>
                                         <Link to="/dashboard" className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
                                         <div className="border-t pt-3 my-2 ">
                                             {user != null ?

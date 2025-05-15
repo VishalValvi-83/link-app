@@ -13,7 +13,7 @@ import { Toaster } from 'react-hot-toast'
 import Service from "./view/Service_page/service";
 import Dashboard from './component/Dashboard/Dashboard'
 import QRHelpPage, { Help } from "./component/Help/QRHelpPage";
-import Profile, {ProfileDesktop} from "./component/Profile/Profile";
+import ProfileResponsive from "./component/Profile/ProfileResponsive";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
   {
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/user/profile",
-    element: <Profile />
+    element: <ProfileResponsive />
   },
   {
     path: "*",

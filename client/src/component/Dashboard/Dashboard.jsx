@@ -90,7 +90,7 @@ const Dashboard = () => {
         setLinks(response.data.data);
         console.log(response.data.data)
 
-        toast.success(response.data.message) // Set the links if the response is successful
+        toast.success(response.data.message)
       } else {
         toast.error(response.data.message || "Failed to fetch links");
       }
@@ -98,9 +98,6 @@ const Dashboard = () => {
       toast.error("An error occurred while fetching links");
     }
   }
-
-  console.log(import.meta.env.VITE_BACKEND_URL)
-
   useEffect(() => {
     if (user && user._id) {
       LoadLinks();

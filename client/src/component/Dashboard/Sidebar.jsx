@@ -1,6 +1,7 @@
 import React from 'react';
 import { LogOut } from 'lucide-react'; // Import icons
 import { useNavigate } from 'react-router-dom';
+import FallBackPhoto from './../../assets/FallBackUserImg.png'
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -27,10 +28,10 @@ const Sidebar = () => {
 
             <div className="sm:text-center flex items-center sm:flex-col gap-2 flex-row">
                 <img
-                    src={user?.photoURL || fallbacks.photo}
+                    src={user?.photoURL || FallBackPhoto}
                     alt="Profile"
                     className="rounded-full h-14 w-14 sm:h-20 sm:w-20 mx-auto border-2 border-gray-600"
-                    onError={(e) => { e.target.src = fallbacks.photo; }} 
+                    onError={(e) => { e.target.src = FallBackPhoto; }} 
                 />
                 <div>
                     <h2 className="text-lg font-bold mt-2">

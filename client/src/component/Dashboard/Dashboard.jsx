@@ -107,6 +107,45 @@ const Dashboard = () => {
     }
   }, [user]);
 
+  const exportToCSV = () => {
+    const csvRows = [
+      ["Title", "Original Link", "Short Link", "Clicks", "Created At"],
+      ...links.map(link => [
+        link.title,
+        link.target,
+        `${import.meta.env.VITE_BACKEND_URL}/${link.slug}`,
+        link.view,
+        new Date(link.createdAt).toLocaleDateString()
+      ])
+    ];
+    const csvContent = csvRows.map(e => e.join(",")).join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "shortened_links.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const printTable = () => {
+    const printContent = document.getElementById("links-table").outerHTML;
+    const win = window.open("", "", "width=900,height=700");
+    win.document.write(`
+    <html>
+      <head>
+        <title>Print Links</title>
+      </head>
+      <body>
+        ${printContent}
+      </body>
+    </html>
+  `);
+    win.document.close();
+    win.print();
+  };
+
   return (
     <>
       <Navbarnew />
@@ -115,15 +154,25 @@ const Dashboard = () => {
           <Sidebar user={user} />
         </aside>
         {/* Mobile View (Card Style) */}
-        <div className="sm:hidden dark:bg-gray-600 p-3 rounded-lg dark:text-white">
-          <div className="flex flex-row items-center justify-between">
-            <p className='mx-5 mb-2'>Shorten Links</p>
-
+        <div className="sm:hidden dark:bg-gray-600 p-3 rounded-lg text-black dark:text-white">
+          <div className="flex flex-row items-center mb-2 justify-between">
+            <p className='mx-5 text-lg font-semibold dark:text-white text-gray-900 mb-2'>Shorten Links</p>
             <button
               onClick={() => window.location.href = '/create-link'}
-              className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
-            >
-              Create New Link
+              className="bg-indigo-700 text-white px-2 py-1 rounded hover:bg-indigo-800"
+            > Create New Link
+            </button>
+          </div>
+          <div className="flex gap-2 mb-4 justify-end">
+            <button
+              onClick={exportToCSV}
+              className="bg-green-600 text-white px-2 rounded hover:bg-green-700 text-md"
+            >Export
+            </button>
+            <button
+              onClick={printTable}
+              className="bg-blue-600 text-white px-2 rounded hover:bg-blue-700 text-md"
+            >Print
             </button>
           </div>
           {links.map((link, index) => (
@@ -210,7 +259,21 @@ const Dashboard = () => {
                 </button>
               </div>
             </div>
-            <table className="w-full dashboard rounded-md text-sm md:text-medium overflow-x-scroll dark:bg-gray-800 text-gray-100">
+            <div className="flex flex-row-reverse gap-2 mb-4">
+              <button
+                onClick={exportToCSV}
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+              >
+                Export to Excel
+              </button>
+              <button
+                onClick={printTable}
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              >
+                Print Table
+              </button>
+            </div>
+            <table id="links-table" className="w-full dashboard rounded-md text-sm md:text-medium overflow-x-scroll dark:bg-gray-800 text-gray-100">
               <thead>
                 <tr>
                   <th className="py-2 px-2 md:px-4">Title</th>

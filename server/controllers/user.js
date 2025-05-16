@@ -95,8 +95,32 @@ const postGoogleSignin = async (req, res) => {
         });
     }
 };
+
+const updateUser = async (req, res) => {
+    const { email, fullname } = req.body;
+    try {
+        const { id } = req.params;
+        if (!id) {
+            return res.status(400).json({ success: false, message: "User ID not provided" });
+        }
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        user.email = email || user.email;
+        user.fullname = fullname || user.fullname;
+        const updatedUser = await user.save();
+        res.json({ success: true, message: "User updated successfully", data: updatedUser });
+    }
+    catch (e) {
+        console.error(e);
+        res.status(500).json({ success: false, message: "Something went wrong" });
+    }
+}
+
 export {
     postSingup,
     postlogin,
-    postGoogleSignin
+    postGoogleSignin,
+    updateUser
 }

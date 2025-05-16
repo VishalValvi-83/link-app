@@ -67,7 +67,7 @@ export default function HeroCarousel() {
                 Simplify your online presence with our URL shortener. Create custom links, track clicks, and analyze performance.
               </p>
               <div className="flex justify-center flex-wrap mt-6 gap-4">
-                <button onClick={createLink} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-2 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 hover:text-sky-500">
+                <button onClick={createLink} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-2 py-3 mr-3 text-base font-medium text-center text-gray-900 dark:text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 hover:text-sky-500">
                   Shorten Your URL
                   <svg className="w-5 h-5 ml-2 -mr-1"
                     fill="currentColor"
@@ -123,7 +123,7 @@ export default function HeroCarousel() {
                 Every shortened link includes a QR code. Download and share it anywhere — print, screens, posters.
               </p>
               <div className="flex justify-center flex-wrap mt-6 gap-4">
-                <button onClick={generateQRCode} className="px-6 text-md font-medium py-3 inline-flex items-center justify-center bg-primary-700 text-white rounded-lg hover:text-sky-500">
+                <button onClick={generateQRCode} className="px-6 text-md font-medium py-3 inline-flex items-center justify-center bg-primary-700 dark:text-white rounded-lg hover:text-sky-500">
                   Generate QR
                   <QrCodeIcon className="w-5 h-5 ml-2 -mr-1" />
                 </button>

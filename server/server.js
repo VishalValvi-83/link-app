@@ -3,7 +3,7 @@ import dotenv, { config } from 'dotenv'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import { deleteLink, getlinks, getSlugRedic, postLink, updateLink } from './controllers/Link.js'
-import { postGoogleSignin, postlogin, postSingup } from './controllers/user.js'
+import { postGoogleSignin, postlogin, postSingup, updateUser } from './controllers/user.js'
 import { createContact } from './controllers/contact.js'
 import colors from 'colors'
 import GReCap from './controllers/GReCap.js'
@@ -47,7 +47,7 @@ background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
 app.post('/add-link', postLink)
 app.get('/get-short-link', getlinks)
 app.get('/:slug', getSlugRedic)
-app.delete('/delete-link/:id', deleteLink )
+app.delete('/delete-link/:id', deleteLink)
 app.put('/update-link/:id', updateLink)
 
 
@@ -56,8 +56,7 @@ app.post('/user', postSingup)
 app.post('/user-login', postlogin)
 
 app.post('/google-signin', postGoogleSignin)
-// google reCAPTCHA verification API
-// app.post("/verify-recaptcha",GReCap);
+app.put('/update-profile/:id', updateUser)
 
 app.post("/contact", createContact);
 

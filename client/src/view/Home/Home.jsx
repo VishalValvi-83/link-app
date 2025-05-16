@@ -30,7 +30,7 @@ const Home = () => {
         <div className="container p-5 mx-auto">
           <div className="text-center mb-10">
             <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-purple-500 py-4">FEATURES</h1>
-            <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-100 mb-4">Create Smarter Links, Drive Better Results</h1>
+            <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-800 dark:text-gray-100 mb-4">Create Smarter Links, Drive Better Results</h1>
             <p className="text-lg leading-relaxe xl:w-2/4 text-justify lg:w-3/4 mx-auto">Transform long, messy URLs into concise, branded links that are easy to share and track. Elevate your marketing campaigns with detailed analytics, custom slugs, and secure link-sharing options designed for success.</p>
           </div>
           <div className="flex text-black flex-wrap xl:w-3/4 lg:w-4/2 sm:mx-auto sm:mb-2 -mx-2">

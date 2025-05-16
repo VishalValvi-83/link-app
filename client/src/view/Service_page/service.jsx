@@ -27,10 +27,10 @@ const Service = () => {
     <>
       <Navbarnew />
       <section id="service-hero" className="text-center">
-        <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
+        <h1 className="text-5xl font-extrabold text-white mb-6">
           Our Services
         </h1>
-        <p className="md:text-xl text-sm text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <p className="md:text-xl text-sm text-gray-400 dark:text-gray-300 max-w-2xl mx-auto">
           Our <strong>URL Shortner</strong> offers tools to enhance your digital reach with modern, efficient, and insightful link services.
         </p>
       </section>

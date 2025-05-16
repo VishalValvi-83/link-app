@@ -7,7 +7,7 @@ const Footer = () => {
 
                 <div className="border-t border-gray-100 pt-8 space-y-3 sm:flex sm:items-center sm:justify-between lg:mt-15 dark:border-gray-800">
                     <div className="inline-flex items-center justify-center">
-                        <img src={Logo} alt="ziplink" />
+                        <img src={Logo} alt="URL-Shortner" />
                         <span className="text-2xl font-extrabold text-gray-900 dark:text-gray-200 mx-2 ">URL Shortner</span>
                     </div>
                     <div >

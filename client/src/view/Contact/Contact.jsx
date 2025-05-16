@@ -45,7 +45,7 @@ const Contact = () => {
 
             </h1>
             <p class=" text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
-              Thank you for visiting ZipLink! If you have any inquiries about our project, suggestions for improvement, or would like to collaborate, feel free to reach out.
+              Thank you for visiting URL Shortner! If you have any inquiries about our project, suggestions for improvement, or would like to collaborate, feel free to reach out.
               We’re a group of computer science students passionate about building secure and efficient web tools. We'll do our best to respond promptly.
             </p>
 

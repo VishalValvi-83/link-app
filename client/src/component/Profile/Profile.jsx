@@ -27,7 +27,6 @@ const Profile = () => {
         }
     }, []);
 
-    // Open modal and set initial values
     const handleEditProfile = () => {
         setEditData({
             fullname: user?.fullname || user?.displayName || "",
@@ -36,12 +35,10 @@ const Profile = () => {
         setEditOpen(true);
     };
 
-    // Handle input changes
     const handleEditChange = (e) => {
         setEditData({ ...editData, [e.target.name]: e.target.value });
     };
 
-    // Submit updated profile
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -178,7 +175,6 @@ const ProfileDesktop = () => {
         }
     }, []);
 
-    // Open modal and set initial values
     const handleEditProfile = () => {
         setEditData({
             fullname: user?.fullname || user?.displayName || "",
@@ -187,12 +183,10 @@ const ProfileDesktop = () => {
         setEditOpen(true);
     };
 
-    // Handle input changes
     const handleEditChange = (e) => {
         setEditData({ ...editData, [e.target.name]: e.target.value });
     };
 
-    // Submit updated profile
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         try {

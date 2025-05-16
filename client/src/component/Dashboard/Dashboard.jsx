@@ -3,9 +3,10 @@ import Sidebar from './Sidebar';
 import LinkModal from './linkModal';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
-import { ChevronDown, ChevronUp, Copy, Trash, Pencil, Eye, EyeIcon } from "lucide-react";
+import { ChevronDown, ChevronUp, Copy, Trash, Pencil, Eye, EyeIcon, File } from "lucide-react";
 import Navbarnew from '../Navb';
-
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const Dashboard = () => {
   const [links, setLinks] = useState([]);
@@ -104,44 +105,35 @@ const Dashboard = () => {
     }
   }, [user]);
 
-  const exportToCSV = () => {
-    const csvRows = [
-      ["Title", "Original Link", "Short Link", "Clicks", "Created At"],
-      ...links.map(link => [
-        link.title,
-        link.target,
-        `${import.meta.env.VITE_BACKEND_URL}/${link.slug}`,
-        link.view,
-        new Date(link.createdAt).toLocaleDateString()
-      ])
-    ];
-    const csvContent = csvRows.map(e => e.join(",")).join("\n");
-    const blob = new Blob([csvContent], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    doc.text("Shortened Links", 14, 15);
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "shortened_links.csv";
-    a.click();
-    URL.revokeObjectURL(url);
+    const tableColumn = ["Title", "Original Link", "Short Link", "Clicks", "Created At"];
+    const tableRows = links.map(link => [
+      link.title,
+      link.target,
+      `${import.meta.env.VITE_BACKEND_URL}/${link.slug}`,
+      link.view,
+      new Date(link.createdAt).toLocaleDateString()
+    ]);
+
+    autoTable(doc, {
+      head: [tableColumn],
+      body: tableRows,
+      startY: 20,
+      styles: { fontSize: 9 },
+      headStyles: { fillColor: [52, 73, 94] },
+      columnStyles: {
+        3: { cellWidth: 18 }, // Clicks column (index 3)
+        4: { cellWidth: 28 }  // Created At column (index 4)
+      }
+    });
+
+    doc.save("shortened_links.pdf");
   };
 
-  const printTable = () => {
-    const printContent = document.getElementById("links-table").outerHTML;
-    const win = window.open("", "", "width=900,height=700");
-    win.document.write(`
-    <html>
-      <head>
-        <title>Print Links</title>
-      </head>
-      <body>
-        ${printContent}
-      </body>
-    </html>
-  `);
-    win.document.close();
-    win.print();
-  };
+
 
   return (
     <>
@@ -160,16 +152,12 @@ const Dashboard = () => {
             > Create New Link
             </button>
           </div>
+
           <div className="flex gap-2 mb-4 justify-end">
             <button
-              onClick={exportToCSV}
-              className="bg-green-600 text-white px-2 rounded hover:bg-green-700 text-md"
-            >Export
-            </button>
-            <button
-              onClick={printTable}
-              className="bg-blue-600 text-white px-2 rounded hover:bg-blue-700 text-md"
-            >Print
+              onClick={exportToPDF}
+              className="bg-red-600 text-white px-2 rounded hover:bg-red-700 text-md"
+            >Export PDF
             </button>
           </div>
           {links.map((link, index) => (
@@ -258,16 +246,9 @@ const Dashboard = () => {
             </div>
             <div className="flex flex-row-reverse gap-2 mb-4">
               <button
-                onClick={exportToCSV}
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-              >
-                Export to Excel
-              </button>
-              <button
-                onClick={printTable}
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-              >
-                Print Table
+                onClick={exportToPDF}
+                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+              ><File className='w-5 h-5 inline-block mb-1' /> Export as PDF
               </button>
             </div>
             <table id="links-table" className="w-full dashboard rounded-md text-sm md:text-medium overflow-x-scroll dark:bg-gray-800 text-gray-100">

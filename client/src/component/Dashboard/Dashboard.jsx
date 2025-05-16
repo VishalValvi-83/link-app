@@ -133,6 +133,12 @@ const Dashboard = () => {
     doc.save("shortened_links.pdf");
   };
 
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("User") || localStorage.getItem("token"));
+    if (!userData) {
+      window.location.pathname = '/user-login'
+    };
+  }, [user]);
 
 
   return (

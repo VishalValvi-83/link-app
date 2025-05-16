@@ -24,6 +24,9 @@ const Profile = () => {
                 fullname: userData.fullname || userData.displayName || "",
                 email: userData.email || "",
             });
+        } else {
+            window.location.pathname == '/user-login'
+
         }
     }, []);
 
@@ -57,6 +60,27 @@ const Profile = () => {
             toast.error(err.response?.data?.message || "Update failed");
         }
     };
+
+    const handleLogout = () => {
+        if (user) {
+            localStorage.removeItem('token')
+            localStorage.removeItem('User')
+            toast.loading("Logging out")
+            setTimeout(() => {
+                toast.dismiss()
+                window.location.pathname == '/user-login'
+            }, 1000);
+        } else {
+
+            toast.error("User not found")
+        }
+    }
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem("User") || localStorage.getItem("token"));
+        if (!userData) {
+            window.location.pathname = '/user-login'
+        };
+    }, [user]);
 
     return (
         <>
@@ -106,7 +130,7 @@ const Profile = () => {
                         ><Trash2 className="w-5 h-5" />Delete Account</button>
                     </div>
                     <button className="w-full py-3 rounded-xl dark:text-white font-semibold text-fuchsia-700  bg-fuchsia-100 dark:bg-fuchsia-900 hover:bg-fuchsia-200 dark:hover:bg-fuchsia-800 transition mb-2"
-                    // onClick={onLogout}
+                        onClick={handleLogout}
                     ><LogOut className="inline-block mr-2 w-5 h-5" />Sign out
                     </button>
                 </div>
@@ -208,10 +232,25 @@ const ProfileDesktop = () => {
 
 
 
+   const handleLogout = () => {
+        if (user) {
+            localStorage.removeItem('token')
+            localStorage.removeItem('User')
+            toast.loading("Logging out")
+            setTimeout(() => {
+                toast.dismiss()
+                window.location.pathname = '/user-login'
+            }, 1000);
+        } else {
+            toast.error("User not found")
+        }
+    }
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem("User") || localStorage.getItem("token"));
-        if (userData) setUser(userData);
-    }, []);
+        if (!userData) {
+            window.location.pathname = '/user-login'
+        };
+    }, [user]);
 
     return (
         <>
@@ -266,7 +305,7 @@ const ProfileDesktop = () => {
                             ><Edit2 className="w-5 h-5" />
                                 Edit Profile
                             </button>
-                            <button
+                            <button onClick={handleLogout}
                                 className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl dark:text-white font-semibold text-fuchsia-700  bg-fuchsia-100 dark:bg-fuchsia-900 hover:bg-fuchsia-200 dark:hover:bg-fuchsia-800 transition"
                             ><LogOut className="w-5 h-5" />
                                 Sign out

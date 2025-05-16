@@ -123,7 +123,7 @@ const Navbarnew = () => {
                 </div>
                 {/* Mobile Menu */}
                 {menuOpen && (
-                    <div className="absolute animate__animated animate__backInDown top-16 right-0 w-1/2 bg-white dark:bg-gray-800 shadow-md rounded-md z-40 md:hidden">
+                    <div className="absolute animate__animated animate__fadeInRight top-16 right-0 w-1/2 bg-white dark:bg-gray-800 shadow-md rounded-md z-40 md:hidden">
                         <ul className="flex flex-col font-medium rounded-lg rtl:space-y-reverse md:mt-0 md:border-0 ">
                             <li>
                                 <Link to="/" className={`block py-2 px-3 rounded ${window.location.pathname === '/'

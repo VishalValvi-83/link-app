@@ -1,4 +1,3 @@
-// QRGenerator.js
 import React, { useRef, useState } from 'react';
 import QRCode from 'react-qr-code';
 import { toast } from 'react-hot-toast';
@@ -43,22 +42,7 @@ function QRGenerator() {
 
     img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
   };
-
-  // const handleDownload = () => {
-  //   const svg = qrRef.current.querySelector('svg');
-  //   const serializer = new XMLSerializer();
-  //   const svgData = serializer.serializeToString(svg);
-  //   const blob = new Blob([svgData], { type: 'image/png' });
-  //   const urlBlob = URL.createObjectURL(blob);
-
-  //   const link = document.createElement('a');
-  //   link.href = urlBlob;
-  //   link.download = 'qr-code.png';
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // };
-
+  
   return (
     <>
       <input

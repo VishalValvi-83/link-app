@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import Modal from 'react-modal';
 import QRCode from 'react-qr-code';
 import './Style.css';
+import { Link } from 'lucide-react';
 
 const LinkModal = ({ isOpen, onRequestClose, link }) => {
     if (!link) return null;
@@ -36,9 +37,9 @@ const LinkModal = ({ isOpen, onRequestClose, link }) => {
     };
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal p-0" overlayClassName="overlay" appElement={document.getElementById('root')}>
-            <h2 className="text-md font-semibold mb-3">QR Code for <span className='hover:underline text-blue-500'>{link.slug}</span></h2>
-            <div ref={qrCodeRef}> 
+        <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal " overlayClassName="overlay" appElement={document.getElementById('root')}>
+            <h2 className="text-md font-semibold mb-3">QR Code for  <span className='hover:underline text-blue-500'><Link className='w-4 h-4 inline-block mr'/> {link.slug}</span></h2>
+            <div className='p-2' ref={qrCodeRef}> 
                 <QRCode value={url} size={200} />
             </div>
             <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>

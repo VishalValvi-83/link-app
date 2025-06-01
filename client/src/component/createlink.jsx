@@ -136,7 +136,7 @@ const Createlink = () => {
                                     </div>
                                     <h2 className="text-lg text-purple-500 font-medium title-font mb-3">Step 2: Customize Your Link</h2>
                                 </div>
-                                <p className=" text-gray-400">Personalize your short URL with a custom slug. <br /> <b>Example:</b> Your link could look like https://linkzip.com/my-app.</p>
+                                <p className=" text-gray-400">Personalize your short URL with a custom slug. <br /> <b>Example:</b> Your link could look like https://example.com/my-app.</p>
                             </div>
                         </div>
                         <div className="xl:w-1/3 md:w-1/2 p-4">

@@ -121,7 +121,7 @@ const Createlink = () => {
                                     <h2 className="text-lg text-purple-500 font-medium title-font mb-2">Step 1: Enter Your Long URL</h2>
                                 </div>
                                 <p className="text-sm text-gray-400">Start by entering the long URL you want to shorten into the input field. <br />
-                                    <b>Example:</b> https://example.com/my-very-long-link-with-parameters.</p>
+                                    <b>Example:</b> https://example.com/my-very-long-link-with-parameters</p>
                             </div>
                         </div>
                         <div className="xl:w-1/3 md:w-1/2 p-4">
@@ -237,13 +237,14 @@ const Createlink = () => {
                                 <div>
                                     <label className="block sm:text-lg text-gray-700 dark:text-gray-300 mb-1">Long URL</label>
                                     <div className="flex">
-                                        <span className="inline-flex items-center px-2 bg-gray-200 text-gray-600 rounded-l-md border border-r-0 border-gray-300 dark:bg-gray-700 dark:text-white">https://</span>
+                                        {/* <span className="inline-flex items-center px-2 bg-gray-200 text-gray-600 rounded-l-md border border-r-0 border-gray-300 dark:bg-gray-700 dark:text-white">https://</span> */}
                                         <input
                                             type="text"
                                             value={linkData.target}
                                             onChange={(e) => setLinkData({ ...linkData, target: e.target.value })}
-                                            placeholder="Paste your secure (HTTPS) URL"
-                                            className="w-full mt-0 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-r-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                            placeholder="Paste your  URL (with HTTPS)"
+                                            className="w-full mt-0 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                            pattern="https://.*"
                                         />
                                     </div>
                                 </div>
@@ -272,8 +273,8 @@ const Createlink = () => {
                                         onChange={(e) => setQrCodeUrl(e.target.value)}
                                         placeholder="Enter a valid HTTPS URL"
                                         className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                        {/* clear qr code button also qr url */}
-                                    <button type='button' onClick={() => {setQrCodeUrl(""); setGeneratedQR(false)}} className="bg-red-800 text-white mt-2 px-4 py-1 rounded hover:bg-red-700 mb-3">Clear QR</button>
+                                    {/* clear qr code button also qr url */}
+                                    <button type='button' onClick={() => { setQrCodeUrl(""); setGeneratedQR(false) }} className="bg-red-800 text-white mt-2 px-4 py-1 rounded hover:bg-red-700 mb-3">Clear QR</button>
 
                                 </div>
 

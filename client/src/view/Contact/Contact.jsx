@@ -4,6 +4,7 @@ import Footer from '../../component/Footer';
 import axios from 'axios';
 import { toast } from 'react-hot-toast'
 import Phone from '../../assets/phone.svg'
+import TeamMembers from '../../component/TeamMembers/TeamMembers';
 
 
 const Contact = () => {
@@ -36,7 +37,7 @@ const Contact = () => {
   return (
     <>
       <Navbarnew />
-      <section className=" w-[100%]  text-gray-500 dark:bg-gray-900 border-none body-font">
+      <section className=" w-[100%] text-gray-500 dark:bg-gray-900 border-none body-font">
         <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
           <div class="w-full mt-8 mx-auto lg:w-1/2">
 
@@ -95,6 +96,7 @@ const Contact = () => {
         </div>
 
       </section>
+      <TeamMembers/>
       <Footer />
     </>
   )

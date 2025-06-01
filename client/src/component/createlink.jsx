@@ -53,6 +53,9 @@ const Createlink = () => {
             if (response.data.success) {
                 toast.success("Link is shortened");
                 setLinkData({ title: "", target: "", slug: "" });
+                setTimeout(() => {
+                    window.location.href = `/dashboard`;
+                },1000);
             } else {
                 toast.error(response.data.message);
             }

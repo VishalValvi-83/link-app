@@ -210,17 +210,17 @@ const Signup = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center px-4 py-10 dark:bg-gray-800 sm:px-6 lg:px-8 sm:py-12  lg:py-14">
+          <div className="flex items-center justify-center px-4 py-10 dark:bg-gray-900 sm:px-6 lg:px-8 sm:py-12  lg:py-14">
             <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
               <h2 className="text-3xl font-bold leading-tight dark:text-white text-black sm:text-4xl">
                 Be a Part of Something Special - Sign Up
               </h2>
-              <p className="mt-2 text-base font-light mr-1 text-gray-400">
+              <p className="mt-2 text-base font-light mr-1 dark:text-gray-200">
                 Already have an account?
                 <Link
                   to="/user-login"
                   title=""
-                  className="font-medium text-blue-600 ms-1 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
+                  className="font-medium text-blue-600 dark:text-blue-400 dark:hover:text-blue-500 ms-1 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
                 > Login.
                 </Link>
               </p>

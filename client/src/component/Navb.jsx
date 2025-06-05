@@ -57,7 +57,7 @@ const Navbarnew = () => {
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between transition ease-in-out mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src={Icon} className="h-8" alt="Flowbite Logo" />
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">URL Shortner</span>
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Slinky</span>
                 </Link>
                 {/* Navigation Links - Desktop */}
                 <div className="hidden md:flex  space-x-6 dark:text-white text-gray-700 text-sm">

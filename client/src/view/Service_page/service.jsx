@@ -31,7 +31,7 @@ const Service = () => {
           Our Services
         </h1>
         <p className="md:text-xl text-sm text-gray-400 dark:text-gray-300 max-w-2xl mx-auto">
-          Our <strong>URL Shortner</strong> offers tools to enhance your digital reach with modern, efficient, and insightful link services.
+          Our <strong>Slinky URL Shortner</strong> offers tools to enhance your digital reach with modern, efficient, and insightful link services.
         </p>
       </section>
       <section className="text-gray-700 bg-white dark:text-gray-300 dark:bg-gray-900 py-16">

@@ -7,11 +7,11 @@ const faqs = [
     },
     {
         question: "Are the links I create secure?",
-        answer: "Absolutely. All links created with URL Shortner are HTTPS-secured and protected against unauthorized access or manipulation.",
+        answer: "Absolutely. All links created with Slinky URL Shortner are HTTPS-secured and protected against unauthorized access or manipulation.",
     },
     {
-        question: "Does URL Shortner track personal user data?",
-        answer: "No, URL Shortner only collects anonymous click data like time, location to help you analyze traffic. We respect user privacy and comply with data protection laws.",
+        question: "Does Slinky URL Shortner track personal user data?",
+        answer: "No, Slinky URL Shortner only collects anonymous click data like time, location to help you analyze traffic. We respect user privacy and comply with data protection laws.",
     },
     {
         question: "Is there a limit on how many links I can create?",

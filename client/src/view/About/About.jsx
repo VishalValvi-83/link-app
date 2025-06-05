@@ -51,7 +51,7 @@ function About() {
                                     </div>
 
                                 </div>
-                                <p className="leading-relaxed text-sm lg:text-lg">We constantly evolve and improve URL Shortner to stay ahead in the fast-paced digital world, always bringing users the latest features and tech.</p>
+                                <p className="leading-relaxed text-sm lg:text-lg">We constantly evolve and improve Slinky to stay ahead in the fast-paced digital world, always bringing users the latest features and tech.</p>
                             </div>
                         </div>
                         <div className="xl:w-1/4 md:w-1/2 p-4">

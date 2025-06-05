@@ -117,7 +117,7 @@ export const Help = () => (
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-2">
             <Link2 className="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400" />
-            <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Using URL Shortner</h2>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Using Slinky</h2>
           </div>
           <ul className="space-y-2 pl-7 border-l-4 border-fuchsia-100 dark:border-fuchsia-900">
             <li className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
@@ -181,8 +181,8 @@ export const Help = () => (
           </div>
           <p className="text-gray-700 dark:text-gray-300 mb-2">
             Email us at{" "}
-            <a href="mailto:support@urlshortner.com" className="text-blue-600 underline">
-              support@urlshortner.com
+            <a href="mailto:support@Slinky.com" className="text-blue-600 underline">
+              support@Slinky.com
             </a>{" "}
             or use our{" "}
             <Link to="/contact" className="text-blue-600 underline">
@@ -200,7 +200,7 @@ export const Help = () => (
             <li className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
               <CheckCircle2 className="w-4 h-4 text-green-500" />
               <span>
-                <strong>Is this URL Shortner free?</strong> Yes, basic features are free for all users.
+                <strong>Is this Slinky URL Shortner free?</strong> Yes, basic features are free for all users.
               </span>
             </li>
             <li className="flex items-center gap-2 text-gray-700 dark:text-gray-300">

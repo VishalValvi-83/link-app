@@ -64,7 +64,7 @@ export default function HeroCarousel() {
                 Shorten, Share, and Track Your URLs
               </h1>
               <p className="mt-4 font-light  animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300 text-lg lg:text-2xl  dark:text-gray-300">
-                Simplify your online presence with our URL shortener. Create custom links, track clicks, and analyze performance.
+                Simplify your online presence with Slinky. Create custom links, track clicks, and analyze performance.
               </p>
               <div className="flex justify-center flex-wrap mt-6 gap-4">
                 <button onClick={createLink} className="inline-flex items-center animate__animated animate__fadeInLeft justify-center px-2 py-3 mr-3 text-base font-medium text-center text-gray-900 dark:text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 hover:text-sky-500">

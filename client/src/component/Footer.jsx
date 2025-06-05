@@ -7,19 +7,19 @@ const Footer = () => {
 
                 <div className="border-t border-gray-100 pt-8 space-y-3 sm:flex sm:items-center sm:justify-between lg:mt-15 dark:border-gray-800">
                     <div className="inline-flex items-center justify-center">
-                        <img src={Logo} alt="URL-Shortner" />
-                        <span className="text-2xl font-extrabold text-gray-900 dark:text-gray-200 mx-2 ">URL Shortner</span>
+                        <img src={Logo} alt="Slinky" />
+                        <span className="text-2xl font-extrabold text-gray-900 dark:text-gray-200 mx-2 ">Slinky</span>
                     </div>
                     <div >
                         <p className="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left w-full">
-                            &copy; 2025 URL Shortner. All rights reserved.
+                            &copy; 2025 Slinky. All rights reserved.
                             {" "}Made by{" "}
                             <a
                                 href="https://github.com/VishalValvi-83/link-app"
                                 rel="noreferrer"
                                 target="_blank"
                                 className="text-blue-500 transition hover:opacity-75 dark:text-blue-400"
-                            >URL Shortner Team.
+                            >Slinky Team.
                             </a>
                         </p>
                     </div>

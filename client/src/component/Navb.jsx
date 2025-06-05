@@ -104,7 +104,7 @@ const Navbarnew = () => {
                                         <Link to="/dashboard" className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
                                         <div className="border-t pt-3 my-2 ">
                                             {user != null ?
-                                                <button className="flex btn justify-center mx-auto items-center px-2 py-2 text-sm text-red-600 hover:bg-gray-600 rounded border border-blue-600 dark:text-gray-300 dark:hover:text-white focus:outline-none focus:ring active:bg-blue-500 sm:w-36" id='signOut' onClick={handleSignOut}> <LogOut className="w-4 h-4 mr-2" /> Logout</button>
+                                                <button className="flex btn justify-center mx-auto items-center px-2 py-2 text-sm text-red-600 hover:bg-gray-600 rounded border border-blue-600 dark:text-gray-300 dark:hover:text-white dark:hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-36" id='signOut' onClick={handleSignOut}> <LogOut className="w-4 h-4 mr-2" /> Logout</button>
                                                 : null}
                                         </div>
                                     </div>

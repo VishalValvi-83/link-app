@@ -61,6 +61,22 @@ const Profile = () => {
         }
     };
 
+    const handleDeleteAccount = async () => {
+        if (!window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) return;
+        try {
+            await axios.delete(
+                `${import.meta.env.VITE_BACKEND_URL}/delete-account/${user._id}`,
+                { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+            );
+            toast.success("Account deleted successfully");
+            localStorage.removeItem("token");
+            localStorage.removeItem("User");
+            window.location.pathname = '/user-login';
+        } catch (err) {
+            toast.error(err.response?.data?.message || "Failed to delete account");
+        }
+    };
+
     const handleLogout = () => {
         if (user) {
             localStorage.removeItem('token')
@@ -125,8 +141,8 @@ const Profile = () => {
                         <button className="w-full flex items-center justify-center gap-2 py-2 rounded-xl dark:text-white font-semibold text-blue-700  bg-blue-100 hover:bg-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 transition"
                             onClick={handleEditProfile}
                         ><Edit2 className="w-5 h-5" />Edit Profile</button>
-                        <button className="w-full flex items-center justify-center gap-2 py-2 rounded-xl text-red-600 font-semibold bg-red-50 dark:bg-red-900 hover:bg-red-100 dark:hover:bg-red-800 transition"
-                        // onClick={handleDeleteAccount}
+                        <button className="w-full flex items-center justify-center gap-2 py-2 rounded-xl text-red-50 font-semibold bg-red-50 dark:bg-red-700 hover:bg-red-100 dark:hover:bg-red-800 transition"
+                        onClick={handleDeleteAccount}
                         ><Trash2 className="w-5 h-5" />Delete Account</button>
                     </div>
                     <button className="w-full py-3 rounded-xl dark:text-white font-semibold text-fuchsia-700  bg-fuchsia-100 dark:bg-fuchsia-900 hover:bg-fuchsia-200 dark:hover:bg-fuchsia-800 transition mb-2"
@@ -230,9 +246,23 @@ const ProfileDesktop = () => {
         }
     };
 
+    const handleDeleteAccount = async () => {
+        if (!window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) return;
+        try {
+            await axios.delete(
+                `${import.meta.env.VITE_BACKEND_URL}/delete-account/${user._id}`,
+                { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+            );
+            toast.success("Account deleted successfully");
+            localStorage.removeItem("token");
+            localStorage.removeItem("User");
+            window.location.pathname = '/user-login';
+        } catch (err) {
+            toast.error(err.response?.data?.message || "Failed to delete account");
+        }
+    };
 
-
-   const handleLogout = () => {
+    const handleLogout = () => {
         if (user) {
             localStorage.removeItem('token')
             localStorage.removeItem('User')
@@ -310,8 +340,8 @@ const ProfileDesktop = () => {
                             ><LogOut className="w-5 h-5" />
                                 Sign out
                             </button>
-                            <button
-                                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-red-700  bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800 transition"
+                            <button onClick={handleDeleteAccount}
+                                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-red-100  bg-red-100 dark:bg-red-700 hover:bg-red-200 dark:hover:bg-red-800 transition"
                             ><Trash2 className="w-5 h-5" />
                                 Delete Account
                             </button>

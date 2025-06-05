@@ -117,6 +117,14 @@ const updateUser = async (req, res) => {
         res.status(500).json({ success: false, message: "Something went wrong" });
     }
 }
+export const deleteUser = async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: "Account deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ message: "Failed to delete account", error: err.message });
+    }
+};
 
 export {
     postSingup,

@@ -40,7 +40,7 @@ const Service = () => {
             {/* Service 1 */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:scale-105 transition-transform">
               <QrCode
-                className="w-16 h-16 mx-auto mb-4"
+                className="text-blue-500 w-16 h-16 mx-auto mb-4"
               />
               <h3 className="text-xl font-semibold text-center text-gray-900 dark:text-white mb-2">
                 QR Code Generation

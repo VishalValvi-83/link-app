@@ -19,7 +19,7 @@ const Footer = () => {
                                 rel="noreferrer"
                                 target="_blank"
                                 className="text-blue-500 transition hover:opacity-75 dark:text-blue-400"
-                            >Slinky Team.
+                            >Slinky's Team.
                             </a>
                         </p>
                     </div>
@@ -46,7 +46,7 @@ const Footer = () => {
                     </ul> */}
                     <ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end lg:mb-8">
                         <li>
-                            <a href="https://facebook.com/ziplink.in" rel="noreferrer" target="_blank" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+                            <a href="https://facebook.com/slinky.in" rel="noreferrer" target="_blank" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
                             ><span className="sr-only">Facebook</span>
                                 <svg
                                     className="w-6 h-6"
@@ -65,7 +65,7 @@ const Footer = () => {
 
                         <li>
                             <a
-                                href="https://www.instagram.com/ziplink.in"
+                                href="https://www.instagram.com/slinky.in"
                                 rel="noreferrer"
                                 target="_blank"
                                 className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
@@ -85,7 +85,7 @@ const Footer = () => {
                         </li>
                         <li>
                             <a
-                                href="https://www.instagram.com/ziplink.in"
+                                href="https://www.instagram.com/slinky.in"
                                 rel="noreferrer"
                                 target="_blank"
                                 className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"

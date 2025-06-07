@@ -73,7 +73,7 @@ export default function Signin() {
     authDomain: import.meta.env.VITE_AUTHDOMAIN,
     // databaseURL: import.meta.env.VITE_DBURL,
     projectId: import.meta.env.VITE_PROJECTID,
-    storageBucket: "ziplinkss.firebasestorage.app",
+    storageBucket: "slinky-2024.firebasestorage.app",
     messagingSenderId: import.meta.env.VITE_MSGID,
     appId: import.meta.env.VITE_APPID,
   };
@@ -108,15 +108,7 @@ export default function Signin() {
     return () => unsubscribe();
   }, [auth]);
 
-  useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem("User"));
-    if (userInfo && userInfo._id) {
-      // Proceed with using user._id
-    } else {
-      // Handle the case where the user is not found or logged in
-      console.log("No user found in localStorage");
-    }
-  }, [])
+
   JSON.parse(localStorage.getItem('token'))
   const handleGoogleLogin = async () => {
     try {
@@ -129,14 +121,17 @@ export default function Signin() {
       });
 
       if (response.data.success) {
-        const loggedInUser = response.data.data; // Ensure this contains _id
+        const loggedInUser = response.data.data;
         if (loggedInUser && loggedInUser._id) {
-          // Save user data with _id to localStorage
+
           localStorage.setItem("token", JSON.stringify(loggedInUser));
           console.log(loggedInUser)
 
 
           toast.success("Login successful!");
+          setTimeout(() => {
+            window.location.pathname = "/dashboard";
+          }, 1000);
         } else {
           toast.error("Error: No user ID returned from backend");
         }
@@ -174,11 +169,11 @@ export default function Signin() {
     );
   }
 
-  const storedUser = JSON.parse(
-    localStorage.getItem(
-      "firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]"
-    )
-  );
+  // const storedUser = JSON.parse(
+  //   localStorage.getItem(
+  //     "firebase:authUser:AIzaSyBeIaQdHnNAgERgtfbpHENvFAe5-GjY7wc:[DEFAULT]"
+  //   )
+  // );
 
   // console.log(storedUser);
   // console.log(user?.displayName);

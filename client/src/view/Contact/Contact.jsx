@@ -39,7 +39,7 @@ const Contact = () => {
             <h1 class="text-4xl md:text-5xl lg:text-6xl text-gray-900 font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
               We’d Love to Hear From You!
             </h1>
-            <p class=" text-lg md:text-xl lg:text-2xl font-light dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
+            <p class=" text-lg md:text-xl lg:text-2xl font-light dark:text-gray-300 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
               Thank you for visiting Slinky! If you have any inquiries about our project, suggestions for improvement, or would like to collaborate, feel free to reach out.
               We’re a group of computer science students passionate about building secure and efficient web tools. We'll do our best to respond promptly.
             </p>

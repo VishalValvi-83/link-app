@@ -23,7 +23,7 @@ const teamMembers = [
         github: "https://github.com/bhushanpotdar19",
         instagram: "https://instagram.com/bhushan_potdar_19",
         phone: "+91 77440 49590",
-        email: "harshalpatil0003@gmail.com"
+        email: "bhushanpotdar3@gmail.com"
     },
     {
         name: "Mr. Vishal V. Valvi",
@@ -48,7 +48,7 @@ const teamMembers = [
         instagram: "https://instagram.com/pravin_tambe03",
         github: false,
         phone: "+91 80876 70566",
-        email: "harshalpatil0003@gmail.com"
+        email: "pravintambe@gmail.com"
     },
 ];
 
@@ -67,7 +67,7 @@ export default function TeamMembers() {
                             <h4 className="text-2xl font-bold dark:text-gray-200 text-gray-800 mb-2">{member.name}</h4>
                             <div className="mb-2 text-gray-700 dark:bg-inherit bg-blue-50 py-3 px-2 font-medium text-left dark:text-gray-300 text-md">
                                 <div>
-                                    <span className="font-semibold"><Mail className="w-4 h-4 text-blue-500 me-1 inline-block"/> Email: </span>
+                                    <span className="font-semibold"><Mail className="w-4 h-4 text-blue-400 me-1 inline-block"/>Email: </span>
                                     <a href={`mailto:${member.email}`} className="dark:text-blue-300 text-blue-500 font-medium hover:underline">{member.email}</a>
                                 </div>
                                 <div>
@@ -78,11 +78,11 @@ export default function TeamMembers() {
                             </div>
                             <div className="flex flex-wrap justify-center p-1 gap-4 text-blue-600 text-xl">
                                 <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                    <Linkedin className="w-6 h-6 hover:text-blue-800 transition" />
+                                    <Linkedin className="w-6 h-6 hover:text-blue-500 transition" />
                                 </a>
                                 {member.github && (
                                     <a href={member.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                                        <Github className="w-6 h-6 hover:text-gray-800 transition" />
+                                        <Github className="w-6 h-6 hover:text-blue-500 transition" />
                                     </a>
                                 )}
                                 <a href={member.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -94,8 +94,8 @@ export default function TeamMembers() {
                 </div>
             </div>
             <div className="text-center mt-10">
-                <h2 className="sm:text-3xl text-xl font-bold text-blue-600">Pravara Rural Education Society's</h2>
-                <p className="sm:text-3xl text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-indigo-600 mb-2">
+                <h2 className="sm:text-3xl text-xl font-bold text-blue-500">Pravara Rural Education Society's</h2>
+                <p className="sm:text-4xl text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-indigo-600 mb-2">
                     Sir Visvesvaraya Institute Of Technology, Nashik
                 </p>
                 <p className="text-base font-semibold text-gray-400 mb-6">

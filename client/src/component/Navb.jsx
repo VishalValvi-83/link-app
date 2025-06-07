@@ -87,7 +87,7 @@ const Navbarnew = () => {
                         <div className="flex items-center cursor-pointer space-x-4">
                             {/* Profile Dropdown */}
                             <div className="relative ">
-                                {user !== null ? <img src={user?.photoURL || FallbackPhoto} onClick={() => setIsOpen(!isOpen)} className="w-8 h-8 mx-auto rounded-full" alt="user photo" />
+                                {user !== null ? <img src={user?.photoURL || FallbackPhoto} onClick={() => setIsOpen(!isOpen)} className="w-9 h-9 border-2 border-indigo-500 mx-auto rounded-full" alt="user photo" />
                                     :
                                     <svg className="w-8 h-8 mx-auto" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>}
 
@@ -98,10 +98,10 @@ const Navbarnew = () => {
                                             <span className="block text-sm  text-gray-500 truncate dark:text-gray-400"> {user ? user?.email || "No Email" : "Guest"}</span>
                                         </div>
                                         <Link to="/user/profile" role="menuitem"
-                                            className="block px-4 py-2 text-sm  hover:bg-gray-600"
+                                            className="block px-4 py-2 text-sm hover:text-white hover:bg-gray-600"
                                         >My profile
                                         </Link>
-                                        <Link to="/dashboard" className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
+                                        <Link to="/dashboard" className="block mx-auto px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 dark:hover:bg-gray-600 dark:text-gray-200 hover:text-white">Dashboard</Link>
                                         <div className="border-t pt-3 my-2 ">
                                             {user != null ?
                                                 <button className="flex btn justify-center mx-auto items-center px-2 py-2 text-sm text-red-600 hover:bg-gray-600 rounded border border-blue-600 dark:text-gray-300 dark:hover:text-white dark:hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-36" id='signOut' onClick={handleSignOut}> <LogOut className="w-4 h-4 mr-2" /> Logout</button>

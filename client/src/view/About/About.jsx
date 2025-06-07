@@ -10,15 +10,15 @@ function About() {
     return (
         <>
             <Navbarnew />
-            <section className=" w-[100%] text-gray-500 dark:bg-gray-900 border-none body-font">
+            <section className=" w-[100%] dark:bg-gray-900 border-none body-font">
                 <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
                     <div class="w-full mt-8 mx-auto lg:w-1/2">
 
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl text-gray-800 font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
                             Empowering Your Links, Enhancing Your Reach
 
                         </h1>
-                        <p class="mt-9 text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
+                        <p class="mt-9 text-lg md:text-xl lg:text-2xl font-light text-gray-600 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
                             We are a team dedicated to improving how links are shared and secured online. With URLShot, we aim to solve common problems like long, messy URLs and unsafe links. Our tool not only shortens URLs for easy sharing but also checks their safety to protect users from harmful sites. Whether for businesses, educators, or everyday users, URLShot offers a fast, secure, and reliable way to manage links.
                         </p>
                     </div>
@@ -36,9 +36,9 @@ function About() {
                     <div className="flex flex-wrap w-full mb-10 flex-col items-center text-center">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">CORE VALUES</h1>
                     </div>
-                    <div className="flex flex-wrap justify-around ">
-                        <div className="xl:w-1/4 md:w-1/2 p-4">
-                            <div className="border border-gray-200 p-6 rounded-lg">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:max-w-[90%] text-gray-300 mx-auto">
+                        <div className="p-2">
+                            <div className="dark:bg-gray-800 p-6 rounded-2xl shadow-xl">
                                 <div className=" flex items-center gap-4">
 
                                     <div className='w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4'>
@@ -51,11 +51,11 @@ function About() {
                                     </div>
 
                                 </div>
-                                <p className="leading-relaxed text-sm lg:text-lg">We constantly evolve and improve Slinky to stay ahead in the fast-paced digital world, always bringing users the latest features and tech.</p>
+                                <p className="leading-relaxed text-sm text-justify lg:text-lg">We constantly evolve and improve Slinky to stay ahead in the fast-paced digital world, always bringing users the latest features and tech.</p>
                             </div>
                         </div>
-                        <div className="xl:w-1/4 md:w-1/2 p-4">
-                            <div className="border border-gray-200 p-6 rounded-lg">
+                        <div className="p-2">
+                            <div className="dark:bg-gray-800 p-6 rounded-2xl shadow-xl">
                                 <div className="flex items-center gap-4">
 
                                     <div className='w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4'>
@@ -68,11 +68,11 @@ function About() {
                                     </div>
 
                                 </div>
-                                <p className="leading-relaxed  text-sm lg:text-lg">Every decision we make is centered around delivering the best possible experience for our users simple, intuitive, and hassle-free.</p>
+                                <p className="leading-relaxed text-justify text-sm lg:text-lg">Every decision we make is centered around delivering the best possible experience for our users simple, intuitive, and hassle-free.</p>
                             </div>
                         </div>
-                        <div className="xl:w-1/4 md:w-1/2 p-4">
-                            <div className="border border-gray-200 p-6 rounded-lg">
+                        <div className="p-2">
+                            <div className="dark:bg-gray-800 p-6 rounded-2xl shadow-xl">
                                 <div className="flex items-center gap-4">
 
                                     <div className='w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4'>
@@ -85,11 +85,11 @@ function About() {
 
                                     </div>
                                 </div>
-                                <p className="leading-relaxed  text-sm lg:text-lg">Trust is key. We’re committed to providing a secure and transparent platform that protects your data and your audience.</p>
+                                <p className="leading-relaxed text-justify text-sm lg:text-lg">Trust is key. We’re committed to providing a secure and transparent platform that protects your data and your audience.</p>
                             </div>
                         </div>
-                        <div className="xl:w-1/4 md:w-1/2 p-4">
-                            <div className="border border-gray-200 p-6 rounded-lg">
+                        <div className="p-2">
+                            <div className="dark:bg-gray-800 p-6 rounded-2xl shadow-xl">
                                 <div className="flex items-center gap-4">
 
                                     <div className='w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4'>
@@ -102,7 +102,7 @@ function About() {
                                         <h2 className="dark:text-white text-lg text-gray-900 font-medium title-font mb-2">Collaboration</h2>
                                     </div>
                                 </div>
-                                <p className="leading-relaxed  text-sm lg:text-lg">We believe in building together with our team, our users, and our partners to shape the future of digital communication.</p>
+                                <p className="leading-relaxed text-justify text-sm lg:text-lg">We believe in building together with our team, our users, and our partners to shape the future of digital communication.</p>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@ function About() {
                     </p>
                 </div> */}
 
-                <div className='text-white text-center mt-10'>
+                {/* <div className='text-white text-center mt-10'>
                     {/* <div className="flex flex-wrap w-full mb-8 flex-col items-center text-center">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-purple-500">MEET US</h1>
                     </div> */}
@@ -143,8 +143,8 @@ function About() {
                             </div>
                         </div>
 
-                    </div> */}
-                </div>
+                    </div> 
+                </div> */}
 
 
                 <Footer />

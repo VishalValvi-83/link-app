@@ -121,9 +121,9 @@ export default function Signin() {
       });
 
       if (response.data.success) {
-        const loggedInUser = response.data.data; 
+        const loggedInUser = response.data.data;
         if (loggedInUser && loggedInUser._id) {
-          
+
           localStorage.setItem("token", JSON.stringify(loggedInUser));
           console.log(loggedInUser)
 

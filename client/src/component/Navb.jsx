@@ -16,7 +16,7 @@ const Navbarnew = () => {
         apiKey: import.meta.env.VITE_APIKEY,
         authDomain: import.meta.env.VITE_AUTHDOMAIN,
         projectId: import.meta.env.VITE_PROJECTID,
-        storageBucket: "ziplinkss.firebasestorage.app",
+        storageBucket: "slinky-2024.firebasestorage.app",
         messagingSenderId: import.meta.env.VITE_MSGID,
         appId: import.meta.env.VITE_APPID,
     };

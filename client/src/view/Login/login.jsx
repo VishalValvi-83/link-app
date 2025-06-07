@@ -108,15 +108,7 @@ export default function Signin() {
     return () => unsubscribe();
   }, [auth]);
 
-  useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem("User"));
-    if (userInfo && userInfo._id) {
-      // Proceed with using user._id
-    } else {
-      // Handle the case where the user is not found or logged in
-      console.log("No user found in localStorage");
-    }
-  }, [])
+
   JSON.parse(localStorage.getItem('token'))
   const handleGoogleLogin = async () => {
     try {
@@ -137,6 +129,9 @@ export default function Signin() {
 
 
           toast.success("Login successful!");
+          setTimeout(() => {
+            window.location.pathname = "/dashboard";
+          }, 1000);
         } else {
           toast.error("Error: No user ID returned from backend");
         }

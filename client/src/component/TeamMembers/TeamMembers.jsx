@@ -65,14 +65,14 @@ export default function TeamMembers() {
                             className="bg-white dark:bg-gray-800 rounded-2xl shadow-md py-6 px-4 hover:shadow-xl transition"
                         >
                             <h4 className="text-2xl font-bold dark:text-gray-200 text-gray-800 mb-2">{member.name}</h4>
-                            <div className="mb-2 text-gray-700 bg-blue-50 py-3 px-2 font-medium text-left dark:text-gray-300 text-md">
+                            <div className="mb-2 text-gray-700 dark:bg-inherit bg-blue-50 py-3 px-2 font-medium text-left dark:text-gray-300 text-md">
                                 <div>
                                     <span className="font-semibold"><Mail className="w-4 h-4 text-blue-500 me-1 inline-block"/> Email: </span>
-                                    <a href={`mailto:${member.email}`} className="text-blue-600 font-medium hover:underline">{member.email}</a>
+                                    <a href={`mailto:${member.email}`} className="dark:text-blue-300 text-blue-500 font-medium hover:underline">{member.email}</a>
                                 </div>
                                 <div>
                                     <span className="font-semibold"> <PhoneCall className="w-4 h-4 text-green-500 me-1 inline-block"/>Phone: </span>
-                                    <a href={`tel:${member.phone}`} className="text-blue-600  hover:underline">{member.phone}</a>
+                                    <a href={`tel:${member.phone}`} className="dark:text-blue-300 text-blue-500 hover:underline">{member.phone}</a>
                                 </div>
 
                             </div>

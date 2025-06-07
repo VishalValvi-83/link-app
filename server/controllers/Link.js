@@ -1,27 +1,42 @@
 import Link from "../model/Link.js";
+import { isUrlSafe } from "../utils/checkUrlSafety.js";
 import User from "./../model/Users.js"
 
 const postLink = async (req, res) => {
     try {
-        const { target, title, slug, view, user } = req.body
+        const { target, title, slug, view, user } = req.body;
 
-        const link = new Link({ target, title, slug, view, user })
-
-
-        if (link.target.includes("https")) {
-            const savedLink = await link.save()
-            res.json({
-                success: true,
-                data: savedLink,
-                message: "Link saved successfully"
-            })
-        }
-        else {
-            res.status(400).json({
+        const link = new Link({ target, title, slug, view, user });
+        // Check if URL starts with https
+        if (!link.target.startsWith("https://")) {
+            return res.status(400).json({
                 success: false,
-                message: "Invalid target URL. It must start with http"
-            })
+                message: "Invalid target URL. It must start with https://"
+            });
         }
+
+        // Check if URL is safe
+        const safe = await isUrlSafe(target);
+        if (!safe) {
+            return res.status(400).json({
+                success: false,
+                message: "The provided URL is unsafe or may contain malware."
+            });
+        }
+        // Check if slug is already taken
+        const existing = await Link.findOne({ slug });
+        if (existing) {
+            return res.status(400).json({
+                success: false,
+                message: "Slug already exists. Please choose another one."
+            });
+        }
+        const savedLink = await link.save();
+        res.json({
+            success: true,
+            data: savedLink,
+            message: "Link saved successfully"
+        });
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -48,7 +63,7 @@ const getSlugRedic = async (req, res) => {
 
         link.view = link.view + 1;
         await link.save();
-       return res.redirect(link.target)
+        return res.redirect(link.target)
 
     } catch (error) {
         console.error(error)

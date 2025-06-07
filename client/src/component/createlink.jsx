@@ -55,12 +55,12 @@ const Createlink = () => {
                 setLinkData({ title: "", target: "", slug: "" });
                 setTimeout(() => {
                     window.location.href = `/dashboard`;
-                },1000);
+                }, 1000);
             } else {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            toast.error(error.message || "An error occurred");
+            toast.error(error.response?.data?.message || error.message ||  "An error occurred");
         }
     };
 

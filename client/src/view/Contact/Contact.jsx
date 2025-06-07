@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast'
 import Phone from '../../assets/phone.svg'
 import TeamMembers from '../../component/TeamMembers/TeamMembers';
-
+import './contact.css'
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -33,13 +33,13 @@ const Contact = () => {
   return (
     <>
       <Navbarnew />
-      <section className=" w-[100%] text-gray-500 dark:bg-gray-900 border-none body-font">
+      <section className=" w-[100%] contact-form-container dark:bg-gray-900 border-none body-font">
         <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
           <div class="w-full mt-8 mx-auto lg:w-1/2">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl text-gray-900 font-extrabold leading-none dark:text-white animate__animated animate__fadeInDown">
               We’d Love to Hear From You!
             </h1>
-            <p class=" text-lg md:text-xl lg:text-2xl font-light text-gray-500 dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
+            <p class=" text-lg md:text-xl lg:text-2xl font-light dark:text-gray-400 animate__animated animate__zoomIn transition ease-in-out delay-200 hover:text-sky-400 duration-300">
               Thank you for visiting Slinky! If you have any inquiries about our project, suggestions for improvement, or would like to collaborate, feel free to reach out.
               We’re a group of computer science students passionate about building secure and efficient web tools. We'll do our best to respond promptly.
             </p>

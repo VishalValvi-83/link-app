@@ -55,7 +55,7 @@ export default function HeroCarousel() {
   }
 
   return (
-    <section className="sm:h-[700px] h-[550px] bg-white dark:bg-gray-900">
+    <section className="sm:h-[700px] h-[550px] bg-white mt-10 dark:bg-gray-900">
       <Carousel slideInterval={5000}>
         <div className="flex items-center justify-center px-6 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -82,7 +82,7 @@ export default function HeroCarousel() {
               </div>
             </div>
             <div className="hidden md:block">
-              <img src={LinkUsage} alt="URL shortening" className="w-[90%] h-[90%]" />
+              <img src={LinkUsage} alt="URL shortening" className="w-[90%] mt-5 h-[90%]" />
             </div>
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function HeroCarousel() {
               </div>
             </div>
             <div className="hidden md:block">
-              <img src={QrCodeImage} alt="QR Code" className="w-[90%] h-[90%]" />
+              <img src={QrCodeImage} alt="QR Code" className="w-[80%] mx-auto mt-5 h-[80%]" />
             </div>
           </div>
         </div>

@@ -47,19 +47,24 @@ export default function Signin() {
       setPasswordError(true);
       return;
     }
+    toast.loading('Logging in...');
     try {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user-login`, {
         email,
         password,
       });
+      toast.dismiss();
       if (response.data.success) {
 
         toast.success(response.data.message)
         localStorage.setItem('token', JSON.stringify(response.data.data));
-        toast.loading('Redirecting to dashboard...')
+
+        setTimeout(() => {
+          toast.loading('Redirecting to dashboard...')
+        }, 1000);
         setTimeout(() => {
           window.location.pathname = "/dashboard";
-        }, 1000);
+        }, 1500);
       } else {
         toast.error(response.data.message);
       }

@@ -142,7 +142,7 @@ const Profile = () => {
                             onClick={handleEditProfile}
                         ><Edit2 className="w-5 h-5" />Edit Profile</button>
                         <button className="w-full flex items-center justify-center gap-2 py-2 rounded-xl text-red-50 font-semibold bg-red-50 dark:bg-red-700 hover:bg-red-100 dark:hover:bg-red-800 transition"
-                        onClick={handleDeleteAccount}
+                            onClick={handleDeleteAccount}
                         ><Trash2 className="w-5 h-5" />Delete Account</button>
                     </div>
                     <button className="w-full py-3 rounded-xl dark:text-white font-semibold text-fuchsia-700  bg-fuchsia-100 dark:bg-fuchsia-900 hover:bg-fuchsia-200 dark:hover:bg-fuchsia-800 transition mb-2"
@@ -205,7 +205,7 @@ const ProfileDesktop = () => {
     const [editOpen, setEditOpen] = useState(false);
     const [editData, setEditData] = useState({ fullname: "", email: "" });
     useEffect(() => {
-        const userData = localStorage.getItem("User") || localStorage.getItem("token");
+        const userData = localStorage.getItem("token") || localStorage.getItem("User");
         if (userData) {
             setUser(JSON.parse(userData));
             setEditData({
@@ -281,7 +281,8 @@ const ProfileDesktop = () => {
             window.location.pathname = '/user-login'
         };
     }, [user]);
-
+    const userData1 = localStorage.getItem("User");
+    const parsedUserData = userData1 ? JSON.parse(userData1) : null;
     return (
         <>
             <Navbarnew />
@@ -290,19 +291,11 @@ const ProfileDesktop = () => {
 
                     <div className="flex flex-col items-center w-1/3 border-r border-gray-200 dark:border-gray-800 pr-8">
                         <div className="w-28 h-28 rounded-full bg-fuchsia-100 dark:bg-fuchsia-900 flex items-center justify-center text-4xl font-bold text-fuchsia-700 dark:text-white mb-4 overflow-hidden">
-                            {user?.photoURL ? (
-                                <img
-                                    src={user.photoURL}
-                                    alt="Profile"
-                                    className="w-full h-full object-cover rounded-full"
-                                />
-                            ) : (
-                                // (user?.fullname || user?.displayName || "U")[0]
-                                <img src={FallbackPhoto}
-                                    alt="Profile"
-                                    className="w-full h-full object-cover rounded-full"
-                                />
-                            )}
+                            <img
+                                src={user?.photoURL || parsedUserData?.photoURL || FallbackPhoto}
+                                alt="Profile"
+                                className="w-full h-full object-cover rounded-full"
+                            />
                         </div>
                         <div className="text-2xl font-bold text-gray-900 dark:text-white">{user?.fullname || user?.displayName}</div>
                         <div className="text-xs text-gray-400 mt-2 py-1 px-3 bg-gray-800 rounded-md">

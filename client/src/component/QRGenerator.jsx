@@ -13,9 +13,14 @@ function QRGenerator() {
       toast.error('Enter a URL to generate QR code');
       return;
     }
-    setShowQR(true);
-    toast.success('QR code generated!');
-    setUrl('');
+    if (!/^https:\/\//i.test(url)) {
+      toast.error('URL must start with HTTPS');
+      setShowQR(false);
+      return;
+    } else {
+      setShowQR(true);
+      toast.success('QR code generated!');
+    }
   };
 
   const handleDownload = () => {
@@ -42,7 +47,7 @@ function QRGenerator() {
 
     img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
   };
-  
+
   return (
     <>
       <input

@@ -60,18 +60,24 @@ const Createlink = () => {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            toast.error(error.response?.data?.message || error.message ||  "An error occurred");
+            toast.error(error.response?.data?.message || error.message || "An error occurred");
         }
     };
 
     const generateQRCode = (e) => {
         e.preventDefault();
         if (!qrCodeUrl) {
-            alert("Please enter a valid URL");
+            toast.error("Please enter a URL");
+            setGeneratedQR(false);
+            return;
+        }
+        if (!isUrlSecure(qrCodeUrl)) {
+            toast.error("URL must secure with HTTPS protocol");
             setGeneratedQR(false);
             return;
         }
         setGeneratedQR(true);
+        toast.success("QR code generated!");
     };
     useEffect(() => {
         if (!qrCodeUrl) {
@@ -247,7 +253,7 @@ const Createlink = () => {
                                             onChange={(e) => setLinkData({ ...linkData, target: e.target.value })}
                                             placeholder="Paste your  URL (with HTTPS)"
                                             className="w-full mt-0 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                            // pattern="https://.*"
+                                        // pattern="https://.*"
                                         />
                                     </div>
                                 </div>

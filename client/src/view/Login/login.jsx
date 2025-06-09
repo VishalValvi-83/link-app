@@ -356,12 +356,12 @@ export default function Signin() {
                       > Password
                       </label>
 
-                      <a
+                      {/* <a
                         href="#"
                         title=""
                         className="text-sm font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
                       >Forgot password?
-                      </a>
+                      </a> */}
                     </div>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

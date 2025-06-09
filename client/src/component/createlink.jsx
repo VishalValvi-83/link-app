@@ -247,7 +247,7 @@ const Createlink = () => {
                                             onChange={(e) => setLinkData({ ...linkData, target: e.target.value })}
                                             placeholder="Paste your  URL (with HTTPS)"
                                             className="w-full mt-0 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                            pattern="https://.*"
+                                            // pattern="https://.*"
                                         />
                                     </div>
                                 </div>

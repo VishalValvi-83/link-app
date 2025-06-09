@@ -122,11 +122,14 @@ const Dashboard = () => {
       head: [tableColumn],
       body: tableRows,
       startY: 20,
-      styles: { fontSize: 9 },
+      styles: { fontSize: 9, cellPadding: 2, overflow: 'linebreak' },
       headStyles: { fillColor: [52, 73, 94] },
       columnStyles: {
-        3: { cellWidth: 18 }, // Clicks column (index 3)
-        4: { cellWidth: 28 }  // Created At column (index 4)
+        0: { cellWidth: 40 }, // Title
+        1: { cellWidth: 60 }, // Original Link
+        2: { cellWidth: 50 }, // Short Link
+        3: { cellWidth: 15, halign: 'center' }, // Clicks
+        4: { cellWidth: 25 }  // Created At
       }
     });
 
